@@ -1,0 +1,9 @@
+# Netlify builds the site from this repository: run build.py, publish public/.
+# preview-mobile.html is a local preview only and never ships (the drag-and-drop deploys
+# left it out too).
+[build]
+  command = "python3 build.py && rm -f public/preview-mobile.html"
+  publish = "public"
+
+[build.environment]
+  PYTHON_VERSION = "3.12"
