@@ -7,7 +7,7 @@ from research_visual import render_research_visual
 
 ROOT=Path(__file__).resolve().parent
 PUBLIC=ROOT/'public'
-OLD=ROOT.parent/'netlify-publish-2026-10-12/public'
+OLD=ROOT/'source/privacy'  # the privacy pages' source text; was ../netlify-publish-2026-10-12/public, outside the repository
 
 TEAM=[
     ('Ankit Mishra, MBA','ankit-mishra','https://www.linkedin.com/in/ankitmishra3/','Strategic Advisor','Assessor estratégico'),
