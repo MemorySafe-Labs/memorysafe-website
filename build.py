@@ -232,46 +232,49 @@ CONTACT='mailto:contact@memorysafe.ca'
 HOSTED='https://memory.memorysafe.ca/'
 # Straight to the create-account form (Hosted 0.7.7); the landing page offers sign-in for people who already have one.
 HOSTED_SIGNUP='https://memory.memorysafe.ca/account/start?signup=1&next=/account&lang='  # + en or pt-BR: Cognito's forms open in the page's language
+# Paid: create the account (or sign in), then Settings, where Upgrade opens Stripe's checkout for that account
+# (Hosted 0.8.2's webhook needs the account named in the checkout, which only the Settings link carries).
+HOSTED_PAID_SIGNUP='https://memory.memorysafe.ca/account/start?signup=1&next=%2Faccount%2Fsettings&lang='
 HOSTED_TEAM_SIGNUP='https://memory.memorysafe.ca/account/start?signup=1&next=%2Forgs%2Fnew%3Fplan%3Dteam&lang='  # Team: create the account, then the organization, then pay from its page (Hosted 0.7.9)
 def signup_lang(prefix): return 'en' if prefix=='/' else 'pt-BR'
 BETA=CONTACT+'?subject=MemorySafe%20Hosted%20early%20access'
 # All prices in US dollars (Carla, 3 Nov 2026). The audit tiers are the 14 Oct proposal's C$7,500 / C$22,000 /
 # C$3,500 a month converted at about 0.72 and rounded: US$5,500 / US$16,000 / US$2,500.
 PRICING={
-'en':{'eyebrow':'PRICING','title':'Free on your computer. Free everywhere you work, for now.',
-'intro':'The local plugin and Hosted are free. Companies start with a free fragility test.',
+'en':{'eyebrow':'PRICING','title':'One MemorySafe. Your memories on your computer, or in your account.',
+'intro':'Same product either way: choose where your memories live from the dashboard, and change your mind any time. Start free.',
 'for_you':'FOR YOU','for_companies':'FOR COMPANIES','pending':'Payment link coming soon',
 'cards':[
- {'status':'FREE · AVAILABLE NOW','name':'Local plugin','price':'Free','per':'','includes':'What’s included','body':'One memory for Claude Desktop, Claude Code and Codex on one computer.',
-  'points':['Kept in one file on your computer','Review, protect and forget what it keeps','Open source, Apache 2.0'],
-  'buttons':[('Download','download','')],'fine':''},
- {'status':'HOSTED · FREE','name':'Hosted Personal','price':'Free','per':'','featured':True,'includes':'Everything in Local, plus','body':'Your memory follows you: Claude, Codex, Cursor and more, on laptop, phone and desktop.',
-  'points':['Unlimited connected apps','Up to 25,000 memories','Export and erase with a receipt','Hosted in Canada'],
-  'buttons':[('Create your free account','hosted','')],'fine':'Free while we keep improving it. If paid plans start, at US$10 a month, you hear first. Can’t get in yet? <a href="'+BETA+'">Email us for early access</a>.'},
- {'status':'COMPANIES · EARLY ACCESS','name':'Team','price':'US$29','per':'/ person / month','includes':'Everything in Hosted Personal, plus','body':'One memory your whole team reads and saves to, set up with you by our founders.',
+ {'status':'FREE · AVAILABLE NOW','name':'Free','price':'Free','per':'','includes':'What’s included','body':'One memory for Claude, Codex, Cursor and more. Keep it on this computer, or in your account to reach it from every device.',
+  'points':['Up to 1,000 memories','On this computer, or in your hosted account','Review, protect and forget what it keeps','Export and erase with a receipt','Open source, Apache 2.0'],
+  'buttons':[('Download','download',''),('Create your free account','hosted','ghost')],'fine':''},
+ {'status':'PERSONAL · PAID','name':'Paid','price':'US$10','per':'/ month','featured':True,'includes':'Everything in Free, plus','body':'Room for everything you work on, wherever your memories live.',
+  'points':['Up to 20,000 memories','On this computer, or in your hosted account','Hosted in Canada','Cancel any time from your billing page'],
+  'buttons':[('Get Paid','paid','')],'fine':'Plus applicable tax, added at checkout. Create your account, then upgrade from Settings; with memories on your computer, Settings also gives you the key that carries the plan there.'},
+ {'status':'COMPANIES · EARLY ACCESS','name':'Team','price':'US$29','per':'/ person / month','includes':'Everything in Paid, plus','body':'One memory your whole team reads and saves to, set up with you by our founders.',
   'points':['One memory the whole team reads and saves to','People join by invitation, on every assistant they use','Onboarding with our founders, and a direct line to them','Flat monthly pricing by company size, on request'],
   'buttons':[('Get Team','team','')],'fine':'Create your free account, then pay for Team from your organization’s page. Stripe handles the payment.'},
  {'status':'COMPANIES · STARTS FREE','name':'Audits & pilots','price':'Free','per':'to start','includes':'What’s included','body':'We first test your agent or model for free and show you where it forgets what matters. Then we propose the next step.',
   'points':['Free fragility test: one agent or model, a short readout','Memory Audit: an independent report with a test pack you can rerun, from US$5,500','Continual Learning pilot: MemorySafe running on one of your training streams for 3 months, US$7,500'],
   'buttons':[('Book a free fragility test','test','')],'fine':'Medical and regulated work is quoted separately.'}],
-'note':'All prices in US dollars. Payments are handled by Stripe; MemorySafe never sees your card number. Questions: <a href="'+CONTACT+'">contact@memorysafe.ca</a>'},
-'pt':{'eyebrow':'PREÇOS','title':'Grátis no seu computador. Grátis onde você trabalha, por enquanto.',
-'intro':'O plugin local e o Hosted são gratuitos. Empresas começam com um teste de fragilidade gratuito.',
+'note':'All prices in US dollars, before tax. Payments are handled by Stripe; MemorySafe never sees your card number. Questions: <a href="'+CONTACT+'">contact@memorysafe.ca</a>'},
+'pt':{'eyebrow':'PREÇOS','title':'Um só MemorySafe. Suas memórias no seu computador, ou na sua conta.',
+'intro':'O mesmo produto nos dois casos: escolha no painel onde suas memórias ficam e mude quando quiser. Comece grátis.',
 'for_you':'PARA VOCÊ','for_companies':'PARA EMPRESAS','pending':'Link de pagamento em breve',
 'cards':[
- {'status':'GRÁTIS · DISPONÍVEL AGORA','name':'Plugin local','price':'Grátis','per':'','includes':'O que está incluído','body':'Uma memória para Claude Desktop, Claude Code e Codex em um computador.',
-  'points':['Guardada em um único arquivo no seu computador','Revise, proteja e esqueça o que ela guarda','Código aberto, Apache 2.0'],
-  'buttons':[('Baixar','download','')],'fine':''},
- {'status':'HOSTED · GRÁTIS','name':'Hosted Pessoal','price':'Grátis','per':'','featured':True,'includes':'Tudo do Local, mais','body':'Sua memória acompanha você: Claude, Codex, Cursor e outros, no notebook, no celular e no desktop.',
-  'points':['Apps conectados sem limite','Até 25.000 memórias','Exporte e apague com recibo','Hospedado no Canadá'],
-  'buttons':[('Criar sua conta gratuita','hosted','')],'fine':'Grátis enquanto o aperfeiçoamos. Se planos pagos começarem, a US$10 por mês, você fica sabendo antes. Ainda não conseguiu entrar? <a href="'+BETA+'">Peça acesso por e-mail</a>.'},
- {'status':'EMPRESAS · LANÇAMENTO','name':'Team','price':'US$29','per':'/ pessoa / mês','includes':'Tudo do Hosted Pessoal, mais','body':'Uma memória que toda a equipe lê e alimenta, configurada com você pelos nossos fundadores.',
+ {'status':'GRÁTIS · DISPONÍVEL AGORA','name':'Grátis','price':'Grátis','per':'','includes':'O que está incluído','body':'Uma memória para Claude, Codex, Cursor e outros. Guarde no seu computador, ou na sua conta para acessar de qualquer aparelho.',
+  'points':['Até 1.000 memórias','No seu computador, ou na sua conta hospedada','Revise, proteja e esqueça o que ela guarda','Exporte e apague com recibo','Código aberto, Apache 2.0'],
+  'buttons':[('Baixar','download',''),('Criar sua conta gratuita','hosted','ghost')],'fine':''},
+ {'status':'PESSOAL · PAGO','name':'Pago','price':'US$10','per':'/ mês','featured':True,'includes':'Tudo do Grátis, mais','body':'Espaço para tudo em que você trabalha, onde quer que suas memórias fiquem.',
+  'points':['Até 20.000 memórias','No seu computador, ou na sua conta hospedada','Hospedado no Canadá','Cancele quando quiser na sua página de cobrança'],
+  'buttons':[('Assinar o Pago','paid','')],'fine':'Mais impostos aplicáveis, somados no checkout. Crie sua conta e faça o upgrade em Configurações; com as memórias no seu computador, Configurações também dá a chave que leva o plano até ele.'},
+ {'status':'EMPRESAS · LANÇAMENTO','name':'Team','price':'US$29','per':'/ pessoa / mês','includes':'Tudo do Pago, mais','body':'Uma memória que toda a equipe lê e alimenta, configurada com você pelos nossos fundadores.',
   'points':['Uma memória que toda a equipe lê e alimenta','Cada pessoa entra por convite, em todos os assistentes que usa','Onboarding com os fundadores, e uma linha direta com eles','Preço mensal fixo por tamanho de empresa, sob consulta'],
   'buttons':[('Assinar o Team','team','')],'fine':'Crie sua conta gratuita e pague o Team na página da sua organização. O Stripe processa o pagamento.'},
  {'status':'EMPRESAS · COMEÇA GRÁTIS','name':'Auditorias e pilotos','price':'Grátis','per':'para começar','includes':'O que está incluído','body':'Primeiro testamos seu agente ou modelo de graça e mostramos onde ele esquece o que importa. Depois propomos o próximo passo.',
   'points':['Teste de fragilidade gratuito: um agente ou modelo, um resumo curto','Auditoria de Memória: relatório independente com pacote de testes que você pode repetir, a partir de US$5.500','Piloto de Aprendizado Contínuo: o MemorySafe rodando em um dos seus fluxos de treinamento por 3 meses, US$7.500'],
   'buttons':[('Agendar o teste gratuito','test','')],'fine':'Trabalhos médicos e regulados têm orçamento à parte.'}],
-'note':'Todos os preços em dólares americanos. Os pagamentos são processados pelo Stripe; o MemorySafe nunca vê o número do seu cartão. Dúvidas: <a href="'+CONTACT+'">contact@memorysafe.ca</a>'}}
+'note':'Todos os preços em dólares americanos, antes dos impostos. Os pagamentos são processados pelo Stripe; o MemorySafe nunca vê o número do seu cartão. Dúvidas: <a href="'+CONTACT+'">contact@memorysafe.ca</a>'}}
 
 GITHUB='https://github.com/MemorySafe-Labs/memorysafe-plugin'
 LINKEDIN='https://www.linkedin.com/company/memorysafe-labs'
@@ -293,8 +296,8 @@ def footer(c):
     return f'''<footer class="footer on-dark"><div class="wrap"><div class="footer-top"><div><div class="eyebrow">{c['footer_eyebrow']}</div><h2>{c['footer_title']}</h2></div><a class="button light" href="{p}download/">{c['cta']}</a></div><div class="footer-meta"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><span class="footer-copy">{c['copyright']}</span><nav class="footer-links"><a href="{p}privacy/">{c['privacy']}</a><a href="{GITHUB}">{c['github']} ↗</a><a href="{LINKEDIN}">LinkedIn ↗</a><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></nav></div></div></footer>'''
 
 # Link previews (Open Graph + Twitter), as deployed on 29 Oct 2026; the image is public/assets/og-image.png (1800x945).
-OG_DESC={'/':'Governed memory for AI, from neuroscience. Free local plugin gives Claude, Cursor and your other agents one shared memory on your computer.',
-         '/pt-br/':'Memória governada para IA, inspirada na neurociência. Plugin local e gratuito: uma memória compartilhada entre Claude, Cursor e seus agentes.'}
+OG_DESC={'/':'Governed memory for AI. One shared memory for Claude, Cursor and your other agents, on your computer or in your account. Start free.',
+         '/pt-br/':'Memória governada para IA. Uma memória compartilhada entre Claude, Cursor e seus agentes, no seu computador ou na sua conta. Comece grátis.'}
 def og(c,title,page=''):
     url='https://memorysafe.ca'+c['prefix']+page
     t=f'{title} — MemorySafe Labs'; d=OG_DESC[c['prefix']]; img='https://memorysafe.ca/assets/og-image.png'
@@ -413,6 +416,8 @@ def pricing(c):
             return f'<a class="{cls}" href="{HOSTED_SIGNUP}{signup_lang(p)}">{label}</a>'
         if key=='team':
             return f'<a class="{cls}" href="{HOSTED_TEAM_SIGNUP}{signup_lang(p)}">{label}</a>'
+        if key=='paid':
+            return f'<a class="{cls}" href="{HOSTED_PAID_SIGNUP}{signup_lang(p)}">{label}</a>'
         if key=='test':
             return f'<a class="{cls}" href="{CONTACT}?subject=Fragility%20test">{label}</a>'
         if key=='contact':
