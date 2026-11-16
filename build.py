@@ -290,11 +290,11 @@ def header(c,page=''):
     links=[p+'#problem',p+'#how',p+'pricing/',p+'research/',p+'value/',p+'#about']
     nav=''.join(f'<a href="{href}">{text}</a>' for href,text in zip(links,c['nav']))
     langs=f'<a href="{p+page}" aria-current="page">{"PT" if p!="/" else "EN"}</a><span aria-hidden="true">/</span><a href="{other}">{c["other_label"]}</a>'
-    return f'''<a class="skip" href="#main">{c['skip']}</a><div class="masthead"><div class="wrap"><div class="nav"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><nav class="nav-links" aria-label="{'Main navigation' if p=='/' else 'Navegação principal'}">{nav}</nav><div class="nav-actions"><nav class="language" aria-label="Language">{langs}</nav><a class="nav-github" href="{GITHUB}" aria-label="{c['github_label']}">{GITHUB_ICON}<span class="nav-github-label">GitHub</span></a><a class="nav-github nav-linkedin" href="{LINKEDIN}" aria-label="{c['linkedin_label']}">{LINKEDIN_ICON}</a><a class="button small" href="{p}download/"><span class="nav-cta-long">{c['cta']}</span><span class="nav-cta-short">{c['cta_short']}</span></a></div></div></div></div>'''
+    return f'''<a class="skip" href="#main">{c['skip']}</a><div class="masthead"><div class="wrap"><div class="nav"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><nav class="nav-links" id="site-nav" aria-label="{'Main navigation' if p=='/' else 'Navegação principal'}">{nav}<span class="nav-menu-lang language">{langs}</span></nav><div class="nav-actions"><nav class="language" aria-label="Language">{langs}</nav><a class="nav-github" href="{GITHUB}" aria-label="{c['github_label']}">{GITHUB_ICON}<span class="nav-github-label">GitHub</span></a><a class="nav-github nav-linkedin" href="{LINKEDIN}" aria-label="{c['linkedin_label']}">{LINKEDIN_ICON}</a><a class="button small" href="{p}download/"><span class="nav-cta-long">{c['cta']}</span><span class="nav-cta-short">{c['cta_short']}</span></a><button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button></div></div></div></div>'''
 
 def footer(c):
     p=c['prefix']
-    return f'''<footer class="footer on-dark"><div class="wrap"><div class="footer-top"><div><div class="eyebrow">{c['footer_eyebrow']}</div><h2>{c['footer_title']}</h2></div><a class="button light" href="{p}download/">{c['cta']}</a></div><div class="footer-meta"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><span class="footer-copy">{c['copyright']}</span><nav class="footer-links"><a href="{p}privacy/">{c['privacy']}</a><a href="{GITHUB}">{c['github']} ↗</a><a href="{LINKEDIN}">LinkedIn ↗</a><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></nav></div></div></footer>'''
+    return f'''<footer class="footer on-dark"><div class="wrap"><div class="footer-top"><div><div class="eyebrow">{c['footer_eyebrow']}</div><h2>{c['footer_title']}</h2></div><a class="button light" href="{p}download/">{c['cta']}</a></div><div class="footer-meta"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><span class="footer-copy">{c['copyright']}</span><nav class="footer-links"><a href="{p}pricing/">{c['nav'][2]}</a><a href="{p}research/">{c['nav'][3]}</a><a href="{p}value/">{c['nav'][4]}</a><a href="{p}privacy/">{c['privacy']}</a><a href="{GITHUB}">{c['github']} ↗</a><a href="{LINKEDIN}">LinkedIn ↗</a><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></nav></div></div></footer>'''
 
 # Link previews (Open Graph + Twitter), as deployed on 29 Oct 2026; the image is public/assets/og-image.png (1800x945).
 OG_DESC={'/':'Governed memory for AI. One shared memory for Claude, Cursor and your other agents, on your computer or in your account. Start free.',
@@ -512,6 +512,15 @@ tabs.forEach(function(b){b.addEventListener('click',function(){
 tabs.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
 [].slice.call(root.querySelectorAll('[data-value-panel]')).forEach(function(pn){pn.hidden=pn.getAttribute('data-value-panel')!==b.getAttribute('data-value-tab')})})});
 calc();
+})();
+
+/* Phone menu: under 860px the tabs fold into a menu the button opens (16 Nov 2026). */
+(function(){
+var m=document.querySelector('.masthead'),b=m&&m.querySelector('.nav-toggle'),n=m&&m.querySelector('.nav-links');if(!b||!n)return;
+function set(o){m.classList.toggle('nav-open',o);b.setAttribute('aria-expanded',String(o))}
+b.addEventListener('click',function(){set(!m.classList.contains('nav-open'))});
+n.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
 })();
 ''')
 

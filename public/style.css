@@ -431,3 +431,26 @@ details>p{font-size:14px;line-height:1.75;color:var(--muted);margin:0 30px 22px 
 .price-note-second{margin-top:6px}
 @media (max-width:1040px){.price-blocks{grid-template-columns:1fr}}
 @media (max-width:560px){.price-block .price-grid{grid-template-columns:1fr}.price-block{padding:20px 12px 12px}}
+
+/* Phone menu: under 860px the tabs fold into a menu behind a button (16 Nov 2026, Carla's review) */
+.nav-toggle{display:none;width:40px;height:40px;flex:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;padding:0;background:transparent;border:1px solid var(--line);border-radius:10px;cursor:pointer}
+.nav-toggle span{display:block;width:18px;height:2px;border-radius:2px;background:var(--ink);transition:transform .18s ease,opacity .18s ease}
+.masthead.nav-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.masthead.nav-open .nav-toggle span:nth-child(2){opacity:0}
+.masthead.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:860px){
+.masthead{position:relative;z-index:40}
+.nav-toggle{display:inline-flex}
+.masthead.nav-open .nav-links{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 14px 28px rgba(11,18,32,.10);padding:4px 24px 10px;font-size:16px;white-space:normal}
+.masthead.nav-open .nav-links a{padding:14px 2px;border-top:1px solid var(--line)}
+.masthead.nav-open .nav-links a:first-child{border-top:0}
+}
+@media(max-width:400px){.nav .button.small{padding:11px 12px}.nav-toggle{width:38px;height:38px}}
+.nav-menu-lang{display:none}
+@media(max-width:560px){
+.nav-actions>.language{display:none}
+.masthead.nav-open .nav-links .nav-menu-lang{display:flex;gap:10px;font-size:12px;padding:16px 2px 8px;border-top:1px solid var(--line)}
+.masthead.nav-open .nav-links .nav-menu-lang a{padding:0;border:0}
+}
+@media(max-width:350px){.masthead .wrap{padding:0 14px}.masthead .brand-name{font-size:17px}.masthead .brand{gap:8px}}
+@media(max-width:560px){.masthead .nav-github{display:none}}

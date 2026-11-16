@@ -61,3 +61,12 @@ tabs.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
 [].slice.call(root.querySelectorAll('[data-value-panel]')).forEach(function(pn){pn.hidden=pn.getAttribute('data-value-panel')!==b.getAttribute('data-value-tab')})})});
 calc();
 })();
+
+/* Phone menu: under 860px the tabs fold into a menu the button opens (16 Nov 2026). */
+(function(){
+var m=document.querySelector('.masthead'),b=m&&m.querySelector('.nav-toggle'),n=m&&m.querySelector('.nav-links');if(!b||!n)return;
+function set(o){m.classList.toggle('nav-open',o);b.setAttribute('aria-expanded',String(o))}
+b.addEventListener('click',function(){set(!m.classList.contains('nav-open'))});
+n.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+})();
