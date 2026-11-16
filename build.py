@@ -244,35 +244,35 @@ BETA=CONTACT+'?subject=MemorySafe%20Cloud%20early%20access'
 PRICING={
 'en':{'eyebrow':'PRICING','title':'One MemorySafe. Your memories on your computer, or in your account.',
 'intro':'Same product either way: choose where your memories live from the dashboard, and change your mind any time. On your computer it’s free, for ever.',
-'for_you':'FOR YOU','for_companies':'FOR COMPANIES','pending':'Payment link coming soon',
+'for_you':'For you','for_companies':'For companies','pending':'Payment link coming soon','beta_note':'MemorySafe is in beta: we’re still testing it.',
 'cards':[
- {'status':'FREE · AVAILABLE NOW','name':'Free','price':'Free','per':'','includes':'What’s included','body':'One memory for Claude, Codex, Cursor and more. Keep it on this computer, or in your account to reach it from every device.',
+ {'status':'FREE · AVAILABLE NOW','name':'Free','price':'US$0','per':'','includes':'What’s included','body':'One memory for Claude, Codex, Cursor and more. Keep it on this computer, or in your account to reach it from every device.',
   'points':['Unlimited memories on this computer, free for ever','Up to 1,000 memories in your cloud account','Review, protect and forget what it keeps','Export and erase with a receipt','Open source, Apache 2.0'],
   'buttons':[('Download','download',''),('Create your free account','hosted','ghost')],'fine':''},
- {'status':'PERSONAL · PAID','name':'Paid','price':'US$10','per':'/ month','featured':True,'includes':'Everything in Free, plus','body':'Room for everything you work on, in your cloud account, on every device.',
+ {'status':'PAID PLAN','name':'Personal','price':'US$10','per':'/ month','featured':True,'includes':'Everything in Free, plus','body':'Room for everything you work on, in your cloud account, on every device.',
   'points':['Up to 20,000 memories in your cloud account','The same memory on every device','Hosted in Canada','Cancel any time from your billing page'],
-  'buttons':[('Get Paid','paid','')],'fine':'Plus applicable tax, added at checkout. Create your account, then upgrade from Settings. Memories on your computer need no plan.'},
- {'status':'COMPANIES · EARLY ACCESS','name':'Team','price':'US$29','per':'/ person / month','includes':'Everything in Paid, plus','body':'One memory your whole team reads and saves to, set up with you by our founders.',
+  'buttons':[('Get Personal','paid','')],'fine':'Plus applicable tax, added at checkout. Create your account, then upgrade from Settings. Memories on your computer need no plan.'},
+ {'status':'EARLY ACCESS','name':'Team','price':'US$29','per':'/ person / month','includes':'Everything in Personal, plus','body':'One memory your whole team reads and saves to, set up with you by our founders.',
   'points':['One memory the whole team reads and saves to','People join by invitation, on every assistant they use','Onboarding with our founders, and a direct line to them','Flat monthly pricing by company size, on request'],
   'buttons':[('Get Team','team','')],'fine':'Create your free account, then pay for Team from your organization’s page. Stripe handles the payment.'},
- {'status':'COMPANIES · STARTS FREE','name':'Audits & pilots','price':'Free','per':'to start','includes':'What’s included','body':'We first test your agent or model for free and show you where it forgets what matters. Then we propose the next step.',
+ {'status':'STARTS FREE','name':'Audits & pilots','price':'Free','per':'to start','includes':'What’s included','body':'We first test your agent or model for free and show you where it forgets what matters. Then we propose the next step.',
   'points':['Free fragility test: one agent or model, a short readout','Memory Audit: an independent report with a test pack you can rerun, from US$5,500','Continual Learning pilot: MemorySafe running on one of your training streams for 3 months, US$7,500'],
   'buttons':[('Book a free fragility test','test','')],'fine':'Medical and regulated work is quoted separately.'}],
 'note':'All prices in US dollars, before tax. Payments are handled by Stripe; MemorySafe never sees your card number. Questions: <a href="'+CONTACT+'">contact@memorysafe.ca</a>'},
 'pt':{'eyebrow':'PREÇOS','title':'Um só MemorySafe. Suas memórias no seu computador, ou na sua conta.',
 'intro':'O mesmo produto nos dois casos: escolha no painel onde suas memórias ficam e mude quando quiser. No seu computador é grátis, para sempre.',
-'for_you':'PARA VOCÊ','for_companies':'PARA EMPRESAS','pending':'Link de pagamento em breve',
+'for_you':'Para você','for_companies':'Para empresas','pending':'Link de pagamento em breve','beta_note':'O MemorySafe está em beta: ainda estamos testando.',
 'cards':[
- {'status':'GRÁTIS · DISPONÍVEL AGORA','name':'Grátis','price':'Grátis','per':'','includes':'O que está incluído','body':'Uma memória para Claude, Codex, Cursor e outros. Guarde no seu computador, ou na sua conta para acessar de qualquer aparelho.',
+ {'status':'GRÁTIS · DISPONÍVEL AGORA','name':'Grátis','price':'US$0','per':'','includes':'O que está incluído','body':'Uma memória para Claude, Codex, Cursor e outros. Guarde no seu computador, ou na sua conta para acessar de qualquer aparelho.',
   'points':['Memórias ilimitadas no seu computador, grátis para sempre','Até 1.000 memórias na sua conta na nuvem','Revise, proteja e esqueça o que ela guarda','Exporte e apague com recibo','Código aberto, Apache 2.0'],
   'buttons':[('Baixar','download',''),('Criar sua conta gratuita','hosted','ghost')],'fine':''},
- {'status':'PESSOAL · PAGO','name':'Pago','price':'US$10','per':'/ mês','featured':True,'includes':'Tudo do Grátis, mais','body':'Espaço para tudo em que você trabalha, na sua conta na nuvem, em qualquer aparelho.',
+ {'status':'PLANO PAGO','name':'Pessoal','price':'US$10','per':'/ mês','featured':True,'includes':'Tudo do Grátis, mais','body':'Espaço para tudo em que você trabalha, na sua conta na nuvem, em qualquer aparelho.',
   'points':['Até 20.000 memórias na sua conta na nuvem','A mesma memória em qualquer aparelho','Hospedado no Canadá','Cancele quando quiser na sua página de cobrança'],
-  'buttons':[('Assinar o Pago','paid','')],'fine':'Mais impostos aplicáveis, somados no checkout. Crie sua conta e faça o upgrade em Configurações. Memórias no seu computador não precisam de plano.'},
- {'status':'EMPRESAS · LANÇAMENTO','name':'Team','price':'US$29','per':'/ pessoa / mês','includes':'Tudo do Pago, mais','body':'Uma memória que toda a equipe lê e alimenta, configurada com você pelos nossos fundadores.',
+  'buttons':[('Assinar o Pessoal','paid','')],'fine':'Mais impostos aplicáveis, somados no checkout. Crie sua conta e faça o upgrade em Configurações. Memórias no seu computador não precisam de plano.'},
+ {'status':'LANÇAMENTO','name':'Team','price':'US$29','per':'/ pessoa / mês','includes':'Tudo do Pessoal, mais','body':'Uma memória que toda a equipe lê e alimenta, configurada com você pelos nossos fundadores.',
   'points':['Uma memória que toda a equipe lê e alimenta','Cada pessoa entra por convite, em todos os assistentes que usa','Onboarding com os fundadores, e uma linha direta com eles','Preço mensal fixo por tamanho de empresa, sob consulta'],
   'buttons':[('Assinar o Team','team','')],'fine':'Crie sua conta gratuita e pague o Team na página da sua organização. O Stripe processa o pagamento.'},
- {'status':'EMPRESAS · COMEÇA GRÁTIS','name':'Auditorias e pilotos','price':'Grátis','per':'para começar','includes':'O que está incluído','body':'Primeiro testamos seu agente ou modelo de graça e mostramos onde ele esquece o que importa. Depois propomos o próximo passo.',
+ {'status':'COMEÇA GRÁTIS','name':'Auditorias e pilotos','price':'Grátis','per':'para começar','includes':'O que está incluído','body':'Primeiro testamos seu agente ou modelo de graça e mostramos onde ele esquece o que importa. Depois propomos o próximo passo.',
   'points':['Teste de fragilidade gratuito: um agente ou modelo, um resumo curto','Auditoria de Memória: relatório independente com pacote de testes que você pode repetir, a partir de US$5.500','Piloto de Aprendizado Contínuo: o MemorySafe rodando em um dos seus fluxos de treinamento por 3 meses, US$7.500'],
   'buttons':[('Agendar o teste gratuito','test','')],'fine':'Trabalhos médicos e regulados têm orçamento à parte.'}],
 'note':'Todos os preços em dólares americanos, antes dos impostos. Os pagamentos são processados pelo Stripe; o MemorySafe nunca vê o número do seu cartão. Dúvidas: <a href="'+CONTACT+'">contact@memorysafe.ca</a>'}}
@@ -433,9 +433,9 @@ def pricing(c):
         per=f'<span class="price-per">{k["per"]}</span>' if k['per'] else ''
         fine=f'<p class="price-fine">{k["fine"]}</p>' if k['fine'] else ''
         featured=' featured' if k.get('featured') else ''
-        cards.append(f'<article class="price-card{featured}"><div class="mono price-status">{k["status"]}</div><h2>{k["name"]}</h2><div class="price-line"><span class="price-amount">{k["price"]}</span>{per}</div><div class="price-actions">{btns}</div><p>{k["body"]}</p><h3 class="price-includes">{k["includes"]}</h3><ul class="check-list">{pts}</ul>{fine}</article>')
+        cards.append(f'<article class="price-card{featured}"><div class="mono price-status">{k["status"]}</div><h3 class="price-name">{k["name"]}</h3><div class="price-line"><span class="price-amount">{k["price"]}</span>{per}</div><div class="price-actions">{btns}</div><p>{k["body"]}</p><h3 class="price-includes">{k["includes"]}</h3><ul class="check-list">{pts}</ul>{fine}</article>')
     you=''.join(cards[:2]); companies=''.join(cards[2:])
-    body=f'<div class="wrap pricing-main"><section class="inner-hero"><div class="eyebrow">{t["eyebrow"]}</div><h1>{t["title"]}</h1><p>{t["intro"]}</p></section><div class="price-grid four">{you}{companies}</div><p class="price-note">{t["note"]}</p></div>'
+    body=f'<div class="wrap pricing-main"><section class="inner-hero"><div class="eyebrow">{t["eyebrow"]}</div><h1>{t["title"]}</h1><p>{t["intro"]}</p></section><div class="price-blocks"><section class="price-block"><h2 class="price-block-title">{t["for_you"]}</h2><div class="price-grid">{you}</div></section><section class="price-block"><h2 class="price-block-title">{t["for_companies"]}</h2><div class="price-grid">{companies}</div></section></div><p class="price-note">{t["beta_note"]}</p><p class="price-note price-note-second">{t["note"]}</p></div>'
     return shell(c,'Pricing' if p=='/' else 'Preços',body,'pricing/')
 
 def thanks(c):

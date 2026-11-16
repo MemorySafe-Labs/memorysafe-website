@@ -419,3 +419,15 @@ details>p{font-size:14px;line-height:1.75;color:var(--muted);margin:0 30px 22px 
 .price-card ul.check-list li::before{content:"";position:absolute;left:0;top:.3em;width:13px;height:13px;border-radius:3px;background:var(--blue);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' d='M6.5 11.4 3.1 8l1.1-1.1 2.3 2.3 5.3-5.3L12.9 5z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' d='M6.5 11.4 3.1 8l1.1-1.1 2.3 2.3 5.3-5.3L12.9 5z'/%3E%3C/svg%3E") center/contain no-repeat}
 .price-card .price-fine{margin-top:auto}
 .price-grid.four .price-line{min-height:64px;align-content:flex-start}
+
+/* Pricing as two blocks, for you and for companies, two cards in each (16 Nov 2026, Carla) */
+.price-blocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:8px;align-items:stretch}
+.price-block{min-width:0;background:var(--ice);border:1px solid var(--line);border-radius:20px;padding:24px 18px 18px;display:flex;flex-direction:column}
+.price-block-title{margin:0 8px 16px;font-size:22px;font-weight:700;letter-spacing:-.01em}
+.price-block .price-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;flex:1}
+.price-block .price-card{padding:22px}
+.price-card .price-name{margin:0;font-size:21px;font-weight:700;text-wrap:balance}
+.price-block .price-line{min-height:64px;align-content:flex-start}
+.price-note-second{margin-top:6px}
+@media (max-width:1040px){.price-blocks{grid-template-columns:1fr}}
+@media (max-width:560px){.price-block .price-grid{grid-template-columns:1fr}.price-block{padding:20px 12px 12px}}
