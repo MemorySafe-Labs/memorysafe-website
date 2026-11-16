@@ -73,7 +73,7 @@ COPY={
 'learn_steps':[['WEEK 1','Knows the basics.','Your name, your tools, your rules of engagement. No more introductions.'],['MONTH 2','Knows your decisions.','What you chose, what you set aside, and why — settled questions stay settled.'],['MONTH 6','Knows how you work.','Your standards, your edge cases. Answers start from your context, not from zero.']],
 'learn_strip':'<strong>And the learning is portable.</strong> Because it lives in a file you own, it survives model upgrades, new tools, even a change of assistant.',
 'ch_editions':'03 — THE EDITIONS','edition_title':'Your memory. Your kind of setup.',
-'edition_lead':'Start on your computer today, or let your memory follow you: MemorySafe Cloud is available now, free during the beta.',
+'edition_lead':'Start on your computer today, or let your memory follow you: MemorySafe Cloud is available now, with a free plan.',
 'local_status':'FREE LOCAL BETA · AVAILABLE NOW','local_title':'On your computer. In your hands.',
 'local_body':'A shared place for your supported desktop assistants to save and recall useful context.',
 'local_points':['Claude Desktop, Claude Code, and Codex','Review memories, protect facts, inspect history','Your memory database stays on your computer'],
@@ -81,7 +81,7 @@ COPY={
 'hosted_status':'CLOUD · AVAILABLE NOW · FREE DURING BETA','hosted_title':'Your memory follows you.',
 'hosted_body':'One shared memory across supported AI apps and devices — Claude, Codex, Cursor and more — kept current wherever you work.',
 'hosted_points':['One shared address your apps connect to','Laptop, phone, desktop','Hosted in Canada'],'hosted_cta':'Create your free account',
-'hosted_fine':'Free while we keep improving it.<br>Can’t get in yet? <a href="mailto:contact@memorysafe.ca?subject=MemorySafe%20Cloud%20early%20access">Email us for early access</a>.',
+'hosted_fine':'Free for up to 1,000 memories. Room for 20,000 is US$10 a month.<br>Questions? <a href="mailto:contact@memorysafe.ca">Email us</a>.',
 'band_note':'The local plugin keeps your memory on one computer. MemorySafe Cloud is where every assistant you use meets one memory, on every device.',
 'research_label':'A DIFFERENT SCALE.<br>THE SAME QUESTION.',
 'research_title':'What deserves to stay?',
@@ -96,7 +96,7 @@ COPY={
 'contact':'Say hello','team_heading':'Team & advisors','supported_heading':'Supported by',
 'faq_eyebrow':'BEFORE YOU ASK','faq_heading':'A few things, made clear.',
 'faqs':[
-['Does the free version work across my devices?','The free plugin keeps its database on the computer where you install it. It can be shared by supported assistants on that computer. Cross-device memory is what the cloud edition does; it is available now, free during the beta.'],
+['Does the free version work across my devices?','The free plugin keeps its database on the computer where you install it. It can be shared by supported assistants on that computer. Cross-device memory is what the cloud edition does; it is available now, with a free plan.'],
 ['What does “local” actually mean?','The memory database stays on your computer. A connected AI service can still process the context you choose to share under its own terms. Local storage doesn’t mean the AI service itself runs locally.'],
 ['Can I change my mind about a memory?','Use the local dashboard to review saved memories, inspect changes, manage protection, and remove memories from recall. Removing a memory from recall does not completely erase history or backups.'],
 ['Are the advanced memory features available yet?','We’re testing tools to prioritize memories automatically: what to keep, revisit, or set aside. They’re being built into the cloud edition and aren’t included in the free local plugin.'],
@@ -165,7 +165,7 @@ COPY={
 'learn_steps':[['SEMANA 1','Sabe o básico.','Seu nome, suas ferramentas, suas regras. Sem apresentações de novo.'],['MÊS 2','Conhece suas decisões.','O que você escolheu, o que deixou de lado e por quê — o que foi decidido continua decidido.'],['MÊS 6','Sabe como você trabalha.','Seus padrões, seus casos particulares. As respostas partem do seu contexto, não do zero.']],
 'learn_strip':'<strong>E o aprendizado é portátil.</strong> Como vive em um arquivo que é seu, sobrevive a novas versões de modelo, novas ferramentas e até a uma troca de assistente.',
 'ch_editions':'03 — AS VERSÕES','edition_title':'Sua memória. Do seu jeito.',
-'edition_lead':'Comece hoje no seu computador, ou deixe sua memória acompanhar você: o MemorySafe Cloud já está disponível, gratuito durante o beta.',
+'edition_lead':'Comece hoje no seu computador, ou deixe sua memória acompanhar você: o MemorySafe Cloud já está disponível, com um plano gratuito.',
 'local_status':'BETA LOCAL GRATUITO · DISPONÍVEL AGORA','local_title':'No seu computador. Nas suas mãos.',
 'local_body':'Um espaço compartilhado para seus assistentes desktop compatíveis salvarem e recuperarem contexto útil.',
 'local_points':['Claude Desktop, Claude Code e Codex','Revise memórias, proteja fatos, consulte o histórico','Seu banco de memórias fica no seu computador'],
@@ -173,7 +173,7 @@ COPY={
 'hosted_status':'CLOUD · DISPONÍVEL AGORA · GRATUITO NO BETA','hosted_title':'Sua memória acompanha você.',
 'hosted_body':'Uma memória compartilhada entre apps de IA e dispositivos compatíveis — Claude, Codex, Cursor e outros — que mantém seu contexto atualizado onde você estiver.',
 'hosted_points':['Um endereço compartilhado ao qual seus apps se conectam','Notebook, celular, desktop','Hospedado no Canadá'],'hosted_cta':'Criar sua conta gratuita',
-'hosted_fine':'Gratuito enquanto o aperfeiçoamos.<br>Ainda não conseguiu entrar? <a href="mailto:contact@memorysafe.ca?subject=MemorySafe%20Cloud%20early%20access">Peça acesso por e-mail</a>.',
+'hosted_fine':'Grátis até 1.000 memórias. Espaço para 20.000 custa US$10 por mês.<br>Dúvidas? <a href="mailto:contact@memorysafe.ca">Escreva para nós</a>.',
 'band_note':'O plugin local guarda sua memória em um computador. O MemorySafe Cloud é onde todos os seus assistentes encontram uma só memória, em todos os dispositivos.',
 'research_label':'OUTRA ESCALA.<br>A MESMA PERGUNTA.',
 'research_title':'O que merece ficar?',
@@ -188,7 +188,7 @@ COPY={
 'contact':'Vamos conversar','team_heading':'Equipe e assessores','supported_heading':'Apoiado por',
 'faq_eyebrow':'ANTES QUE VOCÊ PERGUNTE','faq_heading':'Algumas coisas, bem claras.',
 'faqs':[
-['A versão gratuita funciona entre dispositivos?','O plugin gratuito mantém o banco de dados no computador em que é instalado. Assistentes compatíveis nesse computador podem compartilhá-lo. A memória entre dispositivos é o que a versão na nuvem faz; ela já está disponível, gratuita durante o beta.'],
+['A versão gratuita funciona entre dispositivos?','O plugin gratuito mantém o banco de dados no computador em que é instalado. Assistentes compatíveis nesse computador podem compartilhá-lo. A memória entre dispositivos é o que a versão na nuvem faz; ela já está disponível, com um plano gratuito.'],
 ['O que “local” significa?','O banco de memórias fica no seu computador. Um serviço de IA conectado ainda pode processar o contexto que você compartilha, conforme os próprios termos. Armazenamento local não significa que o serviço de IA roda localmente.'],
 ['Posso mudar de ideia sobre uma memória?','No painel local, você pode revisar memórias, consultar mudanças, gerenciar a proteção e remover memórias da recuperação. Isso não apaga completamente o histórico ou os backups.'],
 ['Os recursos avançados de memória já estão disponíveis?','Estamos testando ferramentas para priorizar memórias automaticamente: o que guardar, revisitar ou deixar de lado. Elas estão sendo construídas na versão na nuvem e não fazem parte do plugin local gratuito.'],
@@ -313,7 +313,7 @@ def shell(c,title,body,page=''):
         ra_css='/research-animation.css?v='+sha256((PUBLIC/'research-animation.css').read_bytes()).hexdigest()[:12]
         ra_js='/research-animation.js?v='+sha256((PUBLIC/'research-animation.js').read_bytes()).hexdigest()[:12]
         research_assets=f'<link rel="stylesheet" href="{ra_css}"><script src="{ra_js}" defer></script>'
-    return f'''<!doctype html><html lang="{c['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — MemorySafe Labs</title><meta name="description" content="{'Memory for the things worth remembering. Free, open-source local plugin; cloud memory free during the beta.' if c['prefix']=='/' else 'Memória para o que vale a pena lembrar. Plugin local gratuito e de código aberto; memória na nuvem gratuita durante o beta.'}">{og(c,title,page)}<meta name="theme-color" content="#ffffff"><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="{style}">{research_assets}<script src="{script}" defer></script></head><body>{header(c,page)}<main id="main">{body}</main>{footer(c)}</body></html>'''
+    return f'''<!doctype html><html lang="{c['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — MemorySafe Labs</title><meta name="description" content="{'Memory for the things worth remembering. Free, open-source local plugin; cloud memory with a free plan.' if c['prefix']=='/' else 'Memória para o que vale a pena lembrar. Plugin local gratuito e de código aberto; memória na nuvem com um plano gratuito.'}">{og(c,title,page)}<meta name="theme-color" content="#ffffff"><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="{style}">{research_assets}<script src="{script}" defer></script></head><body>{header(c,page)}<main id="main">{body}</main>{footer(c)}</body></html>'''
 
 def updates_form(c):
     p=c['prefix']
