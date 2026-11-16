@@ -15,6 +15,7 @@ TEAM=[
     ('Larissa Centeno','larissa-centeno','https://www.linkedin.com/in/larissa-centeno-a5b38842/','Advisor, operations & finance','Assessora de operações e finanças'),
     ('Grégoire Dubé','gregoire-dube','https://www.linkedin.com/in/gr%C3%A9goire-dub%C3%A9-b90056173/','Advisor, project controls & delivery','Assessor de controle e entrega de projetos'),
     ('Alexandre Rosenfeld','alexandre-rosenfeld','https://www.linkedin.com/in/a-rosenfeld/','Technical Advisor','Assessor técnico'),
+    ('Aldo Rosenfeld Jr.','aldo-rosenfeld-jr','https://www.linkedin.com/in/aldorosenfeldjr/','Growth Lead Advisor','Assessor líder de crescimento'),
 ]
 
 ICONS={
