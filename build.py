@@ -3,19 +3,21 @@ from pathlib import Path
 from html import escape
 from hashlib import sha256
 import re
-from research_visual import render_research_visual
+from research_visual import render_research_visual, STORY
+from locale_fr import COPY_FR, DEMO_FR, PRICING_FR, STORY_FR, META_FR
+STORY['fr']=STORY_FR
 
 ROOT=Path(__file__).resolve().parent
 PUBLIC=ROOT/'public'
 OLD=ROOT/'source/privacy'  # the privacy pages' source text; was ../netlify-publish-2026-10-12/public, outside the repository
 
 TEAM=[
-    ('Ankit Mishra, MBA','ankit-mishra','https://www.linkedin.com/in/ankitmishra3/','Strategic Advisor','Assessor estratégico'),
-    ('Grégoire Gervais-Vachon','gregoire-gervais-vachon','https://www.linkedin.com/in/gregoire-gervais-vachon-511942ba/','GTM Advisor','Assessor de estratégia comercial'),
-    ('Larissa Centeno','larissa-centeno','https://www.linkedin.com/in/larissa-centeno-a5b38842/','Operations & Finance Advisor','Assessora de operações e finanças'),
-    ('Grégoire Dubé','gregoire-dube','https://www.linkedin.com/in/gr%C3%A9goire-dub%C3%A9-b90056173/','Project Controls & Delivery Advisor','Assessor de controle e entrega de projetos'),
-    ('Alexandre Rosenfeld','alexandre-rosenfeld','https://www.linkedin.com/in/a-rosenfeld/','Technical Advisor','Assessor técnico'),
-    ('Aldo Rosenfeld Jr.','aldo-rosenfeld-jr','https://www.linkedin.com/in/aldorosenfeldjr/','Growth Lead Advisor','Assessor líder de crescimento'),
+    ('Ankit Mishra, MBA','ankit-mishra','https://www.linkedin.com/in/ankitmishra3/','Strategic Advisor','Assessor estratégico','Conseiller stratégique'),
+    ('Grégoire Gervais-Vachon','gregoire-gervais-vachon','https://www.linkedin.com/in/gregoire-gervais-vachon-511942ba/','GTM Advisor','Assessor de estratégia comercial','Conseiller en mise en marché'),
+    ('Larissa Centeno','larissa-centeno','https://www.linkedin.com/in/larissa-centeno-a5b38842/','Operations & Finance Advisor','Assessora de operações e finanças','Conseillère en opérations et finances'),
+    ('Grégoire Dubé','gregoire-dube','https://www.linkedin.com/in/gr%C3%A9goire-dub%C3%A9-b90056173/','Project Controls & Delivery Advisor','Assessor de controle e entrega de projetos','Conseiller en contrôle et livraison de projets'),
+    ('Alexandre Rosenfeld','alexandre-rosenfeld','https://www.linkedin.com/in/a-rosenfeld/','Technical Advisor','Assessor técnico','Conseiller technique'),
+    ('Aldo Rosenfeld Jr.','aldo-rosenfeld-jr','https://www.linkedin.com/in/aldorosenfeldjr/','Growth Lead Advisor','Assessor líder de crescimento','Conseiller principal en croissance'),
 ]
 
 ICONS={
@@ -33,7 +35,7 @@ ICONS={
 
 COPY={
 'en':{
-'lang':'en-CA','prefix':'/','other':'/pt-br/','other_label':'PT','skip':'Skip to content',
+'lang':'en-CA','code':'en','prefix':'/','skip':'Skip to content',
 'nav':['The problem','How it works','Pricing','Research','Value','About'],
 'cta':'Download the free beta','cta_short':'Download',
 'value':{'eyebrow':'MEMORYSAFE LABS / PLANNING SIMULATOR','title':'What could MemorySafe change for you?',
@@ -51,7 +53,7 @@ COPY={
 'caption':'A planning model with your assumptions. Actual results depend on workflow, setup and answer quality.'},
 'hero_eyebrow':'One memory for all your AI assistants',
 'hero_title':'Stop re-explaining yourself to your AI.',
-'hero_intro':'MemorySafe is one memory your AI assistants share. Claude, Codex, Cursor and the rest read and save the same facts, so you never explain yourself twice. Free on your computer, in a single file nothing uploads; or in the cloud, so it follows you everywhere.',
+'hero_intro':'MemorySafe is one memory your AI assistants share. They read and save the same facts, so you never explain yourself twice. Free on your computer for Claude and Codex, in a single file that never leaves it. Or in the cloud, where Cursor and your other apps join in, on every device.',
 'hero_primary':'Download the free beta','hero_secondary':'See how it works',
 'hero_sub':'No account. No email signup.','hero_code':'Open source on GitHub','privacy_code':'Read the code on GitHub','source_code':'Source code on GitHub','github_label':'MemorySafe on GitHub','linkedin_label':'MemorySafe Labs on LinkedIn',
 'demo':{'without':'Monday, without MemorySafe','with':'Monday, with MemorySafe','chip':'3 memories recalled','you':'You','assistant':'Assistant',
@@ -94,7 +96,7 @@ COPY={
 'founder_eyebrow':'A HUMAN QUESTION, FIRST','founder_heading':'Better memory.<br>Less starting over.',
 'founder_name':'Carla Centeno · Founder & CEO',
 'founder_description':'MemorySafe Labs starts from a simple question: what is worth remembering? We turn it into things we can build and test. Useful context should have continuity. And the person behind it should have control.',
-'contact':'Say hello','team_heading':'Team & advisors','supported_heading':'Supported by',
+'contact':'Say hello','team_heading':'Advisors','supported_heading':'Supported by',
 'faq_eyebrow':'BEFORE YOU ASK','faq_heading':'A few things, made clear.',
 'faqs':[
 ['Does the free version work across my devices?','The free plugin keeps its database on the computer where you install it. It can be shared by supported assistants on that computer. Cross-device memory is what MemorySafe Cloud does; it is available now, with a free plan.'],
@@ -113,7 +115,7 @@ COPY={
 'guide':'Prefer pictures? View the visual guide',
 'download_legal':'Free, open source under the Apache License 2.0. The advanced memory features being built for MemorySafe Cloud are not included. Your database stays on this computer; connected AI services may process selected context. Forget removes a memory from recall, not completely from history or backups.',
 'notes':'Release notes','product_privacy':'Product privacy','terms':'Beta terms',
-'upd_label':'Optional','upd_title':'Want release updates?','upd_body':'Leave an email and we’ll write only when a new release ships — nothing else. The download never requires it.','upd_cta':'Notify me',
+'upd_label':'Optional','upd_title':'Want release updates?','upd_body':'Leave an email and we’ll write only when a new release ships — nothing else. The download never requires it.','upd_cta':'Notify me','upd_short':'One email per release. Nothing else.',
 'thanks_title':'You’re on the list.','thanks_body':'We’ll email you when a new release ships — and that’s all. The beta itself stays signup-free.','thanks_back':'Back to download',
 'research_eyebrow':'MEMORYSAFE LABS / CONTINUAL-LEARNING RESEARCH',
 'research_page_title':'Learning continues. What stays?',
@@ -125,7 +127,7 @@ COPY={
 'cases':[['use-medical-ai','Medical AI','Rare clinical cases can be overwritten as models absorb new data.','Prioritize vulnerable, clinically important samples.'],['use-fraud-detection','Model-risk & retraining','Changing data can make previously reliable financial models drift.','Preserve important evidence across retraining cycles.'],['use-edge-ai','Edge AI','Strict storage and compute limits make every retained sample matter.','Allocate bounded memory intentionally.'],['use-robotics','Robotics','New environments can interfere with previously learned skills.','Protect fragile capabilities during adaptation.']],
 },
 'pt':{
-'lang':'pt-BR','prefix':'/pt-br/','other':'/','other_label':'EN','skip':'Ir para o conteúdo',
+'lang':'pt-BR','code':'pt','prefix':'/pt-br/','skip':'Ir para o conteúdo',
 'nav':['O problema','Como funciona','Preços','Pesquisa','Valor','Sobre'],
 'cta':'Baixar o beta gratuito','cta_short':'Baixar',
 'value':{'eyebrow':'MEMORYSAFE LABS / SIMULADOR DE PLANEJAMENTO','title':'O que o MemorySafe pode mudar para você?',
@@ -143,7 +145,7 @@ COPY={
 'caption':'Um modelo de planejamento com as suas premissas. Resultados reais dependem de fluxo de trabalho, configuração e qualidade das respostas.'},
 'hero_eyebrow':'Uma memória para todos os seus assistentes de IA',
 'hero_title':'Chega de se explicar de novo para a sua IA.',
-'hero_intro':'O MemorySafe é uma memória que seus assistentes de IA compartilham. Claude, Codex, Cursor e os outros leem e salvam os mesmos fatos, e você nunca mais se explica duas vezes. Gratuito no seu computador, em um único arquivo que nada envia; ou na nuvem, para acompanhar você em todo lugar.',
+'hero_intro':'O MemorySafe é uma memória que seus assistentes de IA compartilham. Eles leem e salvam os mesmos fatos, e você nunca mais se explica duas vezes. Gratuito no seu computador para Claude e Codex, em um único arquivo que nunca sai dele. Ou na nuvem, onde o Cursor e seus outros apps entram, em qualquer aparelho.',
 'hero_primary':'Baixar o beta gratuito','hero_secondary':'Veja como funciona',
 'hero_sub':'Sem conta. Sem cadastro.','hero_code':'Código aberto no GitHub','privacy_code':'Leia o código no GitHub','source_code':'Código-fonte no GitHub','github_label':'MemorySafe no GitHub','linkedin_label':'MemorySafe Labs no LinkedIn',
 'demo':{'without':'Segunda, sem MemorySafe','with':'Segunda, com MemorySafe','chip':'3 memórias recuperadas','you':'Você','assistant':'Assistente',
@@ -186,7 +188,7 @@ COPY={
 'founder_eyebrow':'UMA PERGUNTA HUMANA, PRIMEIRO','founder_heading':'Memória melhor.<br>Menos recomeços.',
 'founder_name':'Carla Centeno · Fundadora e CEO',
 'founder_description':'A MemorySafe Labs parte de uma pergunta simples: o que vale a pena lembrar? Transformamos essa pergunta em coisas que podemos construir e testar. Contexto útil merece continuidade. E quem está por trás dele merece controle.',
-'contact':'Vamos conversar','team_heading':'Equipe e assessores','supported_heading':'Apoiado por',
+'contact':'Vamos conversar','team_heading':'Assessores','supported_heading':'Apoiado por',
 'faq_eyebrow':'ANTES QUE VOCÊ PERGUNTE','faq_heading':'Algumas coisas, bem claras.',
 'faqs':[
 ['A versão gratuita funciona entre dispositivos?','O plugin gratuito mantém o banco de dados no computador em que é instalado. Assistentes compatíveis nesse computador podem compartilhá-lo. A memória entre dispositivos é o que o MemorySafe Cloud faz; ele já está disponível, com um plano gratuito.'],
@@ -205,7 +207,7 @@ COPY={
 'guide':'Prefere imagens? Veja o guia visual',
 'download_legal':'Gratuito, de código aberto sob a Apache License 2.0. Os recursos avançados em construção no MemorySafe Cloud não estão incluídos. O banco de dados fica neste computador; serviços de IA conectados podem processar contexto selecionado. Esquecer remove uma memória da recuperação, mas não apaga completamente o histórico ou os backups.',
 'notes':'Notas da versão','product_privacy':'Privacidade do produto','terms':'Termos do beta',
-'upd_label':'Opcional','upd_title':'Quer saber das novas versões?','upd_body':'Deixe um e-mail e escrevemos só quando sair uma nova versão — nada além disso. O download nunca exige cadastro.','upd_cta':'Avisar-me',
+'upd_label':'Opcional','upd_title':'Quer saber das novas versões?','upd_body':'Deixe um e-mail e escrevemos só quando sair uma nova versão — nada além disso. O download nunca exige cadastro.','upd_cta':'Avisar-me','upd_short':'Um e-mail por versão. Nada além disso.',
 'thanks_title':'Você está na lista.','thanks_body':'Vamos escrever quando sair uma nova versão — e só. O beta continua sem cadastro.','thanks_back':'Voltar ao download',
 'research_eyebrow':'MEMORYSAFE LABS / PESQUISA EM APRENDIZADO CONTÍNUO',
 'research_page_title':'O aprendizado continua. O que fica?',
@@ -237,7 +239,10 @@ HOSTED_SIGNUP='https://memory.memorysafe.ca/account/start?signup=1&next=/account
 # (Hosted 0.8.2's webhook needs the account named in the checkout, which only the Settings link carries).
 HOSTED_PAID_SIGNUP='https://memory.memorysafe.ca/account/start?signup=1&next=%2Faccount%2Fsettings&lang='
 HOSTED_TEAM_SIGNUP='https://memory.memorysafe.ca/account/start?signup=1&next=%2Forgs%2Fnew%3Fplan%3Dteam&lang='  # Team: create the account, then the organization, then pay from its page (Hosted 0.7.9)
-def signup_lang(prefix): return 'en' if prefix=='/' else 'pt-BR'
+LOCALES=[('en','/','EN'),('fr','/fr/','FR'),('pt','/pt-br/','PT')]  # code, path, label in the language switch
+def signup_lang(prefix): return {'/':'en','/fr/':'fr','/pt-br/':'pt-BR'}[prefix]
+def pick(c,en,pt,fr): return {'en':en,'pt':pt,'fr':fr}[c['code']]
+def terms_lang(c): return 'fr' if c['code']=='fr' else 'en'  # the cloud's terms exist in English and French
 BETA=CONTACT+'?subject=MemorySafe%20Cloud%20early%20access'
 # All prices in US dollars (Carla, 3 Nov 2026). The audit tiers are the 14 Oct proposal's C$7,500 / C$22,000 /
 # C$3,500 a month converted at about 0.72 and rounded: US$5,500 / US$16,000 / US$2,500.
@@ -247,10 +252,10 @@ PRICING={
 'for_you':'For you','for_companies':'For companies','pending':'Payment link coming soon','beta_note':'MemorySafe is in beta: we’re still testing it.',
 'cards':[
  {'status':'FREE · AVAILABLE NOW','name':'Free','price':'US$0','per':'','includes':'What’s included','body':'Unlimited on this computer, for ever. 1,000 memories free in the cloud.',
-  'points':['Works with Claude, Codex, Cursor and more','Review, protect and forget','Export and erase with a receipt','Open source'],
+  'points':['Claude and Codex on your computer','Cursor and more apps in the cloud','Cloud account hosted in Canada','Review, protect, export and erase','Open source'],
   'buttons':[('Download','download',''),('Create your free account','hosted','ghost')],'fine':''},
  {'status':'PAID PLAN','name':'Personal','price':'US$10','per':'/ month','includes':'Everything in Free, plus','body':'More room in the cloud, on every device.',
-  'points':['Up to 20,000 memories','Hosted in Canada','Cancel any time'],
+  'points':['Up to 20,000 memories','Pay monthly, cancel any time'],
   'buttons':[('Get Personal','paid','')],'fine':'Plus tax, added at checkout. Upgrade from Settings in your account.'},
  {'status':'EARLY ACCESS','name':'Team','price':'US$29','per':'/ person / month','includes':'Everything in Personal, plus','body':'One memory for your whole team.',
   'points':['People join by invitation','Onboarding with our founders','Larger company? Flat price on request'],
@@ -264,10 +269,10 @@ PRICING={
 'for_you':'Para você','for_companies':'Para empresas','pending':'Link de pagamento em breve','beta_note':'O MemorySafe está em beta: ainda estamos testando.',
 'cards':[
  {'status':'GRÁTIS · DISPONÍVEL AGORA','name':'Grátis','price':'US$0','per':'','includes':'O que está incluído','body':'Ilimitado neste computador, para sempre. 1.000 memórias grátis na nuvem.',
-  'points':['Funciona com Claude, Codex, Cursor e outros','Revise, proteja e esqueça','Exporte e apague com recibo','Código aberto'],
+  'points':['Claude e Codex no seu computador','Cursor e outros apps na nuvem','Conta na nuvem hospedada no Canadá','Revise, proteja, exporte e apague','Código aberto'],
   'buttons':[('Baixar','download',''),('Criar sua conta gratuita','hosted','ghost')],'fine':''},
  {'status':'PLANO PAGO','name':'Pessoal','price':'US$10','per':'/ mês','includes':'Tudo do Grátis, mais','body':'Mais espaço na nuvem, em qualquer aparelho.',
-  'points':['Até 20.000 memórias','Hospedado no Canadá','Cancele quando quiser'],
+  'points':['Até 20.000 memórias','Pagamento mensal, cancele quando quiser'],
   'buttons':[('Assinar o Pessoal','paid','')],'fine':'Mais impostos, somados no checkout. Faça o upgrade em Configurações, na sua conta.'},
  {'status':'LANÇAMENTO','name':'Team','price':'US$29','per':'/ pessoa / mês','includes':'Tudo do Pessoal, mais','body':'Uma memória para toda a equipe.',
   'points':['Cada pessoa entra por convite','Onboarding com os fundadores','Empresa maior? Preço fixo sob consulta'],
@@ -277,6 +282,7 @@ PRICING={
   'buttons':[('Agendar o teste gratuito','test','')],'fine':'Trabalhos médicos e regulados têm orçamento à parte.'}],
 'note':'Preços em dólares americanos, antes dos impostos. O Stripe processa os pagamentos; nunca vemos o número do seu cartão. <a href="https://memory.memorysafe.ca/terms?lang=en">Termos</a> e <a href="https://memory.memorysafe.ca/privacy?lang=en">política de privacidade</a> do MemorySafe Cloud (em inglês). Dúvidas: <a href="'+CONTACT+'">contact@memorysafe.ca</a>'}}
 
+COPY['fr']=COPY_FR; PRICING['fr']=PRICING_FR  # French (Québec), from locale_fr.py
 GITHUB='https://github.com/MemorySafe-Labs/memorysafe-plugin'
 LINKEDIN='https://www.linkedin.com/company/memorysafe-labs'
 LINKEDIN_ICON='<svg class="gh-icon li-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>'
@@ -286,19 +292,19 @@ def mark():
     return '<span class="brand-mark" aria-hidden="true">'+'<i></i>'*16+'</span><span class="brand-name">MemorySafe<small>Labs</small></span>'
 
 def header(c,page=''):
-    p=c['prefix'];other=c['other']+page
+    p=c['prefix']
     links=[p+'#problem',p+'#how',p+'pricing/',p+'research/',p+'value/',p+'#about']
     nav=''.join(f'<a href="{href}">{text}</a>' for href,text in zip(links,c['nav']))
     nav+=f'<a class="nav-signin" href="https://memory.memorysafe.ca/account/start?next=/account&lang={signup_lang(p)}">{c["signin"]}</a>'
-    langs=f'<a href="{p+page}" aria-current="page">{"PT" if p!="/" else "EN"}</a><span aria-hidden="true">/</span><a href="{other}">{c["other_label"]}</a>'
-    return f'''<a class="skip" href="#main">{c['skip']}</a><div class="masthead"><div class="wrap"><div class="nav"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><nav class="nav-links" id="site-nav" aria-label="{'Main navigation' if p=='/' else 'Navegação principal'}">{nav}<span class="nav-menu-lang language">{langs}</span></nav><div class="nav-actions"><nav class="language" aria-label="Language">{langs}</nav><a class="nav-github" href="{GITHUB}" aria-label="{c['github_label']}">{GITHUB_ICON}<span class="nav-github-label">GitHub</span></a><a class="nav-github nav-linkedin" href="{LINKEDIN}" aria-label="{c['linkedin_label']}">{LINKEDIN_ICON}</a><a class="button small" href="{p}download/"><span class="nav-cta-long">{c['cta']}</span><span class="nav-cta-short">{c['cta_short']}</span></a><button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button></div></div></div></div>'''
+    langs='<span aria-hidden="true">/</span>'.join(f'<a href="{pre+page}"'+(' aria-current="page"' if pre==p else '')+f'>{lab}</a>' for _,pre,lab in LOCALES)
+    return f'''<a class="skip" href="#main">{c['skip']}</a><div class="masthead lang-{c['code']}"><div class="wrap"><div class="nav"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><nav class="nav-links" id="site-nav" aria-label="{pick(c,'Main navigation','Navegação principal','Navigation principale')}">{nav}<span class="nav-menu-lang language">{langs}</span></nav><div class="nav-actions"><nav class="language" aria-label="{pick(c,'Language','Idioma','Langue')}">{langs}</nav><a class="nav-github" href="{GITHUB}" aria-label="{c['github_label']}">{GITHUB_ICON}<span class="nav-github-label">GitHub</span></a><a class="nav-github nav-linkedin" href="{LINKEDIN}" aria-label="{c['linkedin_label']}">{LINKEDIN_ICON}</a><a class="button small" href="{p}download/"><span class="nav-cta-long">{c['cta']}</span><span class="nav-cta-short">{c['cta_short']}</span></a><button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button></div></div></div></div>'''
 
 def footer(c):
     p=c['prefix']
-    return f'''<footer class="footer on-dark"><div class="wrap"><div class="footer-top"><div><div class="eyebrow">{c['footer_eyebrow']}</div><h2>{c['footer_title']}</h2></div><a class="button light" href="{p}download/">{c['cta']}</a></div><div class="footer-meta"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><span class="footer-copy">{c['copyright']}</span><nav class="footer-links"><a href="{p}pricing/">{c['nav'][2]}</a><a href="{p}research/">{c['nav'][3]}</a><a href="{p}value/">{c['nav'][4]}</a><a href="{p}privacy/">{c['privacy']}</a><a href="https://memory.memorysafe.ca/terms?lang=en">{c['cloud_terms']}</a><a href="{GITHUB}">{c['github']} ↗</a><a href="{LINKEDIN}">LinkedIn ↗</a><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></nav></div></div></footer>'''
+    return f'''<footer class="footer on-dark"><div class="wrap"><div class="footer-top"><div><div class="eyebrow">{c['footer_eyebrow']}</div><h2>{c['footer_title']}</h2></div><a class="button light" href="{p}download/">{c['cta']}</a></div><div class="footer-meta"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><span class="footer-copy">{c['copyright']}</span><nav class="footer-links"><a href="{p}pricing/">{c['nav'][2]}</a><a href="{p}research/">{c['nav'][3]}</a><a href="{p}value/">{c['nav'][4]}</a><a href="{p}privacy/">{c['privacy']}</a><a href="https://memory.memorysafe.ca/terms?lang={terms_lang(c)}">{c['cloud_terms']}</a><a href="{GITHUB}">{c['github']} ↗</a><a href="{LINKEDIN}">LinkedIn ↗</a><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></nav></div></div></footer>'''
 
 # Link previews (Open Graph + Twitter), as deployed on 29 Oct 2026; the image is public/assets/og-image.png (1800x945).
-OG_DESC={'/':'Governed memory for AI. One shared memory for Claude, Cursor and your other agents, on your computer or in your account. Start free.',
+OG_DESC={'/fr/':'Une mémoire gouvernée pour l’IA. Une mémoire partagée entre Claude, Cursor et vos autres agents, sur votre ordinateur ou dans votre compte. Commencez gratuitement.','/':'Governed memory for AI. One shared memory for Claude, Cursor and your other agents, on your computer or in your account. Start free.',
          '/pt-br/':'Memória governada para IA. Uma memória compartilhada entre Claude, Cursor e seus agentes, no seu computador ou na sua conta. Comece grátis.'}
 def og(c,title,page=''):
     url='https://memorysafe.ca'+c['prefix']+page
@@ -307,11 +313,27 @@ def og(c,title,page=''):
             f'<meta property="og:title" content="{t}"><meta property="og:description" content="{d}"><meta property="og:image" content="{img}">'
             f'<meta property="og:image:width" content="1800"><meta property="og:image:height" content="945"><meta name="twitter:card" content="summary_large_image">'
             f'<meta name="twitter:title" content="{t}"><meta name="twitter:description" content="{d}"><meta name="twitter:image" content="{img}">')
+# What search engines show under each page's title.
+META={
+'en':{'':'One memory your AI assistants share. Free and open source on your computer; MemorySafe Cloud follows you to every device, with a free plan.',
+ 'pricing/':'MemorySafe pricing: free and unlimited on your computer, 1,000 memories free in the cloud, US$10 a month for 20,000. Team and audit plans for companies.',
+ 'download/':'Download the free MemorySafe plugin for Claude Desktop, Claude Code and Codex. Open source, no account, your memories stay on your computer.',
+ 'research/':'MemorySafe Labs research on continual learning: how a model chooses which past examples to revisit when memory is limited.',
+ 'value/':'A small planning simulator: how much time re-explaining costs a team, and what a smaller replay buffer saves in compute.',
+ 'privacy/':'Privacy notice for the memorysafe.ca website.'},
+'pt':{'':'Uma memória que seus assistentes de IA compartilham. Gratuito e de código aberto no seu computador; o MemorySafe Cloud acompanha você em qualquer aparelho, com um plano gratuito.',
+ 'pricing/':'Preços do MemorySafe: grátis e ilimitado no seu computador, 1.000 memórias grátis na nuvem, US$10 por mês para 20.000. Planos Team e de auditoria para empresas.',
+ 'download/':'Baixe o plugin gratuito do MemorySafe para Claude Desktop, Claude Code e Codex. Código aberto, sem conta, suas memórias ficam no seu computador.',
+ 'research/':'Pesquisa da MemorySafe Labs em aprendizado contínuo: como um modelo escolhe quais exemplos anteriores revisitar quando a memória é limitada.',
+ 'value/':'Um pequeno simulador de planejamento: quanto tempo custa se explicar de novo, e quanto um buffer de replay menor economiza em computação.',
+ 'privacy/':'Aviso de privacidade do site memorysafe.ca.'},
+}
+META['fr']=META_FR
 def seo(c,page,index=True):
     if not index: return '<meta name="robots" content="noindex">'
-    en='https://memorysafe.ca/'+page; pt='https://memorysafe.ca/pt-br/'+page
-    return (f'<link rel="canonical" href="{en if c["prefix"]=="/" else pt}"><link rel="alternate" hreflang="en" href="{en}">'
-            f'<link rel="alternate" hreflang="pt-BR" href="{pt}"><link rel="alternate" hreflang="x-default" href="{en}">')
+    u=lambda pre:'https://memorysafe.ca'+pre+page
+    return (f'<link rel="canonical" href="{u(c["prefix"])}"><link rel="alternate" hreflang="en" href="{u("/")}"><link rel="alternate" hreflang="fr" href="{u("/fr/")}">'
+            f'<link rel="alternate" hreflang="pt-BR" href="{u("/pt-br/")}"><link rel="alternate" hreflang="x-default" href="{u("/")}">')
 def shell(c,title,body,page='',index=True):
     style='/style.css?v='+sha256((PUBLIC/'style.css').read_bytes()).hexdigest()[:12]
     script='/site.js?v='+sha256((PUBLIC/'site.js').read_bytes()).hexdigest()[:12]
@@ -320,15 +342,14 @@ def shell(c,title,body,page='',index=True):
         ra_css='/research-animation.css?v='+sha256((PUBLIC/'research-animation.css').read_bytes()).hexdigest()[:12]
         ra_js='/research-animation.js?v='+sha256((PUBLIC/'research-animation.js').read_bytes()).hexdigest()[:12]
         research_assets=f'<link rel="stylesheet" href="{ra_css}"><script src="{ra_js}" defer></script>'
-    return f'''<!doctype html><html lang="{c['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — MemorySafe Labs</title><meta name="description" content="{'Memory for the things worth remembering. Free, open-source local plugin; cloud memory with a free plan.' if c['prefix']=='/' else 'Memória para o que vale a pena lembrar. Plugin local gratuito e de código aberto; memória na nuvem com um plano gratuito.'}">{og(c,title,page)}{seo(c,page,index and 'thanks' not in page)}<meta name="theme-color" content="#ffffff"><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="{style}">{research_assets}<script src="{script}" defer></script></head><body>{header(c,page)}<main id="main">{body}</main>{footer(c)}</body></html>'''
+    return f'''<!doctype html><html lang="{c['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — MemorySafe Labs</title><meta name="description" content="{META[c['code']].get(page,META[c['code']][''])}">{og(c,title,page)}{seo(c,page,index and 'thanks' not in page)}<meta name="theme-color" content="#ffffff"><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="{style}">{research_assets}<script src="{script}" defer></script></head><body>{header(c,page)}<main id="main">{body}</main>{footer(c)}</body></html>'''
 
 def updates_form(c):
     p=c['prefix']
-    return f"""<form name="release-updates" method="POST" action="{p}download/thanks/" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="release-updates"><input type="hidden" name="lang" value="{'en' if p=='/' else 'pt'}"><p class="hp" hidden><label>{'Leave this empty' if p=='/' else 'Deixe em branco'}<input name="bot-field"></label></p><div class="updates-row"><label class="sr-only" for="upd-email-{'h' if p=='/' else 'hp'}">Email</label><input type="email" name="email" required placeholder="{'you@example.com' if p=='/' else 'voce@exemplo.com'}"><button class="button" type="submit">{c['upd_cta']}</button></div></form>"""
+    return f"""<form name="release-updates" method="POST" action="{p}download/thanks/" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="release-updates"><input type="hidden" name="lang" value="{c['code']}"><p class="hp" hidden><label>{pick(c,'Leave this empty','Deixe em branco','Laissez ce champ vide')}<input name="bot-field"></label></p><div class="updates-row"><label class="sr-only" for="upd-email-{c['code']}">{pick(c,'Email','E-mail','Courriel')}</label><input type="email" name="email" required placeholder="{pick(c,'you@example.com','voce@exemplo.com','vous@exemple.com')}"><button class="button" type="submit">{c['upd_cta']}</button></div></form>"""
 
 def hero_demo(c):
-    pt=c['lang'].startswith('pt')
-    d=({'title':'Conte uma vez. Continue em outro assistente.','save':'Conte','store':'Guarde','recall':'Recupere','pause':'Pausar','play':'Reproduzir','you':'Você','first':'UMA CONVERSA NO CLAUDE DESKTOP','second':'UMA NOVA CONVERSA NO CODEX','u1':'Lembre: nosso lançamento mudou para sexta-feira.','a1':'Salvo no MemorySafe.','fact':'Lançamento → mudou para sexta-feira','shared':'Uma memória compartilhada','source':'Disponível para seus assistentes conectados','u2':'O que devo terminar primeiro?','a2':'O lançamento é na sexta, então comece pela página de cadastro.','chip':'Recuperado do MemorySafe','end':'Outro assistente. O mesmo contexto.','note':'Exemplo ilustrativo · Claude Desktop e Codex conectados ao mesmo MemorySafe local. Nenhum dado é salvo.'} if pt else {'title':'Tell one assistant. Continue with another.','save':'Tell','store':'Keep','recall':'Recall','pause':'Pause','play':'Play','you':'You','first':'A CONVERSATION IN CLAUDE DESKTOP','second':'A NEW CONVERSATION IN CODEX','u1':'Remember: our launch moved to Friday.','a1':'Saved to MemorySafe.','fact':'Launch → moved to Friday','shared':'One shared memory','source':'Available to your connected assistants','u2':'What should I finish first?','a2':'The launch is Friday, so start with the signup page.','chip':'Retrieved from MemorySafe','end':'Different assistant. Same context.','note':'Illustrative example · Claude Desktop and Codex connected to the same local MemorySafe. No data is saved.'})
+    d=DEMO_FR if c['code']=='fr' else ({'title':'Conte uma vez. Continue em outro assistente.','save':'Conte','store':'Guarde','recall':'Recupere','pause':'Pausar','play':'Reproduzir','you':'Você','first':'UMA CONVERSA NO CLAUDE DESKTOP','second':'UMA NOVA CONVERSA NO CODEX','u1':'Lembre: nosso lançamento mudou para sexta-feira.','a1':'Salvo no MemorySafe.','fact':'Lançamento → mudou para sexta-feira','shared':'Uma memória compartilhada','source':'Disponível para seus assistentes conectados','u2':'O que devo terminar primeiro?','a2':'O lançamento é na sexta, então comece pela página de cadastro.','chip':'Recuperado do MemorySafe','end':'Outro assistente. O mesmo contexto.','note':'Exemplo ilustrativo · Claude Desktop e Codex conectados ao mesmo MemorySafe local. Nenhum dado é salvo.'} if c['code']=='pt' else {'title':'Tell one assistant. Continue with another.','save':'Tell','store':'Keep','recall':'Recall','pause':'Pause','play':'Play','you':'You','first':'A CONVERSATION IN CLAUDE DESKTOP','second':'A NEW CONVERSATION IN CODEX','u1':'Remember: our launch moved to Friday.','a1':'Saved to MemorySafe.','fact':'Launch → moved to Friday','shared':'One shared memory','source':'Available to your connected assistants','u2':'What should I finish first?','a2':'The launch is Friday, so start with the signup page.','chip':'Retrieved from MemorySafe','end':'Different assistant. Same context.','note':'Illustrative example · Claude Desktop and Codex connected to the same local MemorySafe. No data is saved.'})
     steps=''.join(f'<li><button type="button" class="demo-step" data-demo-step="{i}" aria-pressed="{str(i==3).lower()}"><span class="demo-step-number">0{i}</span>{d[k]}</button></li>' for i,k in enumerate(['save','store','recall'],1))
     return f'''<figure class="hero-demo handoff-demo" data-memory-demo data-stage="3" aria-label="{d['title']}">
 <div class="ms-film-top"><span class="mono">CLAUDE → MEMORYSAFE → CODEX</span><button type="button" class="demo-play" data-demo-play data-pause="{d['pause']}" data-play="{d['play']}" aria-label="{d['pause']}" aria-pressed="false" hidden><span data-demo-icon aria-hidden="true">Ⅱ</span> <span data-demo-label>{d['pause']}</span></button></div>
@@ -373,7 +394,7 @@ def homepage(c):
     hosted_pts=''.join(f'<li>{s}</li>' for s in c['hosted_points'])
     tiles=''.join(f'<div class="tile">{ICONS[i]}<h3>{t}</h3><p>{x}</p></div>' for i,t,x in c['tiles'])
     faq=''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in c['faqs'])
-    team=''.join(f'<li><a class="team-person" href="{url}" target="_blank" rel="noopener"><img src="/assets/{slug}.jpg" alt="" width="54" height="60" loading="lazy"><span><strong>{escape(name)}</strong><span class="team-role">{escape(en_role if p=="/" else pt_role)}</span></span><span class="team-arrow" aria-hidden="true">↗</span></a></li>' for name,slug,url,en_role,pt_role in TEAM)
+    team=''.join(f'<li><a class="team-person" href="{url}" target="_blank" rel="noopener"><img src="/assets/{slug}.jpg" alt="" width="54" height="60" loading="lazy"><span><strong>{escape(name)}</strong><span class="team-role">{escape(pick(c,en_role,pt_role,fr_role))}</span></span><span class="team-arrow" aria-hidden="true">↗</span></a></li>' for name,slug,url,en_role,pt_role,fr_role in TEAM)
     body=f'''<section class="wrap" aria-labelledby="hero-title"><div class="hero"><div class="hero-copy"><div class="eyebrow">{c['hero_eyebrow']}</div><h1 id="hero-title">{c['hero_title']}</h1><p class="hero-intro">{c['hero_intro']}</p><div class="hero-actions"><a class="button" href="{p}download/">{c['hero_primary']}</a><a class="button ghost" href="#how">{c['hero_secondary']}</a></div><p class="hero-sub">{c['hero_sub']} <a class="hero-code" href="{GITHUB}">{GITHUB_ICON}{c['hero_code']} <span aria-hidden="true">↗</span></a></p></div>{hero_demo(c)}</div><div class="hero-bottom"><span class="mono">{c['compatible']}</span><div class="compatibility"><span>Claude Desktop</span><span>Claude Code</span><span>Codex</span></div></div>{programs(c)}</section>
 <section id="problem" class="section ice" aria-labelledby="problem-title"><div class="wrap"><div class="chapter-number">{c['ch_problem']}</div><div class="section-head"><h2 id="problem-title">{c['problem_title']}</h2></div><div class="card-row">{problems}</div></div></section>
 <section id="how" class="section" aria-labelledby="how-title"><div class="wrap"><div class="chapter-number">{c['ch_how']}</div><div class="section-head"><h2 id="how-title">{c['how_title']}</h2><p class="section-lead">{c['how_lead']}</p></div><div class="card-row">{verbs}</div><div class="strip">{c['how_strip']}</div></div></section>
@@ -381,19 +402,19 @@ def homepage(c):
 <section id="privacy-s" class="section ice" aria-labelledby="privacy-title"><div class="wrap"><div class="chapter-number">{c['ch_privacy']}</div><div class="section-head"><h2 id="privacy-title">{c['privacy_title']}</h2><p class="section-lead">{c['privacy_lead']}</p><a class="text-link code-link" href="{GITHUB}">{GITHUB_ICON}{c['privacy_code']} <span aria-hidden="true">↗</span></a></div><div class="card-row">{tiles}</div></div></section>
 <section id="about" class="section" aria-labelledby="about-title"><div class="wrap"><div class="about"><img class="founder-photo" src="/assets/carla-centeno.jpg" alt="Carla Centeno" width="140" height="150" loading="lazy"><div class="founder-words"><span class="mono">{c['founder_eyebrow']}</span><h2 id="about-title">{c['founder_heading']}</h2><span class="founder-name">{c['founder_name']}</span></div><div class="about-description">{c['founder_description']}<br><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></div></div><div class="team-strip"><h3 class="mono" id="team-title">{escape(c['team_heading'])}</h3><ul class="team-list" aria-labelledby="team-title">{team}</ul></div></div></section>
 <section class="section ice" aria-labelledby="faq-title"><div class="wrap faq"><div class="faq-title"><span class="mono">{c['faq_eyebrow']}</span><h2 id="faq-title">{c['faq_heading']}</h2></div><div class="faq-list">{faq}</div></div></section>
-<section class="updates-mini"><div class="wrap"><div class="updates-box compact"><div class="compact-words"><span class="mono">{c['upd_label']}</span><h2>{c['upd_title']}</h2></div>{updates_form(c)}</div></div></section>'''
-    return shell(c,'Stop re-explaining yourself to your AI' if p=='/' else 'Chega de se explicar de novo para a sua IA',body)
+<section class="updates-mini"><div class="wrap"><div class="updates-box compact"><div class="compact-words"><span class="mono">{c['upd_label']}</span><h2>{c['upd_title']}</h2><p class="compact-note">{c['upd_short']}</p></div>{updates_form(c)}</div></div></section>'''
+    return shell(c,c['hero_title'].rstrip('.'),body)
 
 def download(c):
     p=c['prefix'];options=f'''<details class="install-option" open><summary>Claude Desktop</summary><div class="install-body"><a class="button" href="https://github.com/MemorySafe-Labs/memorysafe-plugin/releases/latest/download/memorysafe-claude-desktop.mcpb">{c['desktop_download']}</a><p>{c['desktop_steps']}</p></div></details>'''
     commands={'Codex':'codex plugin marketplace add MemorySafe-Labs/memorysafe-plugin\ncodex plugin add memorysafe@memorysafe','Claude Code':'claude plugin marketplace add MemorySafe-Labs/memorysafe-plugin\nclaude plugin install memorysafe@memorysafe'}
     for i,(name,command) in enumerate(commands.items()):
         options+=f'''<details class="install-option"><summary>{name}</summary><div class="install-body"><p>{c['terminal_intro']}</p><pre><code id="command-{i}">{command}</code></pre><button type="button" class="copy-command" data-copy="command-{i}">{c['copy']}</button><span class="copy-note" role="status"></span></div></details>'''
-    body=f'''<div class="wrap"><section class="inner-hero"><div class="eyebrow">{c['download_eyebrow']}</div><h1>{c['download_title']}</h1><p>{c['download_intro']}</p></section><div class="download-layout"><div><div class="download-options">{options}</div><a class="text-link code-link source-link" href="{GITHUB}">{GITHUB_ICON}{c['source_code']} <span aria-hidden="true">↗</span></a><p class="download-legal">{c['download_legal']}</p><div class="updates-box"><span class="mono">{c['upd_label']}</span><h2>{c['upd_title']}</h2><p>{c['upd_body']}</p>{updates_form(c)}</div><nav class="footer-links"><a href="https://github.com/MemorySafe-Labs/memorysafe-plugin/releases/latest">{c['notes']} ↗</a><a href="https://github.com/MemorySafe-Labs/memorysafe-plugin/blob/main/PRIVACY.md">{c['product_privacy']} ↗</a><a href="https://github.com/MemorySafe-Labs/memorysafe-plugin/blob/main/TERMS.md">{c['terms']} ↗</a></nav></div><aside class="download-side"><span class="mono">{'After' if p=='/' else 'Depois'}</span><h2>{c['after_title']}</h2><p>{c['after_body']}</p><a class="text-link" href="http://127.0.0.1:8765/dashboard" target="_blank" rel="noopener">{c['dashboard']} ↗</a><p>{c['test_body']}</p><a class="text-link" href="/assets/memorysafe-install-guide-v0.4.23.png" target="_blank" rel="noopener">{c['guide']} ↗</a></aside></div></div>'''
+    body=f'''<div class="wrap"><section class="inner-hero"><div class="eyebrow">{c['download_eyebrow']}</div><h1>{c['download_title']}</h1><p>{c['download_intro']}</p></section><div class="download-layout"><div><div class="download-options">{options}</div><a class="text-link code-link source-link" href="{GITHUB}">{GITHUB_ICON}{c['source_code']} <span aria-hidden="true">↗</span></a><p class="download-legal">{c['download_legal']}</p><div class="updates-box"><span class="mono">{c['upd_label']}</span><h2>{c['upd_title']}</h2><p>{c['upd_body']}</p>{updates_form(c)}</div><nav class="footer-links"><a href="https://github.com/MemorySafe-Labs/memorysafe-plugin/releases/latest">{c['notes']} ↗</a><a href="https://github.com/MemorySafe-Labs/memorysafe-plugin/blob/main/PRIVACY.md">{c['product_privacy']} ↗</a><a href="https://github.com/MemorySafe-Labs/memorysafe-plugin/blob/main/TERMS.md">{c['terms']} ↗</a></nav></div><aside class="download-side"><span class="mono">{pick(c,'After','Depois','Ensuite')}</span><h2>{c['after_title']}</h2><p>{c['after_body']}</p><a class="text-link" href="http://127.0.0.1:8765/dashboard" target="_blank" rel="noopener">{c['dashboard']} ↗</a><p>{c['test_body']}</p><a class="text-link" href="/assets/memorysafe-install-guide-v0.4.23.png" target="_blank" rel="noopener">{c['guide']} ↗</a></aside></div></div>'''
     return shell(c,c['cta'],body,'download/')
 
 def research(c):
-    visual=render_research_visual('en' if c['prefix']=='/' else 'pt')
+    visual=render_research_visual(c['code'])
     cases=''.join(f'<div class="card case-card"><img class="case-img" src="/assets/{img}.jpg" alt="" width="900" height="600" loading="lazy"><h3>{t}</h3><p>{problem}</p><p class="case-action">{action}</p></div>' for img,t,problem,action in c['cases'])
     body=f'''<div class="wrap research-main"><section class="inner-hero"><div class="eyebrow">{c['research_eyebrow']}</div><h1>{c['research_page_title']}</h1><p>{c['research_page_intro']}</p></section>{visual}<section class="research-cases" aria-labelledby="cases-title"><div class="chapter-number">{c['cases_label']}</div><div class="section-head"><h2 id="cases-title">{c['cases_title']}</h2><p class="section-lead">{c['cases_lead']}</p></div><div class="card-row">{cases}</div></section><a class="button" href="mailto:contact@memorysafe.ca">{c['research_contact']}</a><p class="research-note">{c['research_note']}</p></div>'''
     return shell(c,c['nav'][3],body,'research/')
@@ -412,7 +433,7 @@ def value(c):
     return shell(c,c['nav'][4],body,'value/')
 
 def pricing(c):
-    p=c['prefix'];t=PRICING['pt' if p!='/' else 'en']
+    p=c['prefix'];t=PRICING[c['code']]
     def button(label,key,style):
         cls='button'+(' ghost' if style=='ghost' else '')
         if key=='download':
@@ -442,21 +463,21 @@ def pricing(c):
         cards.append(f'<article class="price-card{featured}"><div class="mono price-status">{k["status"]}</div><h3 class="price-name">{k["name"]}</h3><div class="price-line"><span class="price-amount">{k["price"]}</span>{per}</div><div class="price-actions">{btns}</div><p>{k["body"]}</p><h3 class="price-includes">{k["includes"]}</h3><ul class="check-list">{pts}</ul>{fine}</article>')
     you=''.join(cards[:2]); companies=''.join(cards[2:])
     body=f'<div class="wrap pricing-main"><section class="inner-hero"><div class="eyebrow">{t["eyebrow"]}</div><h1>{t["title"]}</h1><p>{t["intro"]}</p></section><div class="price-blocks"><section class="price-block"><h2 class="price-block-title">{t["for_you"]}</h2><div class="price-grid">{you}</div></section><section class="price-block"><h2 class="price-block-title">{t["for_companies"]}</h2><div class="price-grid">{companies}</div></section></div><p class="price-note">{t["beta_note"]}</p><p class="price-note price-note-second">{t["note"]}</p></div>'
-    return shell(c,'Pricing' if p=='/' else 'Preços',body,'pricing/')
+    return shell(c,c['nav'][2],body,'pricing/')
 
 def thanks(c):
     body=f"""<div class="wrap"><section class="inner-hero"><div class="eyebrow">{c['upd_label']}</div><h1>{c['thanks_title']}</h1><p>{c['thanks_body']}</p><a class="button" href="{c['prefix']}download/">{c['thanks_back']}</a></section></div>"""
     return shell(c,c['thanks_title'],body,'download/thanks/')
 
 def privacy(c):
-    source=(OLD/('pt-br/privacy.html' if c['prefix']!='/' else 'privacy.html')).read_text()
+    source=(OLD/pick(c,'privacy.html','pt-br/privacy.html','fr/privacy.html')).read_text()
     title=re.search(r'<h1>(.*?)</h1>',source,re.S).group(1)
     updated=re.search(r'<p class="updated">(.*?)</p>',source,re.S).group(1)
     content=re.search(r'<article class="content">(.*?)</article>',source,re.S).group(1)
     body=f'<div class="wrap"><section class="inner-hero"><div class="eyebrow">MEMORYSAFE LABS</div><h1>{title}</h1><p>{updated}</p></section><article class="legal-content">{content}</article></div>'
     return shell(c,title,body,'privacy/')
 
-(PUBLIC/'site.js').write_text('''document.addEventListener('click',function(e){var b=e.target.closest('.copy-command');if(!b)return;var code=document.getElementById(b.dataset.copy);if(!code)return;navigator.clipboard.writeText(code.textContent).then(function(){var n=b.parentElement.querySelector('.copy-note');if(n){n.textContent=document.documentElement.lang.indexOf('pt')===0?'Copiado.':'Copied.';setTimeout(function(){n.textContent=''},2500)}})});
+(PUBLIC/'site.js').write_text('''document.addEventListener('click',function(e){var b=e.target.closest('.copy-command');if(!b)return;var code=document.getElementById(b.dataset.copy);if(!code)return;navigator.clipboard.writeText(code.textContent).then(function(){var n=b.parentElement.querySelector('.copy-note');if(n){n.textContent=document.documentElement.lang.indexOf('pt')===0?'Copiado.':document.documentElement.lang.indexOf('fr')===0?'Copié.':'Copied.';setTimeout(function(){n.textContent=''},2500)}})});
 
 /* Hero demo: stepped, looping playback in the manner of the research animation —
    auto-plays while visible, pausable, step-selectable, stops offscreen,
@@ -531,7 +552,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)})
 ''')
 
 for locale,c in COPY.items():
-    root=PUBLIC/('pt-br' if locale=='pt' else '')
+    root=PUBLIC/c['prefix'].strip('/')
     root.mkdir(parents=True,exist_ok=True)
     (root/'index.html').write_text(homepage(c))
     for slug,builder in [('download',download),('download/thanks',thanks),('research',research),('value',value),('pricing',pricing),('privacy',privacy)]:
@@ -543,10 +564,10 @@ for locale,c in COPY.items():
 (PUBLIC/'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: https://memorysafe.ca/sitemap.xml\n')
 # Sitemap: every content page, in both languages.
 _pages=['','download/','pricing/','research/','value/','privacy/']
-(PUBLIC/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>https://memorysafe.ca/{pre}{pg}</loc></url>\n' for pg in _pages for pre in ('','pt-br/'))+'</urlset>\n')
+(PUBLIC/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>https://memorysafe.ca/{pre}{pg}</loc></url>\n' for pg in _pages for pre in ('','fr/','pt-br/'))+'</urlset>\n')
 # Not-found page in the site's own design (Netlify serves /404.html for any missing address).
 _c=COPY['en']
-(PUBLIC/'404.html').write_text(shell(_c,'Page not found','<div class="wrap"><section class="inner-hero"><div class="eyebrow">PAGE NOT FOUND</div><h1>This page isn’t here.</h1><p>The link may be old or mistyped.</p><p><a class="button" href="/">Go to the home page</a> <a class="button ghost" href="/pricing/">Pricing</a></p><p lang="pt-BR">Página não encontrada. <a href="/pt-br/" style="text-decoration:underline">Ir para a página inicial</a></p></section></div>','404.html',index=False).replace('href="/pt-br/404.html"','href="/pt-br/"').replace('href="/404.html"','href="/"'))
+(PUBLIC/'404.html').write_text(shell(_c,'Page not found','<div class="wrap"><section class="inner-hero"><div class="eyebrow">PAGE NOT FOUND</div><h1>This page isn’t here.</h1><p>The link may be old or mistyped.</p><p><a class="button" href="/">Go to the home page</a> <a class="button ghost" href="/pricing/">Pricing</a></p><p lang="fr">Page introuvable. <a href="/fr/" style="text-decoration:underline">Aller à l’accueil</a></p><p lang="pt-BR">Página não encontrada. <a href="/pt-br/" style="text-decoration:underline">Ir para a página inicial</a></p></section></div>','404.html',index=False).replace('href="/pt-br/404.html"','href="/pt-br/"').replace('href="/fr/404.html"','href="/fr/"').replace('href="/404.html"','href="/"'))
 used={b[1] for lang in PRICING.values() for card in lang['cards'] for b in card['buttons']}
 missing=[k for k,v in STRIPE.items() if not v and k in used]
 print('Built ten local pages (Claudete concept). No deployment or network access.')

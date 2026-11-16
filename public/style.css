@@ -464,3 +464,24 @@ details>p{font-size:14px;line-height:1.75;color:var(--muted);margin:0 30px 22px 
 @media(max-width:1120px){.nav-links{gap:17px}.masthead .nav-github{display:none}}
 @media(min-width:861px) and (max-width:935px){.nav{gap:14px}.nav-links{gap:11px;font-size:13px}}
 .price-note a{text-decoration:underline}
+.updates-box.compact .compact-note{margin:4px 0 0;font-size:13px}
+@media(max-width:350px){.nav .button.small{padding:10px 9px;font-size:12.5px}.nav-toggle{width:36px;height:36px}}
+/* Three languages (16 Nov 2026): the header keeps EN / FR / PT visible, so GitHub and LinkedIn live in the footer only */
+.masthead .nav-github{display:none}
+@media(max-width:1120px){.nav-links{gap:14px}}
+@media(min-width:861px) and (max-width:935px){.nav-links{gap:9px}}
+/* French labels are longer: short button always, and the menu button up to 1120px */
+.masthead.lang-fr .nav-cta-long{display:none}
+.masthead.lang-fr .nav-cta-short{display:inline}
+.masthead.lang-fr .nav-links{gap:16px}
+@media(min-width:861px) and (max-width:1120px){
+.masthead.lang-fr{position:relative;z-index:40}
+.masthead.lang-fr .nav-links{display:none}
+.masthead.lang-fr .nav-toggle{display:inline-flex}
+.masthead.lang-fr.nav-open .nav-links{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 14px 28px rgba(11,18,32,.10);padding:4px 24px 10px;font-size:16px;white-space:normal}
+.masthead.lang-fr.nav-open .nav-links a{padding:14px 2px;border-top:1px solid var(--line)}
+.masthead.lang-fr.nav-open .nav-links a:first-child{border-top:0}
+}
+@media(max-width:400px){.masthead.lang-fr .button.small{padding:10px 8px;font-size:12.5px}.masthead.lang-fr .nav-toggle{width:36px;height:36px}}
+@media(max-width:400px){main .button{white-space:normal;text-align:center}}
+.price-block .price-actions .button{white-space:normal;text-align:center}

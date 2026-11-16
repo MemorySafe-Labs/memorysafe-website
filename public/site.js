@@ -1,4 +1,4 @@
-document.addEventListener('click',function(e){var b=e.target.closest('.copy-command');if(!b)return;var code=document.getElementById(b.dataset.copy);if(!code)return;navigator.clipboard.writeText(code.textContent).then(function(){var n=b.parentElement.querySelector('.copy-note');if(n){n.textContent=document.documentElement.lang.indexOf('pt')===0?'Copiado.':'Copied.';setTimeout(function(){n.textContent=''},2500)}})});
+document.addEventListener('click',function(e){var b=e.target.closest('.copy-command');if(!b)return;var code=document.getElementById(b.dataset.copy);if(!code)return;navigator.clipboard.writeText(code.textContent).then(function(){var n=b.parentElement.querySelector('.copy-note');if(n){n.textContent=document.documentElement.lang.indexOf('pt')===0?'Copiado.':document.documentElement.lang.indexOf('fr')===0?'Copié.':'Copied.';setTimeout(function(){n.textContent=''},2500)}})});
 
 /* Hero demo: stepped, looping playback in the manner of the research animation —
    auto-plays while visible, pausable, step-selectable, stops offscreen,
