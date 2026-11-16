@@ -246,8 +246,8 @@ PRICING={
 'intro':'Same product either way: choose where your memories live from the dashboard, and change your mind any time. On your computer it’s free, for ever.',
 'for_you':'For you','for_companies':'For companies','pending':'Payment link coming soon','beta_note':'MemorySafe is in beta: we’re still testing it.',
 'cards':[
- {'status':'FREE · AVAILABLE NOW','name':'Free','price':'US$0','per':'','includes':'What’s included','body':'One memory for Claude, Codex, Cursor and more. Keep it on this computer, or in your account to reach it from every device.',
-  'points':['Unlimited memories on this computer, free for ever','Up to 1,000 memories in your cloud account','Review, protect and forget what it keeps','Export and erase with a receipt','Open source, Apache 2.0'],
+ {'status':'FREE · AVAILABLE NOW','name':'Free','price':'US$0','per':'','includes':'What’s included','body':'Unlimited on this computer, free for ever. 1,000 memories free in the cloud, on every device.',
+  'points':['One memory for Claude, Codex, Cursor and more','Review, protect and forget what it keeps','Export and erase with a receipt','Open source, Apache 2.0'],
   'buttons':[('Download','download',''),('Create your free account','hosted','ghost')],'fine':''},
  {'status':'PAID PLAN','name':'Personal','price':'US$10','per':'/ month','featured':True,'includes':'Everything in Free, plus','body':'Room for everything you work on, in your cloud account, on every device.',
   'points':['Up to 20,000 memories in your cloud account','The same memory on every device','Hosted in Canada','Cancel any time from your billing page'],
@@ -263,8 +263,8 @@ PRICING={
 'intro':'O mesmo produto nos dois casos: escolha no painel onde suas memórias ficam e mude quando quiser. No seu computador é grátis, para sempre.',
 'for_you':'Para você','for_companies':'Para empresas','pending':'Link de pagamento em breve','beta_note':'O MemorySafe está em beta: ainda estamos testando.',
 'cards':[
- {'status':'GRÁTIS · DISPONÍVEL AGORA','name':'Grátis','price':'US$0','per':'','includes':'O que está incluído','body':'Uma memória para Claude, Codex, Cursor e outros. Guarde no seu computador, ou na sua conta para acessar de qualquer aparelho.',
-  'points':['Memórias ilimitadas no seu computador, grátis para sempre','Até 1.000 memórias na sua conta na nuvem','Revise, proteja e esqueça o que ela guarda','Exporte e apague com recibo','Código aberto, Apache 2.0'],
+ {'status':'GRÁTIS · DISPONÍVEL AGORA','name':'Grátis','price':'US$0','per':'','includes':'O que está incluído','body':'Ilimitado neste computador, grátis para sempre. 1.000 memórias grátis na nuvem, em qualquer aparelho.',
+  'points':['Uma memória para Claude, Codex, Cursor e outros','Revise, proteja e esqueça o que ela guarda','Exporte e apague com recibo','Código aberto, Apache 2.0'],
   'buttons':[('Baixar','download',''),('Criar sua conta gratuita','hosted','ghost')],'fine':''},
  {'status':'PLANO PAGO','name':'Pessoal','price':'US$10','per':'/ mês','featured':True,'includes':'Tudo do Grátis, mais','body':'Espaço para tudo em que você trabalha, na sua conta na nuvem, em qualquer aparelho.',
   'points':['Até 20.000 memórias na sua conta na nuvem','A mesma memória em qualquer aparelho','Hospedado no Canadá','Cancele quando quiser na sua página de cobrança'],
