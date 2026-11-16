@@ -546,7 +546,7 @@ _pages=['','download/','pricing/','research/','value/','privacy/']
 (PUBLIC/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>https://memorysafe.ca/{pre}{pg}</loc></url>\n' for pg in _pages for pre in ('','pt-br/'))+'</urlset>\n')
 # Not-found page in the site's own design (Netlify serves /404.html for any missing address).
 _c=COPY['en']
-(PUBLIC/'404.html').write_text(shell(_c,'Page not found','<div class="wrap"><section class="inner-hero"><div class="eyebrow">PAGE NOT FOUND</div><h1>This page isn’t here.</h1><p>The link may be old or mistyped.</p><p><a class="button" href="/">Go to the home page</a> <a class="button ghost" href="/pricing/">Pricing</a></p><p lang="pt-BR">Página não encontrada. <a href="/pt-br/" style="text-decoration:underline">Ir para a página inicial</a></p></section></div>','404.html',index=False))
+(PUBLIC/'404.html').write_text(shell(_c,'Page not found','<div class="wrap"><section class="inner-hero"><div class="eyebrow">PAGE NOT FOUND</div><h1>This page isn’t here.</h1><p>The link may be old or mistyped.</p><p><a class="button" href="/">Go to the home page</a> <a class="button ghost" href="/pricing/">Pricing</a></p><p lang="pt-BR">Página não encontrada. <a href="/pt-br/" style="text-decoration:underline">Ir para a página inicial</a></p></section></div>','404.html',index=False).replace('href="/pt-br/404.html"','href="/pt-br/"').replace('href="/404.html"','href="/"'))
 used={b[1] for lang in PRICING.values() for card in lang['cards'] for b in card['buttons']}
 missing=[k for k,v in STRIPE.items() if not v and k in used]
 print('Built ten local pages (Claudete concept). No deployment or network access.')
