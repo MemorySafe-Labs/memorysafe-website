@@ -454,3 +454,13 @@ details>p{font-size:14px;line-height:1.75;color:var(--muted);margin:0 30px 22px 
 }
 @media(max-width:350px){.masthead .wrap{padding:0 14px}.masthead .brand-name{font-size:17px}.masthead .brand{gap:8px}}
 @media(max-width:560px){.masthead .nav-github{display:none}}
+/* Sign in sits at the end of the tabs (and of the phone menu) */
+.nav-links .nav-signin{font-weight:600;color:var(--ink)}
+/* Room for Sign in: GitHub is an icon like LinkedIn, tabs sit a little closer, and the icons leave the header on narrower screens (they stay in the footer) */
+.nav-links{gap:20px}
+.nav-github{padding:9px}
+.nav-github-label{display:none}
+@media(max-width:1199px){.nav-cta-long{display:none}.nav-cta-short{display:inline}}
+@media(max-width:1120px){.nav-links{gap:17px}.masthead .nav-github{display:none}}
+@media(min-width:861px) and (max-width:935px){.nav{gap:14px}.nav-links{gap:11px;font-size:13px}}
+.price-note a{text-decoration:underline}

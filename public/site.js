@@ -42,7 +42,7 @@ var root=document.querySelector('[data-value]');if(!root)return;
 var lang=document.documentElement.lang||'en-CA';
 var hoursWord=root.getAttribute('data-hours')||'hrs';
 var nf=new Intl.NumberFormat(lang,{maximumFractionDigits:0});
-var cf=new Intl.NumberFormat(lang,{style:'currency',currency:'CAD',maximumFractionDigits:0});
+var cf=new Intl.NumberFormat(lang,{style:'currency',currency:'USD',maximumFractionDigits:0});
 function num(key){var el=root.querySelector('[data-v="'+key+'"]');var n=el?parseFloat(el.value):0;return isFinite(n)&&n>0?n:0}
 function put(key,text){var el=root.querySelector('[data-vo="'+key+'"]');if(el)el.textContent=text}
 function calc(){

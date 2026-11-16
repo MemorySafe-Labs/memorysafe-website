@@ -40,15 +40,15 @@ COPY={
 'intro':'Two small planning models — one for people using assistants, one for teams training models. Your numbers, simple arithmetic, no promises.',
 'film':'Benefit simulator · your assumptions','tab1':'Assistants','tab2':'Model teams',
 'p1_lead':'How much time does re-explaining cost a team? The middle scenario assumes half of it can be avoided.',
-'p1_fields':[['people','People using AI assistants','10','1'],['minutes','Minutes each person spends re-explaining / week','20','1'],['rate','Value of one work hour (CAD)','50','1']],
+'p1_fields':[['people','People using AI assistants','10','1'],['minutes','Minutes each person spends re-explaining / week','20','1'],['rate','Value of one work hour (US$)','50','1']],
 'p1_outs':[['lost','Repetition / year'],['returned','Time returned / year'],['value','Illustrative value / year']],
 'p1_formula':'people × minutes × 52 weeks → hours; half avoided in the middle scenario.',
 'p2_lead':'What does a smaller replay buffer save in compute? The what-if assumes a buffer 30% smaller — 500 samples become about 350.',
-'p2_fields':[['runs','Replay or update runs / day','200','1'],['mins','Minutes for one replay run','12','1'],['cost','Compute cost per hour (CAD)','2.50','0.1']],
+'p2_fields':[['runs','Replay or update runs / day','200','1'],['mins','Minutes for one replay run','12','1'],['cost','Compute cost per hour (US$)','2.50','0.1']],
 'p2_outs':[['avoided','Runtime avoided / year'],['gross','Illustrative gross value / year']],
 'p2_formula':'runs × minutes × 365 days × 30%, priced at your compute rate. This models runtime only — never model quality.',
 'hours':'hrs',
-'caption':'A planning model with your assumptions — the simulator from memorysafe.ca with fewer knobs. Actual results depend on workflow, setup and answer quality.'},
+'caption':'A planning model with your assumptions. Actual results depend on workflow, setup and answer quality.'},
 'hero_eyebrow':'One memory for all your AI assistants',
 'hero_title':'Stop re-explaining yourself to your AI.',
 'hero_intro':'MemorySafe is one memory your AI assistants share. Claude, Codex, Cursor and the rest read and save the same facts, so you never explain yourself twice. Free on your computer, in a single file nothing uploads; or in the cloud, so it follows you everywhere.',
@@ -73,12 +73,12 @@ COPY={
 'learn_lead':'Models are frozen the day they ship. Your memory is the part that keeps learning — every decision and preference you confirm compounds.',
 'learn_steps':[['WEEK 1','Knows the basics.','Your name, your tools, your rules of engagement. No more introductions.'],['MONTH 2','Knows your decisions.','What you chose, what you set aside, and why — settled questions stay settled.'],['MONTH 6','Knows how you work.','Your standards, your edge cases. Answers start from your context, not from zero.']],
 'learn_strip':'<strong>And the learning is portable.</strong> Because it lives in a file you own, it survives model upgrades, new tools, even a change of assistant.',
-'ch_editions':'03 — THE EDITIONS','edition_title':'Your memory. Your kind of setup.',
+'ch_editions':'03 — WHERE IT LIVES','edition_title':'Your memory. Your kind of setup.',
 'edition_lead':'Start on your computer today, or let your memory follow you: MemorySafe Cloud is available now, with a free plan.',
 'local_status':'FREE LOCAL BETA · AVAILABLE NOW','local_title':'On your computer. In your hands.',
 'local_body':'A shared place for your supported desktop assistants to save and recall useful context.',
 'local_points':['Claude Desktop, Claude Code, and Codex','Review memories, protect facts, inspect history','Your memory database stays on your computer'],
-'local_cta':'Download the free beta','local_fine':'Free. Open source (Apache 2.0), forever.<br>It’s a beta because we’re still testing it.<br>Advanced features live in MemorySafe Cloud.',
+'local_cta':'Download the free beta','local_fine':'Free. Open source (Apache 2.0), for ever.<br>It’s a beta because we’re still testing it.<br>Advanced features are being built in MemorySafe Cloud.',
 'hosted_status':'CLOUD BETA · AVAILABLE NOW · FREE PLAN','hosted_title':'Your memory follows you.',
 'hosted_body':'One shared memory across supported AI apps and devices — Claude, Codex, Cursor and more — kept current wherever you work.',
 'hosted_points':['One shared address your apps connect to','Laptop, phone, desktop','Hosted in Canada'],'hosted_cta':'Create your free account',
@@ -89,21 +89,21 @@ COPY={
 'research_body':'The question behind the product, asked at training scale: we study how AI models select past training examples to revisit when storage is limited. A separate research track, same enduring question.',
 'research_cta':'Inside the research',
 'ch_privacy':'04 — PRIVACY','privacy_title':'Private by architecture, not by promise.',
-'privacy_lead':'Most privacy pages ask you to trust a policy. Ours asks you to look at a file path.',
-'tiles':[['shield','Nothing uploaded by MemorySafe','Your memory database stays on your computer. No account, no sync, no MemorySafe server behind the free plugin.'],['key','You hold the keys','Protect locks a memory against change. Forget removes it from recall. The local dashboard shows what’s saved and what changed.'],['eyeoff','No sensitive capture','Secrets, credentials, payment and government IDs, health data: never captured, in any mode.'],['scale','Honest limits','A connected AI service still processes the context you choose to share, and forgetting removes a memory from recall — not from history or backups. We say both plainly.']],
+'privacy_lead':'On your computer you don’t have to trust a policy: you can look at a file path. In MemorySafe Cloud, your memories are stored in Canada, and you can export or erase them.',
+'tiles':[['shield','The local plugin uploads nothing','Your memory database stays on your computer. No account, no sync, no MemorySafe server behind the free plugin.'],['key','You hold the keys','Protect locks a memory against change. Forget removes it from recall. The local dashboard shows what’s saved and what changed.'],['eyeoff','No sensitive capture','Secrets, credentials, payment and government IDs, health data: never captured, in any mode.'],['scale','Honest limits','A connected AI service still processes the context you choose to share, and forgetting removes a memory from recall — not from history or backups. We say both plainly.']],
 'founder_eyebrow':'A HUMAN QUESTION, FIRST','founder_heading':'Better memory.<br>Less starting over.',
 'founder_name':'Carla Centeno · Founder & CEO',
-'founder_description':'MemorySafe Labs takes inspiration from human memory and turns it into questions we can build and test. Useful context should have continuity. And the person behind it should have control.',
+'founder_description':'MemorySafe Labs starts from a simple question: what is worth remembering? We turn it into things we can build and test. Useful context should have continuity. And the person behind it should have control.',
 'contact':'Say hello','team_heading':'Team & advisors','supported_heading':'Supported by',
 'faq_eyebrow':'BEFORE YOU ASK','faq_heading':'A few things, made clear.',
 'faqs':[
-['Does the free version work across my devices?','The free plugin keeps its database on the computer where you install it. It can be shared by supported assistants on that computer. Cross-device memory is what the cloud edition does; it is available now, with a free plan.'],
+['Does the free version work across my devices?','The free plugin keeps its database on the computer where you install it. It can be shared by supported assistants on that computer. Cross-device memory is what MemorySafe Cloud does; it is available now, with a free plan.'],
 ['What does “local” actually mean?','The memory database stays on your computer. A connected AI service can still process the context you choose to share under its own terms. Local storage doesn’t mean the AI service itself runs locally.'],
 ['Can I change my mind about a memory?','Use the local dashboard to review saved memories, inspect changes, manage protection, and remove memories from recall. Removing a memory from recall does not completely erase history or backups.'],
-['Are the advanced memory features available yet?','We’re testing tools to prioritize memories automatically: what to keep, revisit, or set aside. They’re being built into the cloud edition and aren’t included in the free local plugin.'],
+['Are the advanced memory features available yet?','We’re testing tools to prioritize memories automatically: what to keep, revisit, or set aside. They’re being built into MemorySafe Cloud and aren’t included in the free local plugin.'],
 ],
 'footer_eyebrow':'LESS STARTING OVER. MORE GETTING SOMEWHERE.','footer_title':'Pick up where you left off.',
-'privacy':'Privacy','github':'GitHub','copyright':'MemorySafe Labs Inc. · 2026',
+'privacy':'Privacy','signin':'Sign in','cloud_terms':'Cloud terms','github':'GitHub','copyright':'MemorySafe Labs Inc. · 2026',
 'download_title':'Make room for memory.',
 'download_intro':'Choose your assistant. Install the free local beta. No signup, no dramatic onboarding.',
 'download_eyebrow':'FREE LOCAL BETA','desktop_download':'Download for Claude Desktop','desktop_steps':'In Claude Desktop: Settings → Extensions → Advanced settings → Install Extension… Select the downloaded file. On Windows, don’t double-click the file.',
@@ -111,14 +111,14 @@ COPY={
 'after_title':'Then, pick up the thread.','after_body':'Restart your assistant. First-time setup may take a few minutes. Open the local dashboard to review your setup and connect supported assistants on this computer.',
 'dashboard':'Open local dashboard','test_body':'Try asking your assistant to remember a harmless preference. Open a new chat and ask it to recall that preference.',
 'guide':'Prefer pictures? View the visual guide',
-'download_legal':'Free, open source under the Apache License 2.0. Advanced memory features of the cloud edition are not included. Your database stays on this computer; connected AI services may process selected context. Forget removes a memory from recall, not completely from history or backups.',
+'download_legal':'Free, open source under the Apache License 2.0. The advanced memory features being built for MemorySafe Cloud are not included. Your database stays on this computer; connected AI services may process selected context. Forget removes a memory from recall, not completely from history or backups.',
 'notes':'Release notes','product_privacy':'Product privacy','terms':'Beta terms',
 'upd_label':'Optional','upd_title':'Want release updates?','upd_body':'Leave an email and we’ll write only when a new release ships — nothing else. The download never requires it.','upd_cta':'Notify me',
 'thanks_title':'You’re on the list.','thanks_body':'We’ll email you when a new release ships — and that’s all. The beta itself stays signup-free.','thanks_back':'Back to download',
 'research_eyebrow':'MEMORYSAFE LABS / CONTINUAL-LEARNING RESEARCH',
 'research_page_title':'Learning continues. What stays?',
 'research_page_intro':'A model cannot revisit everything it has ever seen. We study how to choose what it returns to.',
-'research_note':'This is research into model training. It is separate from the free local assistant plugin and the cloud edition. No performance results are presented on this page.',
+'research_note':'This is research into model training. It is separate from the free local assistant plugin and MemorySafe Cloud. No performance results are presented on this page.',
 'research_contact':'Talk about your research question',
 'cases_label':'RESEARCH SETTING · POSSIBLE APPLICATIONS','cases_title':'Where forgetting has consequences.',
 'cases_lead':'Our continual-learning evaluation uses medical images. Financial models, edge devices, and robotics are possible applications to explore with partners.',
@@ -132,15 +132,15 @@ COPY={
 'intro':'Dois pequenos modelos de planejamento — um para quem usa assistentes, outro para equipes que treinam modelos. Seus números, aritmética simples, sem promessas.',
 'film':'Simulador de benefício · suas premissas','tab1':'Assistentes','tab2':'Equipes de modelo',
 'p1_lead':'Quanto tempo custa se explicar de novo? O cenário intermediário assume que metade pode ser evitada.',
-'p1_fields':[['people','Pessoas usando assistentes de IA','10','1'],['minutes','Minutos que cada pessoa gasta se explicando / semana','20','1'],['rate','Valor de uma hora de trabalho (CAD)','50','1']],
+'p1_fields':[['people','Pessoas usando assistentes de IA','10','1'],['minutes','Minutos que cada pessoa gasta se explicando / semana','20','1'],['rate','Valor de uma hora de trabalho (US$)','50','1']],
 'p1_outs':[['lost','Repetição / ano'],['returned','Tempo devolvido / ano'],['value','Valor ilustrativo / ano']],
 'p1_formula':'pessoas × minutos × 52 semanas → horas; metade evitada no cenário intermediário.',
 'p2_lead':'O que um buffer de replay menor economiza em computação? O cenário assume um buffer 30% menor — 500 exemplos viram cerca de 350.',
-'p2_fields':[['runs','Execuções de replay ou atualização / dia','200','1'],['mins','Minutos de uma execução de replay','12','1'],['cost','Custo de computação por hora (CAD)','2.50','0.1']],
+'p2_fields':[['runs','Execuções de replay ou atualização / dia','200','1'],['mins','Minutos de uma execução de replay','12','1'],['cost','Custo de computação por hora (US$)','2.50','0.1']],
 'p2_outs':[['avoided','Tempo de execução evitado / ano'],['gross','Valor bruto ilustrativo / ano']],
 'p2_formula':'execuções × minutos × 365 dias × 30%, ao seu custo de computação. Modela apenas tempo de execução — nunca a qualidade do modelo.',
 'hours':'h',
-'caption':'Um modelo de planejamento com as suas premissas — o simulador do memorysafe.ca com menos controles. Resultados reais dependem de fluxo de trabalho, configuração e qualidade das respostas.'},
+'caption':'Um modelo de planejamento com as suas premissas. Resultados reais dependem de fluxo de trabalho, configuração e qualidade das respostas.'},
 'hero_eyebrow':'Uma memória para todos os seus assistentes de IA',
 'hero_title':'Chega de se explicar de novo para a sua IA.',
 'hero_intro':'O MemorySafe é uma memória que seus assistentes de IA compartilham. Claude, Codex, Cursor e os outros leem e salvam os mesmos fatos, e você nunca mais se explica duas vezes. Gratuito no seu computador, em um único arquivo que nada envia; ou na nuvem, para acompanhar você em todo lugar.',
@@ -165,12 +165,12 @@ COPY={
 'learn_lead':'Modelos ficam congelados no dia em que são lançados. Sua memória é a parte que continua aprendendo — cada decisão e preferência que você confirma se acumula.',
 'learn_steps':[['SEMANA 1','Sabe o básico.','Seu nome, suas ferramentas, suas regras. Sem apresentações de novo.'],['MÊS 2','Conhece suas decisões.','O que você escolheu, o que deixou de lado e por quê — o que foi decidido continua decidido.'],['MÊS 6','Sabe como você trabalha.','Seus padrões, seus casos particulares. As respostas partem do seu contexto, não do zero.']],
 'learn_strip':'<strong>E o aprendizado é portátil.</strong> Como vive em um arquivo que é seu, sobrevive a novas versões de modelo, novas ferramentas e até a uma troca de assistente.',
-'ch_editions':'03 — AS VERSÕES','edition_title':'Sua memória. Do seu jeito.',
+'ch_editions':'03 — ONDE ELA FICA','edition_title':'Sua memória. Do seu jeito.',
 'edition_lead':'Comece hoje no seu computador, ou deixe sua memória acompanhar você: o MemorySafe Cloud já está disponível, com um plano gratuito.',
 'local_status':'BETA LOCAL GRATUITO · DISPONÍVEL AGORA','local_title':'No seu computador. Nas suas mãos.',
 'local_body':'Um espaço compartilhado para seus assistentes desktop compatíveis salvarem e recuperarem contexto útil.',
 'local_points':['Claude Desktop, Claude Code e Codex','Revise memórias, proteja fatos, consulte o histórico','Seu banco de memórias fica no seu computador'],
-'local_cta':'Baixar o beta gratuito','local_fine':'Gratuito. Código aberto (Apache 2.0), para sempre.<br>É um beta porque ainda estamos testando.<br>Os recursos avançados ficam no MemorySafe Cloud.',
+'local_cta':'Baixar o beta gratuito','local_fine':'Gratuito. Código aberto (Apache 2.0), para sempre.<br>É um beta porque ainda estamos testando.<br>Os recursos avançados estão sendo construídos no MemorySafe Cloud.',
 'hosted_status':'CLOUD BETA · DISPONÍVEL AGORA · PLANO GRATUITO','hosted_title':'Sua memória acompanha você.',
 'hosted_body':'Uma memória compartilhada entre apps de IA e dispositivos compatíveis — Claude, Codex, Cursor e outros — que mantém seu contexto atualizado onde você estiver.',
 'hosted_points':['Um endereço compartilhado ao qual seus apps se conectam','Notebook, celular, desktop','Hospedado no Canadá'],'hosted_cta':'Criar sua conta gratuita',
@@ -181,21 +181,21 @@ COPY={
 'research_body':'A pergunta por trás do produto, feita na escala do treinamento: estudamos como modelos de IA selecionam exemplos anteriores para revisitar quando o armazenamento é limitado. Uma linha de pesquisa separada, a mesma pergunta de sempre.',
 'research_cta':'Por dentro da pesquisa',
 'ch_privacy':'04 — PRIVACIDADE','privacy_title':'Privada por arquitetura, não por promessa.',
-'privacy_lead':'A maioria das páginas de privacidade pede confiança em uma política. A nossa pede que você olhe o caminho de um arquivo.',
-'tiles':[['shield','Nada enviado pelo MemorySafe','Seu banco de memórias fica no seu computador. Sem conta, sem sincronização, sem servidor do MemorySafe no plugin gratuito.'],['key','As chaves são suas','Proteger trava uma memória contra mudanças. Esquecer a remove da recuperação. O painel local mostra o que foi salvo e o que mudou.'],['eyeoff','Sem captura sensível','Senhas, credenciais, documentos, dados de pagamento e de saúde: nunca capturados, em nenhum modo.'],['scale','Limites ditos com clareza','Um serviço de IA conectado ainda processa o contexto que você escolhe compartilhar, e esquecer remove uma memória da recuperação — não do histórico ou dos backups. Dizemos as duas coisas com todas as letras.']],
+'privacy_lead':'No seu computador você não precisa confiar em uma política: basta olhar o caminho de um arquivo. No MemorySafe Cloud, suas memórias ficam guardadas no Canadá, e você pode exportá-las ou apagá-las.',
+'tiles':[['shield','O plugin local não envia nada','Seu banco de memórias fica no seu computador. Sem conta, sem sincronização, sem servidor do MemorySafe no plugin gratuito.'],['key','As chaves são suas','Proteger trava uma memória contra mudanças. Esquecer a remove da recuperação. O painel local mostra o que foi salvo e o que mudou.'],['eyeoff','Sem captura sensível','Senhas, credenciais, documentos, dados de pagamento e de saúde: nunca capturados, em nenhum modo.'],['scale','Limites ditos com clareza','Um serviço de IA conectado ainda processa o contexto que você escolhe compartilhar, e esquecer remove uma memória da recuperação — não do histórico ou dos backups. Dizemos as duas coisas com todas as letras.']],
 'founder_eyebrow':'UMA PERGUNTA HUMANA, PRIMEIRO','founder_heading':'Memória melhor.<br>Menos recomeços.',
 'founder_name':'Carla Centeno · Fundadora e CEO',
-'founder_description':'A MemorySafe Labs se inspira na memória humana e transforma essa inspiração em perguntas que podemos construir e testar. Contexto útil merece continuidade. E quem está por trás dele merece controle.',
+'founder_description':'A MemorySafe Labs parte de uma pergunta simples: o que vale a pena lembrar? Transformamos essa pergunta em coisas que podemos construir e testar. Contexto útil merece continuidade. E quem está por trás dele merece controle.',
 'contact':'Vamos conversar','team_heading':'Equipe e assessores','supported_heading':'Apoiado por',
 'faq_eyebrow':'ANTES QUE VOCÊ PERGUNTE','faq_heading':'Algumas coisas, bem claras.',
 'faqs':[
-['A versão gratuita funciona entre dispositivos?','O plugin gratuito mantém o banco de dados no computador em que é instalado. Assistentes compatíveis nesse computador podem compartilhá-lo. A memória entre dispositivos é o que a versão na nuvem faz; ela já está disponível, com um plano gratuito.'],
+['A versão gratuita funciona entre dispositivos?','O plugin gratuito mantém o banco de dados no computador em que é instalado. Assistentes compatíveis nesse computador podem compartilhá-lo. A memória entre dispositivos é o que o MemorySafe Cloud faz; ele já está disponível, com um plano gratuito.'],
 ['O que “local” significa?','O banco de memórias fica no seu computador. Um serviço de IA conectado ainda pode processar o contexto que você compartilha, conforme os próprios termos. Armazenamento local não significa que o serviço de IA roda localmente.'],
 ['Posso mudar de ideia sobre uma memória?','No painel local, você pode revisar memórias, consultar mudanças, gerenciar a proteção e remover memórias da recuperação. Isso não apaga completamente o histórico ou os backups.'],
-['Os recursos avançados de memória já estão disponíveis?','Estamos testando ferramentas para priorizar memórias automaticamente: o que guardar, revisitar ou deixar de lado. Elas estão sendo construídas na versão na nuvem e não fazem parte do plugin local gratuito.'],
+['Os recursos avançados de memória já estão disponíveis?','Estamos testando ferramentas para priorizar memórias automaticamente: o que guardar, revisitar ou deixar de lado. Elas estão sendo construídas no MemorySafe Cloud e não fazem parte do plugin local gratuito.'],
 ],
 'footer_eyebrow':'MENOS RECOMEÇAR. MAIS IR ADIANTE.','footer_title':'Continue de onde parou.',
-'privacy':'Privacidade','github':'GitHub','copyright':'MemorySafe Labs Inc. · 2026',
+'privacy':'Privacidade','signin':'Entrar','cloud_terms':'Termos do Cloud','github':'GitHub','copyright':'MemorySafe Labs Inc. · 2026',
 'download_title':'Abra espaço para a memória.',
 'download_intro':'Escolha seu assistente. Instale o beta local gratuito. Sem cadastro, sem complicar.',
 'download_eyebrow':'BETA LOCAL GRATUITO','desktop_download':'Baixar para Claude Desktop','desktop_steps':'No Claude Desktop: Settings → Extensions → Advanced settings → Install Extension… Selecione o arquivo baixado. No Windows, não dê duplo clique no arquivo.',
@@ -203,14 +203,14 @@ COPY={
 'after_title':'Depois, retome a conversa.','after_body':'Reinicie seu assistente. A primeira configuração pode levar alguns minutos. Abra o painel local para revisar a instalação e conectar assistentes compatíveis neste computador.',
 'dashboard':'Abrir painel local','test_body':'Experimente pedir ao assistente para lembrar uma preferência simples. Abra outro chat e peça que ele recupere essa preferência.',
 'guide':'Prefere imagens? Veja o guia visual',
-'download_legal':'Gratuito, de código aberto sob a Apache License 2.0. Os recursos avançados da versão na nuvem não estão incluídos. O banco de dados fica neste computador; serviços de IA conectados podem processar contexto selecionado. Esquecer remove uma memória da recuperação, mas não apaga completamente o histórico ou os backups.',
+'download_legal':'Gratuito, de código aberto sob a Apache License 2.0. Os recursos avançados em construção no MemorySafe Cloud não estão incluídos. O banco de dados fica neste computador; serviços de IA conectados podem processar contexto selecionado. Esquecer remove uma memória da recuperação, mas não apaga completamente o histórico ou os backups.',
 'notes':'Notas da versão','product_privacy':'Privacidade do produto','terms':'Termos do beta',
 'upd_label':'Opcional','upd_title':'Quer saber das novas versões?','upd_body':'Deixe um e-mail e escrevemos só quando sair uma nova versão — nada além disso. O download nunca exige cadastro.','upd_cta':'Avisar-me',
 'thanks_title':'Você está na lista.','thanks_body':'Vamos escrever quando sair uma nova versão — e só. O beta continua sem cadastro.','thanks_back':'Voltar ao download',
 'research_eyebrow':'MEMORYSAFE LABS / PESQUISA EM APRENDIZADO CONTÍNUO',
 'research_page_title':'O aprendizado continua. O que fica?',
 'research_page_intro':'Um modelo não consegue revisitar tudo o que já viu. Estudamos como escolher aquilo a que ele deve retornar.',
-'research_note':'Esta é uma pesquisa sobre treinamento de modelos. Ela é separada do plugin local gratuito e da versão na nuvem. Esta página não apresenta resultados de desempenho.',
+'research_note':'Esta é uma pesquisa sobre treinamento de modelos. Ela é separada do plugin local gratuito e do MemorySafe Cloud. Esta página não apresenta resultados de desempenho.',
 'research_contact':'Converse sobre sua pergunta de pesquisa',
 'cases_label':'CENÁRIO DE PESQUISA · APLICAÇÕES POSSÍVEIS','cases_title':'Onde esquecer tem consequências.',
 'cases_lead':'Nossa avaliação de aprendizado contínuo usa imagens médicas. Modelos financeiros, dispositivos de borda e robótica são aplicações possíveis a explorar com parceiros.',
@@ -253,12 +253,12 @@ PRICING={
   'points':['Up to 20,000 memories','Hosted in Canada','Cancel any time'],
   'buttons':[('Get Personal','paid','')],'fine':'Plus tax, added at checkout. Upgrade from Settings in your account.'},
  {'status':'EARLY ACCESS','name':'Team','price':'US$29','per':'/ person / month','includes':'Everything in Personal, plus','body':'One memory for your whole team.',
-  'points':['People join by invitation','Onboarding with our founders','Flat pricing by company size, on request'],
+  'points':['People join by invitation','Onboarding with our founders','Larger company? Flat price on request'],
   'buttons':[('Get Team','team','')],'fine':'Create a free account, then pay from your organization’s page.'},
  {'status':'STARTS FREE','name':'Audits & pilots','price':'Free','per':'to start','includes':'What’s included','body':'We test your agent or model for free and show where it forgets. Then we propose the next step.',
   'points':['Free fragility test: one agent or model','Memory Audit: independent report, from US$5,500','Continual Learning pilot: 3 months, US$7,500'],
   'buttons':[('Book a free fragility test','test','')],'fine':'Medical and regulated work is quoted separately.'}],
-'note':'Prices in US dollars, before tax. Stripe handles payments; we never see your card number. Questions: <a href="'+CONTACT+'">contact@memorysafe.ca</a>'},
+'note':'Prices in US dollars, before tax. Stripe handles payments; we never see your card number. MemorySafe Cloud <a href="https://memory.memorysafe.ca/terms?lang=en">terms</a> and <a href="https://memory.memorysafe.ca/privacy?lang=en">privacy policy</a>. Questions: <a href="'+CONTACT+'">contact@memorysafe.ca</a>'},
 'pt':{'eyebrow':'PREÇOS','title':'Um só MemorySafe. Suas memórias no seu computador, ou na sua conta.',
 'intro':'O mesmo produto nos dois casos. Escolha onde suas memórias ficam e mude quando quiser.',
 'for_you':'Para você','for_companies':'Para empresas','pending':'Link de pagamento em breve','beta_note':'O MemorySafe está em beta: ainda estamos testando.',
@@ -270,12 +270,12 @@ PRICING={
   'points':['Até 20.000 memórias','Hospedado no Canadá','Cancele quando quiser'],
   'buttons':[('Assinar o Pessoal','paid','')],'fine':'Mais impostos, somados no checkout. Faça o upgrade em Configurações, na sua conta.'},
  {'status':'LANÇAMENTO','name':'Team','price':'US$29','per':'/ pessoa / mês','includes':'Tudo do Pessoal, mais','body':'Uma memória para toda a equipe.',
-  'points':['Cada pessoa entra por convite','Onboarding com os fundadores','Preço fixo por tamanho de empresa, sob consulta'],
+  'points':['Cada pessoa entra por convite','Onboarding com os fundadores','Empresa maior? Preço fixo sob consulta'],
   'buttons':[('Assinar o Team','team','')],'fine':'Crie uma conta gratuita e pague na página da sua organização.'},
  {'status':'COMEÇA GRÁTIS','name':'Auditorias e pilotos','price':'Grátis','per':'para começar','includes':'O que está incluído','body':'Testamos seu agente ou modelo de graça e mostramos onde ele esquece. Depois propomos o próximo passo.',
   'points':['Teste de fragilidade gratuito: um agente ou modelo','Auditoria de Memória: relatório independente, a partir de US$5.500','Piloto de Aprendizado Contínuo: 3 meses, US$7.500'],
   'buttons':[('Agendar o teste gratuito','test','')],'fine':'Trabalhos médicos e regulados têm orçamento à parte.'}],
-'note':'Preços em dólares americanos, antes dos impostos. O Stripe processa os pagamentos; nunca vemos o número do seu cartão. Dúvidas: <a href="'+CONTACT+'">contact@memorysafe.ca</a>'}}
+'note':'Preços em dólares americanos, antes dos impostos. O Stripe processa os pagamentos; nunca vemos o número do seu cartão. <a href="https://memory.memorysafe.ca/terms?lang=en">Termos</a> e <a href="https://memory.memorysafe.ca/privacy?lang=en">política de privacidade</a> do MemorySafe Cloud (em inglês). Dúvidas: <a href="'+CONTACT+'">contact@memorysafe.ca</a>'}}
 
 GITHUB='https://github.com/MemorySafe-Labs/memorysafe-plugin'
 LINKEDIN='https://www.linkedin.com/company/memorysafe-labs'
@@ -289,12 +289,13 @@ def header(c,page=''):
     p=c['prefix'];other=c['other']+page
     links=[p+'#problem',p+'#how',p+'pricing/',p+'research/',p+'value/',p+'#about']
     nav=''.join(f'<a href="{href}">{text}</a>' for href,text in zip(links,c['nav']))
+    nav+=f'<a class="nav-signin" href="https://memory.memorysafe.ca/account/start?next=/account&lang={signup_lang(p)}">{c["signin"]}</a>'
     langs=f'<a href="{p+page}" aria-current="page">{"PT" if p!="/" else "EN"}</a><span aria-hidden="true">/</span><a href="{other}">{c["other_label"]}</a>'
     return f'''<a class="skip" href="#main">{c['skip']}</a><div class="masthead"><div class="wrap"><div class="nav"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><nav class="nav-links" id="site-nav" aria-label="{'Main navigation' if p=='/' else 'Navegação principal'}">{nav}<span class="nav-menu-lang language">{langs}</span></nav><div class="nav-actions"><nav class="language" aria-label="Language">{langs}</nav><a class="nav-github" href="{GITHUB}" aria-label="{c['github_label']}">{GITHUB_ICON}<span class="nav-github-label">GitHub</span></a><a class="nav-github nav-linkedin" href="{LINKEDIN}" aria-label="{c['linkedin_label']}">{LINKEDIN_ICON}</a><a class="button small" href="{p}download/"><span class="nav-cta-long">{c['cta']}</span><span class="nav-cta-short">{c['cta_short']}</span></a><button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button></div></div></div></div>'''
 
 def footer(c):
     p=c['prefix']
-    return f'''<footer class="footer on-dark"><div class="wrap"><div class="footer-top"><div><div class="eyebrow">{c['footer_eyebrow']}</div><h2>{c['footer_title']}</h2></div><a class="button light" href="{p}download/">{c['cta']}</a></div><div class="footer-meta"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><span class="footer-copy">{c['copyright']}</span><nav class="footer-links"><a href="{p}pricing/">{c['nav'][2]}</a><a href="{p}research/">{c['nav'][3]}</a><a href="{p}value/">{c['nav'][4]}</a><a href="{p}privacy/">{c['privacy']}</a><a href="{GITHUB}">{c['github']} ↗</a><a href="{LINKEDIN}">LinkedIn ↗</a><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></nav></div></div></footer>'''
+    return f'''<footer class="footer on-dark"><div class="wrap"><div class="footer-top"><div><div class="eyebrow">{c['footer_eyebrow']}</div><h2>{c['footer_title']}</h2></div><a class="button light" href="{p}download/">{c['cta']}</a></div><div class="footer-meta"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><span class="footer-copy">{c['copyright']}</span><nav class="footer-links"><a href="{p}pricing/">{c['nav'][2]}</a><a href="{p}research/">{c['nav'][3]}</a><a href="{p}value/">{c['nav'][4]}</a><a href="{p}privacy/">{c['privacy']}</a><a href="https://memory.memorysafe.ca/terms?lang=en">{c['cloud_terms']}</a><a href="{GITHUB}">{c['github']} ↗</a><a href="{LINKEDIN}">LinkedIn ↗</a><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></nav></div></div></footer>'''
 
 # Link previews (Open Graph + Twitter), as deployed on 29 Oct 2026; the image is public/assets/og-image.png (1800x945).
 OG_DESC={'/':'Governed memory for AI. One shared memory for Claude, Cursor and your other agents, on your computer or in your account. Start free.',
@@ -306,7 +307,12 @@ def og(c,title,page=''):
             f'<meta property="og:title" content="{t}"><meta property="og:description" content="{d}"><meta property="og:image" content="{img}">'
             f'<meta property="og:image:width" content="1800"><meta property="og:image:height" content="945"><meta name="twitter:card" content="summary_large_image">'
             f'<meta name="twitter:title" content="{t}"><meta name="twitter:description" content="{d}"><meta name="twitter:image" content="{img}">')
-def shell(c,title,body,page=''):
+def seo(c,page,index=True):
+    if not index: return '<meta name="robots" content="noindex">'
+    en='https://memorysafe.ca/'+page; pt='https://memorysafe.ca/pt-br/'+page
+    return (f'<link rel="canonical" href="{en if c["prefix"]=="/" else pt}"><link rel="alternate" hreflang="en" href="{en}">'
+            f'<link rel="alternate" hreflang="pt-BR" href="{pt}"><link rel="alternate" hreflang="x-default" href="{en}">')
+def shell(c,title,body,page='',index=True):
     style='/style.css?v='+sha256((PUBLIC/'style.css').read_bytes()).hexdigest()[:12]
     script='/site.js?v='+sha256((PUBLIC/'site.js').read_bytes()).hexdigest()[:12]
     research_assets=''
@@ -314,11 +320,11 @@ def shell(c,title,body,page=''):
         ra_css='/research-animation.css?v='+sha256((PUBLIC/'research-animation.css').read_bytes()).hexdigest()[:12]
         ra_js='/research-animation.js?v='+sha256((PUBLIC/'research-animation.js').read_bytes()).hexdigest()[:12]
         research_assets=f'<link rel="stylesheet" href="{ra_css}"><script src="{ra_js}" defer></script>'
-    return f'''<!doctype html><html lang="{c['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — MemorySafe Labs</title><meta name="description" content="{'Memory for the things worth remembering. Free, open-source local plugin; cloud memory with a free plan.' if c['prefix']=='/' else 'Memória para o que vale a pena lembrar. Plugin local gratuito e de código aberto; memória na nuvem com um plano gratuito.'}">{og(c,title,page)}<meta name="theme-color" content="#ffffff"><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="{style}">{research_assets}<script src="{script}" defer></script></head><body>{header(c,page)}<main id="main">{body}</main>{footer(c)}</body></html>'''
+    return f'''<!doctype html><html lang="{c['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — MemorySafe Labs</title><meta name="description" content="{'Memory for the things worth remembering. Free, open-source local plugin; cloud memory with a free plan.' if c['prefix']=='/' else 'Memória para o que vale a pena lembrar. Plugin local gratuito e de código aberto; memória na nuvem com um plano gratuito.'}">{og(c,title,page)}{seo(c,page,index and 'thanks' not in page)}<meta name="theme-color" content="#ffffff"><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="{style}">{research_assets}<script src="{script}" defer></script></head><body>{header(c,page)}<main id="main">{body}</main>{footer(c)}</body></html>'''
 
 def updates_form(c):
     p=c['prefix']
-    return f"""<form name="release-updates" method="POST" action="{p}download/thanks/" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="release-updates"><input type="hidden" name="lang" value="{'en' if p=='/' else 'pt'}"><p class="hp" hidden><label>Leave this empty<input name="bot-field"></label></p><div class="updates-row"><label class="sr-only" for="upd-email-{'h' if p=='/' else 'hp'}">Email</label><input type="email" name="email" required placeholder="you@example.com"><button class="button" type="submit">{c['upd_cta']}</button></div></form>"""
+    return f"""<form name="release-updates" method="POST" action="{p}download/thanks/" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="release-updates"><input type="hidden" name="lang" value="{'en' if p=='/' else 'pt'}"><p class="hp" hidden><label>{'Leave this empty' if p=='/' else 'Deixe em branco'}<input name="bot-field"></label></p><div class="updates-row"><label class="sr-only" for="upd-email-{'h' if p=='/' else 'hp'}">Email</label><input type="email" name="email" required placeholder="{'you@example.com' if p=='/' else 'voce@exemplo.com'}"><button class="button" type="submit">{c['upd_cta']}</button></div></form>"""
 
 def hero_demo(c):
     pt=c['lang'].startswith('pt')
@@ -388,7 +394,7 @@ def download(c):
 
 def research(c):
     visual=render_research_visual('en' if c['prefix']=='/' else 'pt')
-    cases=''.join(f'<div class="card case-card"><img class="case-img" src="/assets/{img}.png" alt="" width="1536" height="1024" loading="lazy"><h3>{t}</h3><p>{problem}</p><p class="case-action">{action}</p></div>' for img,t,problem,action in c['cases'])
+    cases=''.join(f'<div class="card case-card"><img class="case-img" src="/assets/{img}.jpg" alt="" width="900" height="600" loading="lazy"><h3>{t}</h3><p>{problem}</p><p class="case-action">{action}</p></div>' for img,t,problem,action in c['cases'])
     body=f'''<div class="wrap research-main"><section class="inner-hero"><div class="eyebrow">{c['research_eyebrow']}</div><h1>{c['research_page_title']}</h1><p>{c['research_page_intro']}</p></section>{visual}<section class="research-cases" aria-labelledby="cases-title"><div class="chapter-number">{c['cases_label']}</div><div class="section-head"><h2 id="cases-title">{c['cases_title']}</h2><p class="section-lead">{c['cases_lead']}</p></div><div class="card-row">{cases}</div></section><a class="button" href="mailto:contact@memorysafe.ca">{c['research_contact']}</a><p class="research-note">{c['research_note']}</p></div>'''
     return shell(c,c['nav'][3],body,'research/')
 
@@ -494,7 +500,7 @@ var root=document.querySelector('[data-value]');if(!root)return;
 var lang=document.documentElement.lang||'en-CA';
 var hoursWord=root.getAttribute('data-hours')||'hrs';
 var nf=new Intl.NumberFormat(lang,{maximumFractionDigits:0});
-var cf=new Intl.NumberFormat(lang,{style:'currency',currency:'CAD',maximumFractionDigits:0});
+var cf=new Intl.NumberFormat(lang,{style:'currency',currency:'USD',maximumFractionDigits:0});
 function num(key){var el=root.querySelector('[data-v="'+key+'"]');var n=el?parseFloat(el.value):0;return isFinite(n)&&n>0?n:0}
 function put(key,text){var el=root.querySelector('[data-vo="'+key+'"]');if(el)el.textContent=text}
 function calc(){
@@ -534,7 +540,13 @@ for locale,c in COPY.items():
 
 # Favicon: v7 small-size rule — untilted 3×3, pale third column.
 (PUBLIC/'assets/mark.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="9" fill="#0e1420"/>'+''.join(f'<circle cx="{8+x*12}" cy="{8+y*12}" r="4" fill="{["#3b82f6","#93c5fd","#e0f2fe"][x]}"/>' for x in range(3) for y in range(3))+'</svg>')
-(PUBLIC/'robots.txt').write_text('User-agent: *\nAllow: /\n')
+(PUBLIC/'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: https://memorysafe.ca/sitemap.xml\n')
+# Sitemap: every content page, in both languages.
+_pages=['','download/','pricing/','research/','value/','privacy/']
+(PUBLIC/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>https://memorysafe.ca/{pre}{pg}</loc></url>\n' for pg in _pages for pre in ('','pt-br/'))+'</urlset>\n')
+# Not-found page in the site's own design (Netlify serves /404.html for any missing address).
+_c=COPY['en']
+(PUBLIC/'404.html').write_text(shell(_c,'Page not found','<div class="wrap"><section class="inner-hero"><div class="eyebrow">PAGE NOT FOUND</div><h1>This page isn’t here.</h1><p>The link may be old or mistyped.</p><p><a class="button" href="/">Go to the home page</a> <a class="button ghost" href="/pricing/">Pricing</a></p><p lang="pt-BR">Página não encontrada. <a href="/pt-br/" style="text-decoration:underline">Ir para a página inicial</a></p></section></div>','404.html',index=False))
 used={b[1] for lang in PRICING.values() for card in lang['cards'] for b in card['buttons']}
 missing=[k for k,v in STRIPE.items() if not v and k in used]
 print('Built ten local pages (Claudete concept). No deployment or network access.')
