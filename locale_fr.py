@@ -58,7 +58,7 @@ COPY_FR = {
 'hosted_status':'CLOUD EN BÊTA · OFFERT MAINTENANT · FORFAIT GRATUIT','hosted_title':'Votre mémoire vous suit.',
 'hosted_body':'Une mémoire partagée entre les applications d’IA et les appareils compatibles — Claude, Codex, Cursor et d’autres — tenue à jour partout où vous travaillez.',
 'hosted_points':['Une seule adresse à laquelle vos applications se connectent','Portable, téléphone, ordinateur de bureau','Hébergé au Canada'],'hosted_cta':'Créer votre compte gratuit',
-'hosted_fine':'Gratuit jusqu’à 1 000 souvenirs. De la place pour 20 000 : 10 $ US par mois.<br>C’est une bêta parce que nous la testons encore.<br>Des questions ? <a href="mailto:contact@memorysafe.ca">Écrivez-nous</a>.',
+'hosted_fine':'Gratuit jusqu’à 150 souvenirs. De la place pour 20 000 : 10 $ US par mois.<br>C’est une bêta parce que nous la testons encore.<br>Des questions ? <a href="mailto:contact@memorysafe.ca">Écrivez-nous</a>.',
 'band_note':'L’extension locale garde votre mémoire sur un seul ordinateur. MemorySafe Cloud est l’endroit où tous vos assistants retrouvent une seule mémoire, sur tous vos appareils.',
 'research_label':'UNE AUTRE ÉCHELLE.<br>LA MÊME QUESTION.',
 'research_title':'Qu’est-ce qui mérite de rester ?',
@@ -107,7 +107,7 @@ PRICING_FR = {'eyebrow':'TARIFS','title':'Un seul MemorySafe. Vos souvenirs sur 
 'intro':'Le même produit dans les deux cas. Choisissez où vivent vos souvenirs, et changez d’avis quand vous voulez.',
 'for_you':'Pour vous','for_companies':'Pour les entreprises','pending':'Lien de paiement à venir','beta_note':'MemorySafe est en bêta : nous le testons encore.',
 'cards':[
- {'status':'GRATUIT · DISPONIBLE','name':'Gratuit','price':'0 $ US','per':'','includes':'Ce qui est inclus','body':'Illimité sur cet ordinateur, pour toujours. 1 000 souvenirs gratuits dans le nuage.',
+ {'status':'GRATUIT · DISPONIBLE','name':'Gratuit','price':'0 $ US','per':'','includes':'Ce qui est inclus','body':'Illimité sur cet ordinateur, pour toujours. 150 souvenirs gratuits dans le nuage.',
   'points':['Claude et Codex sur votre ordinateur','Cursor et d’autres applications dans le nuage','Compte dans le nuage hébergé au Canada','Passez en revue, protégez, exportez et effacez','Code source ouvert'],
   'buttons':[('Télécharger','download',''),('Créer votre compte gratuit','hosted','ghost')],'fine':''},
  {'status':'FORFAIT PAYANT','name':'Personnel','price':'10 $ US','per':'/ mois','includes':'Tout le forfait Gratuit, plus','body':'Plus de place dans le nuage, sur tous vos appareils.',
@@ -156,7 +156,7 @@ STORY_FR = {
 }
 
 META_FR = {'':'Une mémoire que vos assistants IA partagent. Gratuit et à code source ouvert sur votre ordinateur ; MemorySafe Cloud vous suit sur tous vos appareils, avec un forfait gratuit.',
- 'pricing/':'Tarifs de MemorySafe : gratuit et illimité sur votre ordinateur, 1 000 souvenirs gratuits dans le nuage, 10 $ US par mois pour 20 000. Forfaits Team et audits pour les entreprises.',
+ 'pricing/':'Tarifs de MemorySafe : gratuit et illimité sur votre ordinateur, 150 souvenirs gratuits dans le nuage, 10 $ US par mois pour 20 000. Forfaits Team et audits pour les entreprises.',
  'download/':'Téléchargez l’extension gratuite MemorySafe pour Claude Desktop, Claude Code et Codex. Code source ouvert, aucun compte, vos souvenirs restent sur votre ordinateur.',
  'research/':'La recherche de MemorySafe Labs en apprentissage continu : comment un modèle choisit les exemples passés à revoir quand la mémoire est limitée.',
  'value/':'Un petit simulateur de planification : combien de temps coûte le fait de tout réexpliquer, et ce qu’un tampon de rejeu plus petit fait économiser en calcul.',
