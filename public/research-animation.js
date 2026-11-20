@@ -1,4 +1,6 @@
-/* Illustrative sequence only. No model execution, scores, tracking or network calls. */
+/* Illustrative sequence only. No model execution, scores, tracking or network calls.
+   Every step is a plain state (data-step plus .is-off); the flying cards only decorate
+   the move from one state to the next, so the picture is right without them. */
 (() => {
   const root = document.querySelector('[data-cl-explainer]');
   if (!root) return;
@@ -8,16 +10,16 @@
   const story = root.querySelector('.cl-story');
   const diagram = root.querySelector('.cl-diagram');
   const layer = root.querySelector('.cl-motion-layer');
-  const samples = [...root.querySelectorAll('.cl-sample')];
+  const staged = [...root.querySelectorAll('[data-cl-from], [data-cl-until]')];
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  let step = 0, playing = !motion.matches, visible = false, timer = null, finished = false;
-  let renderedStep = -1, motionTimer = null, motionActive = false;
+  const last = panels.length - 1;
+  /* Reduced motion: open on the finished picture, where protected and replaced are both visible. */
+  let step = motion.matches ? last : 0, playing = !motion.matches, finished = motion.matches;
+  let visible = false, timer = null, renderedStep = -1;
   const flights = new Set();
-  const shuffles = new Set();
-  const duration = 6500;
+  const duration = 6000;
   function clearTimer() { clearTimeout(timer); timer = null; }
   function clearFlights() {
-    clearTimeout(motionTimer); motionTimer = null;
     flights.forEach(({ animation, node }) => { animation.cancel(); node.remove(); });
     flights.clear();
   }
@@ -25,89 +27,37 @@
     const frame = diagram.getBoundingClientRect(), box = element.getBoundingClientRect();
     return { x: box.left + box.width / 2 - frame.left, y: box.top + box.height / 2 - frame.top };
   }
-  function fly(text, from, to, delay = 0, kind = '') {
-    if (!layer || typeof layer.animate !== 'function') return;
+  function fly(text, from, to, delay, kind) {
     const node = document.createElement('span');
     node.className = 'cl-flying-card' + (kind ? ' cl-flight-' + kind : '');
     node.textContent = text; layer.append(node);
-    const tag = kind === 'signal', w = tag ? 38 : 28, h = tag ? 22 : 34;
-    const mobile = matchMedia('(max-width: 600px)').matches;
+    const w = 30, h = 38;
+    const stacked = matchMedia('(max-width: 600px)').matches;
     const middle = { x: (from.x + to.x) / 2, y: (from.y + to.y) / 2 };
-    if (mobile) middle.x = Math.min(diagram.clientWidth - w / 2, middle.x + 28);
-    else middle.y -= 28;
+    if (stacked) middle.x = Math.min(diagram.clientWidth - w / 2, middle.x + 26);
+    else middle.y -= 30;
     const transform = (p, rotate, scale) => `translate(${p.x - w / 2}px, ${p.y - h / 2}px) rotate(${rotate}deg) scale(${scale})`;
     const animation = node.animate([
-      { transform: transform(from, -9, .9), opacity: 0, offset: 0 },
-      { opacity: 1, offset: .13 },
-      { transform: transform(middle, 4, 1.08), opacity: 1, offset: .52 },
-      { opacity: 1, offset: .84 },
-      { transform: transform(to, 0, .85), opacity: 0, offset: 1 },
-    ], { duration: 1550, delay, easing: 'cubic-bezier(.3,0,.2,1)', fill: 'both' });
+      { transform: transform(from, 0, 1.15), opacity: 0, offset: 0 },
+      { opacity: 1, offset: .12 },
+      { transform: transform(middle, kind ? 9 : -5, 1.1), opacity: 1, offset: .5 },
+      { opacity: 1, offset: .86 },
+      { transform: transform(to, 0, 1), opacity: 0, offset: 1 },
+    ], { duration: 1500, delay, easing: 'cubic-bezier(.3,0,.2,1)', fill: 'both' });
     const item = { animation, node }; flights.add(item);
     animation.onfinish = () => { node.remove(); flights.delete(item); };
   }
-  function launchScene() {
-    const incoming = root.querySelector('.cl-stream-pieces i');
-    const buffer = root.querySelector('.cl-slots');
-    const model = root.querySelector('.cl-model-mark');
-    const fragile = root.querySelector('.cl-fragile');
-    const rare = root.querySelector('.cl-rare');
-    const replacement = root.querySelector('.cl-replaceable');
-    if (step === 0) {
-      const frame = diagram.getBoundingClientRect(), box = buffer.getBoundingClientRect();
-      const destination = matchMedia('(max-width: 600px)').matches ?
-        { x: point(buffer).x, y: box.top - frame.top - 10 } :
-        { x: box.left - frame.left - 8, y: point(buffer).y };
-      fly('G', point(incoming), destination);
-      fly('H', point(root.querySelector('.cl-stream-pieces i:nth-child(2)')), destination, 900);
-    } else if (step === 1) {
-      fly('MVI', point(model), point(fragile), 100, 'signal');
-    } else if (step === 2) {
-      const origin = point(replacement);
-      fly('F', origin, { x: origin.x + 35, y: origin.y + 30 }, 0, 'outgoing');
-      fly('G', point(incoming), origin, 600);
-    } else {
-      fly('A', point(fragile), point(model));
-      fly('B', point(rare), point(model), 650);
-      fly('J', point(root.querySelector('.cl-stream-pieces i:nth-child(3)')), point(model), 1350);
-      fly('MVI', point(model), point(fragile), 2200, 'signal');
-    }
-  }
-  function queueMotion() {
-    clearTimeout(motionTimer); motionTimer = null;
-    if (!motionActive || step === 2) return;
-    motionTimer = setTimeout(() => { if (motionActive) { launchScene(); queueMotion(); } }, step === 3 ? 4200 : 2900);
-  }
-  function syncMotion(changed) {
-    if (changed) clearFlights();
-    const active = playing && visible && !document.hidden && !motion.matches;
-    const wasActive = motionActive;
-    motionActive = active;
-    if (!active) {
-      clearTimeout(motionTimer); motionTimer = null;
-      flights.forEach(({ animation }) => animation.pause());
-      if (!visible || document.hidden || motion.matches) {
-        shuffles.forEach(animation => animation.cancel()); shuffles.clear();
-      }
-    } else if (changed || !wasActive) {
-      flights.forEach(({ animation }) => animation.play());
-      if (!flights.size) launchScene();
-      queueMotion();
-    }
-  }
-  function shuffle(previous) {
-    if (motion.matches || !visible || typeof diagram.animate !== 'function') return;
-    shuffles.forEach(animation => animation.cancel()); shuffles.clear();
-    samples.forEach((sample, i) => {
-      const current = sample.getBoundingClientRect();
-      const dx = previous[i].left - current.left, dy = previous[i].top - current.top;
-      if (Math.abs(dx) + Math.abs(dy) < 2) return;
-      const animation = sample.animate([
-        { transform: `translate(${dx}px, ${dy}px) scale(.96)` },
-        { transform: 'translate(0, 0) scale(1)' },
-      ], { duration: 1000, easing: 'cubic-bezier(.2,.7,.2,1)' });
-      shuffles.add(animation); animation.onfinish = () => shuffles.delete(animation);
-    });
+  /* Measured before the state changes: who leaves which place, and who takes it. */
+  function plan(next) {
+    const place = root.querySelector(`[data-cl-swap="${next}"]`);
+    const arriving = root.querySelector(`.cl-queue [data-cl-until="${next}"]`);
+    const resting = root.querySelector(`.cl-tray [data-cl-from="${next}"]`);
+    if (!place || !arriving || !resting || !layer || typeof layer.animate !== 'function') return [];
+    const leaving = place.querySelector('[data-cl-until]'), entering = place.querySelector('[data-cl-from]');
+    return [
+      [leaving.dataset.clLetter, point(place), point(resting), 0, 'outgoing'],
+      [entering.dataset.clLetter, point(arriving), point(place), 450, ''],
+    ];
   }
   function schedule() {
     clearTimer();
@@ -118,16 +68,20 @@
   }
   function render() {
     const changed = renderedStep !== step;
-    const previous = changed && renderedStep !== -1 ? samples.map(sample => sample.getBoundingClientRect()) : null;
+    const live = visible && !document.hidden && !motion.matches;
+    const moves = changed && live && renderedStep === step - 1 ? plan(step) : [];
+    if (changed || !live) clearFlights();
+    if (changed) root.dataset.flight = String(moves.length > 0);
     root.dataset.step = String(step);
     root.dataset.playing = String(playing && visible && !document.hidden);
     story.setAttribute('aria-live', playing ? 'off' : 'polite');
     panels.forEach((panel, i) => { panel.hidden = i !== step; });
+    staged.forEach(node => {
+      const from = Number(node.dataset.clFrom || 0), until = Number(node.dataset.clUntil || 99);
+      node.classList.toggle('is-off', step < from || step >= until);
+    });
     root.querySelectorAll('[data-cl-buffer-note]').forEach(node => {
       node.hidden = Number(node.dataset.clBufferNote) !== step;
-    });
-    root.querySelectorAll('[data-cl-model-note]').forEach(node => {
-      node.hidden = Number(node.dataset.clModelNote) !== step;
     });
     root.querySelectorAll('[data-cl-audit-from]').forEach(node => {
       node.classList.toggle('is-revealed', Number(node.dataset.clAuditFrom) <= step);
@@ -139,8 +93,7 @@
     control.querySelector('[data-cl-play-label]').textContent = playing ? control.dataset.pause :
       (finished ? control.dataset.replay : control.dataset.play);
     control.querySelector('[data-cl-play-icon]').textContent = playing ? 'Ⅱ' : '▶';
-    if (previous) shuffle(previous);
-    syncMotion(changed);
+    moves.forEach(move => fly(...move));
     renderedStep = step;
     schedule();
   }
@@ -151,10 +104,10 @@
     render();
   });
   steps.forEach((button, i) => button.addEventListener('click', () => {
-    step = i; playing = false; finished = i === panels.length - 1; render();
+    step = i; playing = false; finished = i === last; render();
   }));
   document.addEventListener('visibilitychange', render);
-  window.addEventListener('resize', () => { clearFlights(); motionActive = false; render(); });
+  window.addEventListener('resize', () => { clearFlights(); render(); });
   motion.addEventListener('change', event => { if (event.matches) { playing = false; render(); } });
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
