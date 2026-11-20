@@ -453,16 +453,28 @@ def pricing(c):
         if STRIPE[key]:
             return f'<a class="{cls}" href="{STRIPE[key]}">{label}</a>'
         return f'<span class="{cls} is-pending" aria-disabled="true" title="{t["pending"]}">{label}</span>'
+    # The short pricing page: each card keeps its price, its button and what you get.
+    # Everything shown is cut from the existing copy, never rewritten. Per card, in order
+    # (Free, Personal, Team, Audits & pilots): sentences kept from the body, whether the
+    # "includes" heading stays (only where it says something: "Everything in Free, plus"),
+    # how many points stay, and whether the small print stays (only where it limits a price).
+    first=lambda text,n: '. '.join(text.split('. ')[:n]).rstrip('.')+'.' if n else ''
+    KEEP=[(2,False,4,False),(0,True,2,False),(1,True,3,False),(1,False,3,True)]
     cards=[]
-    for k in t['cards']:
-        pts=''.join(f'<li>{x}</li>' for x in k['points'])
+    for k,(sentences,heading,points,small) in zip(t['cards'],KEEP):
+        pts=''.join(f'<li>{x}</li>' for x in k['points'][:points])
         btns=''.join(button(*b) for b in k['buttons'])
         per=f'<span class="price-per">{k["per"]}</span>' if k['per'] else ''
-        fine=f'<p class="price-fine">{k["fine"]}</p>' if k['fine'] else ''
+        said=f'<p>{first(k["body"],sentences)}</p>' if sentences else ''
+        includes=f'<h3 class="price-includes">{k["includes"]}</h3>' if heading else ''
+        fine=f'<p class="price-fine">{k["fine"]}</p>' if small and k['fine'] else ''
         featured=' featured' if k.get('featured') else ''
-        cards.append(f'<article class="price-card{featured}"><div class="mono price-status">{k["status"]}</div><h3 class="price-name">{k["name"]}</h3><div class="price-line"><span class="price-amount">{k["price"]}</span>{per}</div><div class="price-actions">{btns}</div><p>{k["body"]}</p><h3 class="price-includes">{k["includes"]}</h3><ul class="check-list">{pts}</ul>{fine}</article>')
+        cards.append(f'<article class="price-card{featured}"><div class="mono price-status">{k["status"]}</div><h3 class="price-name">{k["name"]}</h3><div class="price-line"><span class="price-amount">{k["price"]}</span>{per}</div><div class="price-actions">{btns}</div>{said}{includes}<ul class="check-list">{pts}</ul>{fine}</article>')
+    # One closing line: the beta note, the currency and tax sentence, and the terms and privacy links.
+    parts=t['note'].split('. ')
+    note=t['beta_note']+' '+parts[0]+'. '+parts[2].rstrip('.')+'.'
     you=''.join(cards[:2]); companies=''.join(cards[2:])
-    body=f'<div class="wrap pricing-main"><section class="inner-hero"><div class="eyebrow">{t["eyebrow"]}</div><h1>{t["title"]}</h1><p>{t["intro"]}</p></section><div class="price-blocks"><section class="price-block"><h2 class="price-block-title">{t["for_you"]}</h2><div class="price-grid">{you}</div></section><section class="price-block"><h2 class="price-block-title">{t["for_companies"]}</h2><div class="price-grid">{companies}</div></section></div><p class="price-note">{t["beta_note"]}</p><p class="price-note price-note-second">{t["note"]}</p></div>'
+    body=f'<div class="wrap pricing-main"><section class="inner-hero"><div class="eyebrow">{t["eyebrow"]}</div><h1>{t["title"]}</h1></section><div class="price-blocks"><section class="price-block"><h2 class="price-block-title">{t["for_you"]}</h2><div class="price-grid">{you}</div></section><section class="price-block"><h2 class="price-block-title">{t["for_companies"]}</h2><div class="price-grid">{companies}</div></section></div><p class="price-note">{note}</p></div>'
     return shell(c,c['nav'][2],body,'pricing/')
 
 def thanks(c):
