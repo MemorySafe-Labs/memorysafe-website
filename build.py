@@ -470,9 +470,9 @@ def pricing(c):
         fine=f'<p class="price-fine">{k["fine"]}</p>' if small and k['fine'] else ''
         featured=' featured' if k.get('featured') else ''
         cards.append(f'<article class="price-card{featured}"><div class="mono price-status">{k["status"]}</div><h3 class="price-name">{k["name"]}</h3><div class="price-line"><span class="price-amount">{k["price"]}</span>{per}</div><div class="price-actions">{btns}</div>{said}{includes}<ul class="check-list">{pts}</ul>{fine}</article>')
-    # One closing line: the beta note, the currency and tax sentence, and the terms and privacy links.
-    parts=t['note'].split('. ')
-    note=t['beta_note']+' '+parts[0]+'. '+parts[2].rstrip('.')+'.'
+    # One closing paragraph: the beta note, then the whole existing note (currency and tax,
+    # Stripe and the card number, terms and privacy links, the contact address).
+    note=t['beta_note']+' '+t['note']
     you=''.join(cards[:2]); companies=''.join(cards[2:])
     body=f'<div class="wrap pricing-main"><section class="inner-hero"><div class="eyebrow">{t["eyebrow"]}</div><h1>{t["title"]}</h1></section><div class="price-blocks"><section class="price-block"><h2 class="price-block-title">{t["for_you"]}</h2><div class="price-grid">{you}</div></section><section class="price-block"><h2 class="price-block-title">{t["for_companies"]}</h2><div class="price-grid">{companies}</div></section></div><p class="price-note">{note}</p></div>'
     return shell(c,c['nav'][2],body,'pricing/')
