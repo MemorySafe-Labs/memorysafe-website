@@ -2,7 +2,7 @@
 from pathlib import Path
 from html import escape
 from hashlib import sha256
-import re
+import math, re, struct, zlib
 from research_visual import render_research_visual, STORY
 from locale_fr import COPY_FR, DEMO_FR, PRICING_FR, STORY_FR, META_FR
 STORY['fr']=STORY_FR
@@ -10,6 +10,48 @@ STORY['fr']=STORY_FR
 ROOT=Path(__file__).resolve().parent
 PUBLIC=ROOT/'public'
 OLD=ROOT/'source/privacy'  # the privacy pages' source text; was ../netlify-publish-2026-10-12/public, outside the repository
+
+# Cookieless Cloudflare Web Analytics. The token is a placeholder until Carla
+# creates the Cloudflare site and provides the real token. Do not invent one.
+CF_WEB_ANALYTICS_SNIPPET = '<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "CF_WEB_ANALYTICS_TOKEN"}\'></script>'
+
+def write_favicon(path, size=32):
+    """Rasterize the 3×3 mark (same geometry as assets/mark.svg) to a 32×32 ICO."""
+    scale = size / 40
+    samples = 4
+    colors = [(0x3b, 0x82, 0xf6), (0x93, 0xc5, 0xfd), (0xe0, 0xf2, 0xfe)]
+    bg = (0x0e, 0x14, 0x20)
+    rgba = bytearray(size * size * 4)
+    for y in range(size):
+        for x in range(size):
+            acc = [0, 0, 0, 0]
+            for sy in range(samples):
+                for sx in range(samples):
+                    px = (x + (sx + 0.5) / samples) / scale
+                    py = (y + (sy + 0.5) / samples) / scale
+                    # rounded rect, viewBox 0 0 40 40, rx=9
+                    ax = abs(px - 20) - (20 - 9)
+                    ay = abs(py - 20) - (20 - 9)
+                    sd = math.hypot(max(ax, 0), max(ay, 0)) + min(max(ax, ay), 0) - 9
+                    if sd > 0.5:
+                        continue
+                    r, g, b, a = bg[0], bg[1], bg[2], 255
+                    for col in range(3):
+                        for row in range(3):
+                            cx, cy = 8 + col * 12, 8 + row * 12
+                            if math.hypot(px - cx, py - cy) <= 4:
+                                r, g, b = colors[col]
+                    acc[0] += r; acc[1] += g; acc[2] += b; acc[3] += a
+            n = samples * samples
+            i = (y * size + x) * 4
+            rgba[i:i+4] = bytes(v // n for v in acc)
+    def chunk(tag, data):
+        return struct.pack('>I', len(data)) + tag + data + struct.pack('>I', zlib.crc32(tag + data) & 0xffffffff)
+    raw = b''.join(b'\x00' + bytes(rgba[y*size*4:(y+1)*size*4]) for y in range(size))
+    png = b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', size, size, 8, 6, 0, 0, 0)) + chunk(b'IDAT', zlib.compress(bytes(raw), 9)) + chunk(b'IEND', b'')
+    entry = struct.pack('<BBBBHHII', size, size, 0, 0, 1, 32, len(png), 22)
+    path.write_bytes(struct.pack('<HHH', 0, 1, 1) + entry + png)
+
 
 TEAM=[
     ('Ankit Mishra, MBA','ankit-mishra','https://www.linkedin.com/in/ankitmishra3/','Strategic Advisor','Assessor estratégico','Conseiller stratégique'),
@@ -342,7 +384,7 @@ def shell(c,title,body,page='',index=True):
         ra_css='/research-animation.css?v='+sha256((PUBLIC/'research-animation.css').read_bytes()).hexdigest()[:12]
         ra_js='/research-animation.js?v='+sha256((PUBLIC/'research-animation.js').read_bytes()).hexdigest()[:12]
         research_assets=f'<link rel="stylesheet" href="{ra_css}"><script src="{ra_js}" defer></script>'
-    return f'''<!doctype html><html lang="{c['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — MemorySafe Labs</title><meta name="description" content="{META[c['code']].get(page,META[c['code']][''])}">{og(c,title,page)}{seo(c,page,index and 'thanks' not in page)}<meta name="theme-color" content="#ffffff"><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="{style}">{research_assets}<script src="{script}" defer></script></head><body>{header(c,page)}<main id="main">{body}</main>{footer(c)}</body></html>'''
+    return f'''<!doctype html><html lang="{c['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — MemorySafe Labs</title><meta name="description" content="{META[c['code']].get(page,META[c['code']][''])}">{og(c,title,page)}{seo(c,page,index and 'thanks' not in page)}<meta name="theme-color" content="#ffffff"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="{style}">{research_assets}<script src="{script}" defer></script>{CF_WEB_ANALYTICS_SNIPPET}</head><body>{header(c,page)}<main id="main">{body}</main>{footer(c)}</body></html>'''
 
 def updates_form(c):
     p=c['prefix']
@@ -561,10 +603,18 @@ for locale,c in COPY.items():
 
 # Favicon: v7 small-size rule — untilted 3×3, pale third column.
 (PUBLIC/'assets/mark.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="9" fill="#0e1420"/>'+''.join(f'<circle cx="{8+x*12}" cy="{8+y*12}" r="4" fill="{["#3b82f6","#93c5fd","#e0f2fe"][x]}"/>' for x in range(3) for y in range(3))+'</svg>')
+write_favicon(PUBLIC/'favicon.ico')
 (PUBLIC/'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: https://memorysafe.ca/sitemap.xml\n')
 # Sitemap: every content page, in both languages.
 _pages=['','download/','pricing/','research/','value/','privacy/']
 (PUBLIC/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>https://memorysafe.ca/{pre}{pg}</loc></url>\n' for pg in _pages for pre in ('','fr/','pt-br/'))+'</urlset>\n')
+# llms.txt lists only existing content pages and their titles, taken from each page.
+_llms=['# MemorySafe Labs','']
+for pre,pg in ((pre,pg) for pg in _pages for pre in ('','fr/','pt-br/')):
+    html=(PUBLIC/f'{pre}{pg}'/'index.html').read_text()
+    title=re.search(r'<title>(.*?)</title>',html,re.S).group(1)
+    _llms.append(f'- [{title}](https://memorysafe.ca/{pre}{pg})')
+(PUBLIC/'llms.txt').write_text('\n'.join(_llms)+'\n')
 # Not-found page in the site's own design (Netlify serves /404.html for any missing address).
 _c=COPY['en']
 (PUBLIC/'404.html').write_text(shell(_c,'Page not found','<div class="wrap"><section class="inner-hero"><div class="eyebrow">PAGE NOT FOUND</div><h1>This page isn’t here.</h1><p>The link may be old or mistyped.</p><p><a class="button" href="/">Go to the home page</a> <a class="button ghost" href="/pricing/">Pricing</a></p><p lang="fr">Page introuvable. <a href="/fr/" style="text-decoration:underline">Aller à l’accueil</a></p><p lang="pt-BR">Página não encontrada. <a href="/pt-br/" style="text-decoration:underline">Ir para a página inicial</a></p></section></div>','404.html',index=False).replace('href="/pt-br/404.html"','href="/pt-br/"').replace('href="/fr/404.html"','href="/fr/"').replace('href="/404.html"','href="/"'))

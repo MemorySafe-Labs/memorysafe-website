@@ -7,3 +7,35 @@
 
 [build.environment]
   PYTHON_VERSION = "3.12"
+
+# /about is not a page; the About section lives on each language's home page.
+# Do not merge or deploy this until Carla says go.
+[[redirects]]
+  from = "/about"
+  to = "/#about"
+  status = 301
+
+[[redirects]]
+  from = "/about/"
+  to = "/#about"
+  status = 301
+
+[[redirects]]
+  from = "/fr/about"
+  to = "/fr/#about"
+  status = 301
+
+[[redirects]]
+  from = "/fr/about/"
+  to = "/fr/#about"
+  status = 301
+
+[[redirects]]
+  from = "/pt-br/about"
+  to = "/pt-br/#about"
+  status = 301
+
+[[redirects]]
+  from = "/pt-br/about/"
+  to = "/pt-br/#about"
+  status = 301
