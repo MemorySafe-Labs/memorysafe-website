@@ -415,7 +415,7 @@ def download(c):
 
 def research(c):
     visual=render_research_visual(c['code'])
-    cases=''.join(f'<div class="card case-card"><img class="case-img" src="/assets/{img}.jpg" alt="" width="900" height="600" loading="lazy"><h3>{t}</h3><p>{problem}</p><p class="case-action">{action}</p></div>' for img,t,problem,action in c['cases'])
+    cases=''.join(f'<div class="card case-card"><img class="case-img" src="/assets/{img}.jpg" alt="" width="900" height="600" loading="lazy"><h3>{t}</h3><p>{problem}</p></div>' for img,t,problem,_ in c['cases'])  # short page: the "what to do" line is left out
     body=f'''<div class="wrap research-main"><section class="inner-hero"><div class="eyebrow">{c['research_eyebrow']}</div><h1>{c['research_page_title']}</h1><p>{c['research_page_intro']}</p></section>{visual}<section class="research-cases" aria-labelledby="cases-title"><div class="chapter-number">{c['cases_label']}</div><div class="section-head"><h2 id="cases-title">{c['cases_title']}</h2><p class="section-lead">{c['cases_lead']}</p></div><div class="card-row">{cases}</div></section><a class="button" href="mailto:contact@memorysafe.ca">{c['research_contact']}</a><p class="research-note">{c['research_note']}</p></div>'''
     return shell(c,c['nav'][3],body,'research/')
 
@@ -423,12 +423,15 @@ def value(c):
     v=c['value']
     def fields(fs,panel):
         return ''.join(f'<label class="v-field">{label}<input type="number" min="0" step="{step}" value="{default}" data-v="{key}" data-v-panel="{panel}"></label>' for key,label,default,step in fs)
+    intro=v['intro'].split('. ')[-1]
+    lead1=v['p1_lead'].split('? ')[0]+'?'
+    lead2=v['p2_lead'].split(' — ')[0]+'.'
     def outs(os_,panel):
         return ''.join(f'<div class="v-out"><span>{label}</span><strong data-vo="{key}">—</strong></div>' for key,label in os_)
-    body=f'''<div class="wrap research-main"><section class="inner-hero"><div class="eyebrow">{v['eyebrow']}</div><h1>{v['title']}</h1><p>{v['intro']}</p></section>
+    body=f'''<div class="wrap research-main"><section class="inner-hero"><div class="eyebrow">{v['eyebrow']}</div><h1>{v['title']}</h1><p>{intro}</p></section>
 <figure class="ms-film value-film" data-value data-hours="{v['hours']}"><div class="ms-film-top"><span class="mono">{v['film']}</span></div><ol class="ms-steps"><li><button type="button" class="demo-step" data-value-tab="1" aria-pressed="true"><span class="demo-step-number">01</span><span>{v['tab1']}</span></button></li><li><button type="button" class="demo-step" data-value-tab="2" aria-pressed="false"><span class="demo-step-number">02</span><span>{v['tab2']}</span></button></li></ol>
-<div class="v-panel" data-value-panel="1"><p class="v-lead">{v['p1_lead']}</p><div class="value-grid">{fields(v['p1_fields'],1)}</div><div class="v-outs">{outs(v['p1_outs'],1)}</div><p class="v-formula">{v['p1_formula']}</p></div>
-<div class="v-panel" data-value-panel="2" hidden><p class="v-lead">{v['p2_lead']}</p><div class="value-grid">{fields(v['p2_fields'],2)}</div><div class="v-outs">{outs(v['p2_outs'],2)}</div><p class="v-formula">{v['p2_formula']}</p></div>
+<div class="v-panel" data-value-panel="1"><p class="v-lead">{lead1}</p><div class="value-grid">{fields(v['p1_fields'],1)}</div><div class="v-outs">{outs(v['p1_outs'],1)}</div><p class="v-formula">{v['p1_formula']}</p></div>
+<div class="v-panel" data-value-panel="2" hidden><p class="v-lead">{lead2}</p><div class="value-grid">{fields(v['p2_fields'],2)}</div><div class="v-outs">{outs(v['p2_outs'],2)}</div><p class="v-formula">{v['p2_formula']}</p></div>
 <figcaption class="demo-note">{v['caption']}</figcaption></figure></div>'''
     return shell(c,c['nav'][4],body,'value/')
 
