@@ -485,3 +485,6 @@ details>p{font-size:14px;line-height:1.75;color:var(--muted);margin:0 30px 22px 
 @media(max-width:400px){.masthead.lang-fr .button.small{padding:10px 8px;font-size:12.5px}.masthead.lang-fr .nav-toggle{width:36px;height:36px}}
 @media(max-width:400px){main .button{white-space:normal;text-align:center}}
 .price-block .price-actions .button{white-space:normal;text-align:center}
+
+/* Short home page: the honest-limits sentence sits under the three privacy tiles as small print. */
+.privacy-limits{max-width:760px;margin:22px 0 0;font-size:13.5px;line-height:1.65;color:var(--soft)}
