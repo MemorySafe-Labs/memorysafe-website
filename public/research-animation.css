@@ -13,7 +13,7 @@
 .cl-play { display: inline-flex; align-items: center; gap: 8px; flex: none; background: transparent; border: 1px solid #334663; border-radius: 999px; padding: 9px 15px; color: #e2e8f0; font-size: 12px; font-weight: 600; }
 .cl-play:hover { background: #1a2538; border-color: #60a5fa; color: #bfdbfe; }
 .cl-play:focus-visible, .cl-steps button:focus-visible { outline-color: #93c5fd; }
-.cl-story { min-height: 150px; padding-top: 24px; }
+.cl-story { min-height: 128px; padding-top: 24px; }
 .cl-kicker { display: block; font-size: 10px; line-height: 1.6; color: #93c5fd; letter-spacing: .1em; font-family: var(--mono); text-transform: uppercase; }
 .cl-panel h3 { margin: 11px 0 10px; font-size: clamp(21px, 2.3vw, 29px); font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
 .cl-panel p { max-width: 790px; margin: 0; color: #94a3b8; font-size: 14.5px; line-height: 1.7; }
@@ -25,15 +25,15 @@
 .cl-chip.is-off { opacity: 0; }
 .cl-queue { display: flex; justify-content: flex-end; }
 .cl-queue-track { --q: 0; display: flex; flex-direction: row-reverse; gap: 8px; transform: translateX(calc(var(--q) * 38px)); transition: transform .8s cubic-bezier(.3,0,.2,1); }
-.cl-queue .cl-chip:nth-child(n+3) { opacity: .5; }
+.cl-queue .cl-chip:nth-child(n+2) { opacity: .5; }
 .cl-queue .cl-chip.is-off { opacity: 0; }
+[data-step="2"] .cl-queue .cl-chip:nth-child(2) { opacity: 1; }
 [data-step="2"] .cl-queue-track { --q: 1; }
-[data-step="3"] .cl-queue-track { --q: 2; }
 [data-step="0"] .cl-queue .cl-chip:first-child, [data-step="1"] .cl-queue .cl-chip:first-child { border-color: #60a5fa; color: #e0f2fe; }
 [data-step="0"] .cl-queue .cl-chip:first-child { animation: cl-knock 2.2s ease-in-out infinite; }
 .cl-slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px 9px; padding: 18px 14px 14px; border: 1px solid #263249; border-radius: 14px; position: relative; background: #0e1420a6; }
 [data-step="0"] .cl-slots { animation: cl-full 2.2s ease-in-out infinite; }
-.cl-slot { position: relative; height: 82px; }
+.cl-slot { position: relative; height: 76px; }
 .cl-card { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 0 10px; border: 1px solid #334663; border-radius: 10px; background: #1a2538; transition: opacity .35s, transform .35s, border-color .6s, background .6s, box-shadow .6s; }
 .cl-card.is-off { opacity: 0; transform: scale(.88); }
 .cl-sample-glyph { display: grid; place-items: center; width: 23px; height: 23px; border: 1px solid #475e82; border-radius: 50%; color: #e0f2fe; font: 11px var(--mono); }
@@ -43,11 +43,6 @@
 .cl-tag { position: absolute; top: -10px; left: 50%; display: inline-flex; align-items: center; gap: 4px; padding: 3px 7px; border-radius: 999px; background: #1d4ed8; color: #fff; font-size: 8.5px; font-weight: 700; line-height: 1.2; letter-spacing: .02em; white-space: nowrap; opacity: 0; transform: translate(-50%, 4px); transition: opacity .5s .7s, transform .5s .7s; }
 .cl-shield { flex: none; width: 9px; height: 10.5px; fill: currentColor; }
 .cl-lowest .cl-tag { background: #f87171; color: #0e1420; }
-.cl-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; padding-top: 12px; font-size: 10px; color: #94a3b8; visibility: hidden; }
-.cl-legend span { display: inline-flex; align-items: center; gap: 6px; }
-.cl-legend .cl-shield { color: #60a5fa; }
-.cl-legend-bar { display: block; width: 18px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, #60a5fa 62%, #263249 62%); }
-.cl-buffer-note { min-height: 34px; margin-top: 10px; color: #e2e8f0; font-size: 12.5px; font-weight: 600; line-height: 1.4; text-align: center; }
 .cl-tray { display: flex; justify-content: center; gap: 8px; }
 .cl-rest { display: grid; place-items: center; width: 34px; height: 42px; border: 1px dashed #334663; border-radius: 8px; }
 .cl-tray .cl-chip { border-color: #475e82; background: #141b2a; color: #7a8db0; text-decoration: line-through; }
@@ -62,20 +57,19 @@
 /* Step 2 onward: every example shows its score; the protected ones wear the shield. */
 .cl-explainer:not([data-step="0"]) .cl-score { opacity: 1; }
 .cl-explainer:not([data-step="0"]) .cl-score i { width: var(--score); }
-.cl-explainer:not([data-step="0"]) .cl-legend { visibility: visible; }
 .cl-explainer:not([data-step="0"]) .cl-protected { border-color: #60a5fa; background: #16233d; box-shadow: 0 0 0 3px #3b82f61f; }
 .cl-explainer:not([data-step="0"]) .cl-protected .cl-sample-glyph { border-color: #93c5fd; }
 .cl-explainer:not([data-step="0"]) .cl-protected .cl-sample-label { color: #bfdbfe; }
 .cl-explainer:not([data-step="0"]) .cl-protected .cl-score i { background: #60a5fa; }
 .cl-explainer:not([data-step="0"]) .cl-protected .cl-tag { opacity: 1; transform: translate(-50%, 0); }
 [data-step="1"] .cl-lowest { border-color: #f87171; animation: cl-lowest 2.2s ease-in-out 1.2s infinite; }
-[data-step="1"] .cl-lowest .cl-score i, [data-step="2"] .cl-next .cl-score i { background: #f87171; }
+[data-step="1"] .cl-lowest .cl-score i { background: #f87171; }
 [data-step="1"] .cl-lowest .cl-tag { opacity: 1; transform: translate(-50%, 0); transition-delay: 1.2s; }
-/* Steps 3 and 4: one leaves, the protected hold. */
-[data-step="2"] .cl-protected, [data-step="3"] .cl-protected { animation: cl-hold 2.6s ease-in-out infinite; }
-[data-step="2"] .cl-leaving, [data-step="3"] .cl-leaving { background: #475e82; }
-[data-step="2"] .cl-leaving i, [data-step="3"] .cl-leaving i { background: #f87171; box-shadow: 0 0 9px #f8717170; animation: cl-travel 2.4s linear infinite; }
-[data-step="2"] .cl-rest:first-child, [data-step="3"] .cl-rest { border-color: #475e82; }
+/* Step 3: one leaves, the protected hold. */
+[data-step="2"] .cl-protected { animation: cl-hold 2.6s ease-in-out infinite; }
+[data-step="2"] .cl-leaving { background: #475e82; }
+[data-step="2"] .cl-leaving i { background: #f87171; box-shadow: 0 0 9px #f8717170; animation: cl-travel 2.4s linear infinite; }
+[data-step="2"] .cl-rest { border-color: #475e82; }
 /* While cards fly, the newcomer and the replaced one appear when their flight lands. */
 [data-flight="true"] .cl-card[data-cl-from]:not(.is-off) { transition-delay: 1.75s; }
 [data-flight="true"] .cl-tray .cl-chip:not(.is-off) { transition-delay: 1.3s; }
@@ -117,13 +111,13 @@
   .cl-queue-track { gap: 6px; transform: translateX(calc(var(--q) * 32px)); }
   .cl-chip { width: 26px; height: 34px; }
   .cl-rest { width: 30px; height: 38px; }
-  .cl-story { min-height: 170px; }
+  .cl-story { min-height: 150px; }
 }
 @media (max-width: 600px) {
   .cl-film { padding: 20px 19px; }
   .cl-film-top { align-items: flex-start; flex-wrap: wrap; gap: 12px; padding-bottom: 18px; }
   .cl-film-top > .mono { font-size: 8px; }
-  .cl-story { min-height: 244px; padding-top: 22px; }
+  .cl-story { min-height: 196px; padding-top: 22px; }
   .cl-panel h3 { font-size: 22px; }
   .cl-panel p { font-size: 13px; line-height: 1.7; }
   .cl-kicker { font-size: 8px; }
@@ -132,16 +126,14 @@
   .cl-stream .cl-node-label, .cl-out .cl-node-label { margin: 0; text-align: left; }
   .cl-buffer { width: 100%; max-width: 320px; margin: 0 auto; }
   .cl-buffer > .cl-node-label { margin-bottom: 12px; }
-  .cl-legend { display: none; }
   .cl-diagram { gap: 7px; }
   .cl-connector { width: 1px; height: 16px; margin: 0 auto; }
   .cl-connector:after { top: auto; bottom: 0; right: -2px; transform: rotate(135deg); }
   .cl-connector i { left: -3px; top: 0; animation-name: cl-travel-vertical; }
-  [data-step="2"] .cl-leaving i, [data-step="3"] .cl-leaving i { animation-name: cl-travel-vertical; }
+  [data-step="2"] .cl-leaving i { animation-name: cl-travel-vertical; }
   [data-step="0"] .cl-queue .cl-chip:first-child { animation-name: cl-knock-down; }
   .cl-slot { height: 78px; }
   .cl-card { padding: 0 8px; }
-  .cl-buffer-note { font-size: 12px; min-height: 36px; }
   .cl-steps { gap: 8px; }
   .cl-steps button { padding: 8px 12px; font-size: 11px; }
   .cl-step-number { font-size: 8px; }
