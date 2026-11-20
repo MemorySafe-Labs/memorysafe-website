@@ -83,7 +83,7 @@ COPY={
 'local_cta':'Download the free beta','local_fine':'Free. Open source (Apache 2.0), for ever.<br>It’s a beta because we’re still testing it.<br>Advanced features are being built in MemorySafe Cloud.',
 'hosted_status':'CLOUD BETA · AVAILABLE NOW · FREE PLAN','hosted_title':'Your memory follows you.',
 'hosted_body':'One shared memory across supported AI apps and devices — Claude, Codex, Cursor and more — kept current wherever you work.',
-'hosted_points':['One shared address your apps connect to','Laptop, phone, desktop','Hosted in Canada'],'hosted_cta':'Create your free account',
+'hosted_points':['One shared address your apps connect to','Laptop, phone, desktop','Stored in Canada'],'hosted_cta':'Create your free account',
 'hosted_fine':'Free for up to 150 memories. Room for 20,000 is US$10 a month.<br>It’s a beta because we’re still testing it.<br>Questions? <a href="mailto:contact@memorysafe.ca">Email us</a>.',
 'band_note':'The local plugin keeps your memory on one computer. MemorySafe Cloud is where every assistant you use meets one memory, on every device.',
 'research_label':'A DIFFERENT SCALE.<br>THE SAME QUESTION.',
@@ -175,7 +175,7 @@ COPY={
 'local_cta':'Baixar o beta gratuito','local_fine':'Gratuito. Código aberto (Apache 2.0), para sempre.<br>É um beta porque ainda estamos testando.<br>Os recursos avançados estão sendo construídos no MemorySafe Cloud.',
 'hosted_status':'CLOUD BETA · DISPONÍVEL AGORA · PLANO GRATUITO','hosted_title':'Sua memória acompanha você.',
 'hosted_body':'Uma memória compartilhada entre apps de IA e dispositivos compatíveis — Claude, Codex, Cursor e outros — que mantém seu contexto atualizado onde você estiver.',
-'hosted_points':['Um endereço compartilhado ao qual seus apps se conectam','Notebook, celular, desktop','Hospedado no Canadá'],'hosted_cta':'Criar sua conta gratuita',
+'hosted_points':['Um endereço compartilhado ao qual seus apps se conectam','Notebook, celular, desktop','Guardado no Canadá'],'hosted_cta':'Criar sua conta gratuita',
 'hosted_fine':'Grátis até 150 memórias. Espaço para 20.000 custa US$10 por mês.<br>É um beta porque ainda estamos testando.<br>Dúvidas? <a href="mailto:contact@memorysafe.ca">Escreva para nós</a>.',
 'band_note':'O plugin local guarda sua memória em um computador. O MemorySafe Cloud é onde todos os seus assistentes encontram uma só memória, em todos os dispositivos.',
 'research_label':'OUTRA ESCALA.<br>A MESMA PERGUNTA.',
@@ -252,7 +252,7 @@ PRICING={
 'for_you':'For you','for_companies':'For companies','pending':'Payment link coming soon','beta_note':'MemorySafe is in beta: we’re still testing it.',
 'cards':[
  {'status':'FREE · AVAILABLE NOW','name':'Free','price':'US$0','per':'','includes':'What’s included','body':'Unlimited on this computer, for ever. 150 memories free in the cloud.',
-  'points':['Claude and Codex on your computer','Cursor and more apps in the cloud','Cloud account hosted in Canada','Review, protect, export and erase','Open source'],
+  'points':['Claude and Codex on your computer','Cursor and more apps in the cloud','Cloud account stored in Canada','Review, protect, export and erase','Open source'],
   'buttons':[('Download','download',''),('Create your free account','hosted','ghost')],'fine':''},
  {'status':'PAID PLAN','name':'Personal','price':'US$10','per':'/ month','includes':'Everything in Free, plus','body':'More room in the cloud, on every device.',
   'points':['Up to 20,000 memories','Pay monthly, cancel any time'],
@@ -269,7 +269,7 @@ PRICING={
 'for_you':'Para você','for_companies':'Para empresas','pending':'Link de pagamento em breve','beta_note':'O MemorySafe está em beta: ainda estamos testando.',
 'cards':[
  {'status':'GRÁTIS · DISPONÍVEL AGORA','name':'Grátis','price':'US$0','per':'','includes':'O que está incluído','body':'Ilimitado neste computador, para sempre. 150 memórias grátis na nuvem.',
-  'points':['Claude e Codex no seu computador','Cursor e outros apps na nuvem','Conta na nuvem hospedada no Canadá','Revise, proteja, exporte e apague','Código aberto'],
+  'points':['Claude e Codex no seu computador','Cursor e outros apps na nuvem','Conta na nuvem guardada no Canadá','Revise, proteja, exporte e apague','Código aberto'],
   'buttons':[('Baixar','download',''),('Criar sua conta gratuita','hosted','ghost')],'fine':''},
  {'status':'PLANO PAGO','name':'Pessoal','price':'US$10','per':'/ mês','includes':'Tudo do Grátis, mais','body':'Mais espaço na nuvem, em qualquer aparelho.',
   'points':['Até 20.000 memórias','Pagamento mensal, cancele quando quiser'],
@@ -293,15 +293,16 @@ def mark():
 
 def header(c,page=''):
     p=c['prefix']
-    links=[p+'#problem',p+'#how',p+'pricing/',p+'research/',p+'value/',p+'#about']
-    nav=''.join(f'<a href="{href}">{text}</a>' for href,text in zip(links,c['nav']))
+    links=[p+'pricing/',p+'research/',p+'value/',p+'#about']  # the home page no longer has Problem / How it works sections
+    nav=''.join(f'<a href="{href}">{text}</a>' for href,text in zip(links,c['nav'][2:]))
     nav+=f'<a class="nav-signin" href="https://memory.memorysafe.ca/account/start?next=/account&lang={signup_lang(p)}">{c["signin"]}</a>'
     langs='<span aria-hidden="true">/</span>'.join(f'<a href="{pre+page}"'+(' aria-current="page"' if pre==p else '')+f'>{lab}</a>' for _,pre,lab in LOCALES)
     return f'''<a class="skip" href="#main">{c['skip']}</a><div class="masthead lang-{c['code']}"><div class="wrap"><div class="nav"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><nav class="nav-links" id="site-nav" aria-label="{pick(c,'Main navigation','Navegação principal','Navigation principale')}">{nav}<span class="nav-menu-lang language">{langs}</span></nav><div class="nav-actions"><nav class="language" aria-label="{pick(c,'Language','Idioma','Langue')}">{langs}</nav><a class="nav-github" href="{GITHUB}" aria-label="{c['github_label']}">{GITHUB_ICON}<span class="nav-github-label">GitHub</span></a><a class="nav-github nav-linkedin" href="{LINKEDIN}" aria-label="{c['linkedin_label']}">{LINKEDIN_ICON}</a><a class="button small" href="{p}download/"><span class="nav-cta-long">{c['cta']}</span><span class="nav-cta-short">{c['cta_short']}</span></a><button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button></div></div></div></div>'''
 
-def footer(c):
+def footer(c,updates=False):
     p=c['prefix']
-    return f'''<footer class="footer on-dark"><div class="wrap"><div class="footer-top"><div><div class="eyebrow">{c['footer_eyebrow']}</div><h2>{c['footer_title']}</h2></div><a class="button light" href="{p}download/">{c['cta']}</a></div><div class="footer-meta"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><span class="footer-copy">{c['copyright']}</span><nav class="footer-links"><a href="{p}pricing/">{c['nav'][2]}</a><a href="{p}research/">{c['nav'][3]}</a><a href="{p}value/">{c['nav'][4]}</a><a href="{p}privacy/">{c['privacy']}</a><a href="https://memory.memorysafe.ca/terms?lang={terms_lang(c)}">{c['cloud_terms']}</a><a href="{GITHUB}">{c['github']} ↗</a><a href="{LINKEDIN}">LinkedIn ↗</a><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></nav></div></div></footer>'''
+    upd=f'''<div class="footer-updates"><div class="footer-updates-words"><strong>{c['upd_title']}</strong><span>{c['upd_short']}</span></div>{updates_form(c)}</div>''' if updates else ''
+    return f'''<footer class="footer on-dark"><div class="wrap"><div class="footer-top"><div><div class="eyebrow">{c['footer_eyebrow']}</div><h2>{c['footer_title']}</h2></div><a class="button light" href="{p}download/">{c['cta']}</a></div>{upd}<div class="footer-meta"><a class="brand" href="{p}" aria-label="MemorySafe Labs">{mark()}</a><span class="footer-copy">{c['copyright']}</span><nav class="footer-links"><a href="{p}pricing/">{c['nav'][2]}</a><a href="{p}research/">{c['nav'][3]}</a><a href="{p}value/">{c['nav'][4]}</a><a href="{p}privacy/">{c['privacy']}</a><a href="https://memory.memorysafe.ca/terms?lang={terms_lang(c)}">{c['cloud_terms']}</a><a href="{GITHUB}">{c['github']} ↗</a><a href="{LINKEDIN}">LinkedIn ↗</a><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></nav></div></div></footer>'''
 
 # Link previews (Open Graph + Twitter), as deployed on 29 Oct 2026; the image is public/assets/og-image.png (1800x945).
 OG_DESC={'/fr/':'Une mémoire gouvernée pour l’IA. Une mémoire partagée entre Claude, Cursor et vos autres agents, sur votre ordinateur ou dans votre compte. Commencez gratuitement.','/':'Governed memory for AI. One shared memory for Claude, Cursor and your other agents, on your computer or in your account. Start free.',
@@ -342,7 +343,7 @@ def shell(c,title,body,page='',index=True):
         ra_css='/research-animation.css?v='+sha256((PUBLIC/'research-animation.css').read_bytes()).hexdigest()[:12]
         ra_js='/research-animation.js?v='+sha256((PUBLIC/'research-animation.js').read_bytes()).hexdigest()[:12]
         research_assets=f'<link rel="stylesheet" href="{ra_css}"><script src="{ra_js}" defer></script>'
-    return f'''<!doctype html><html lang="{c['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — MemorySafe Labs</title><meta name="description" content="{META[c['code']].get(page,META[c['code']][''])}">{og(c,title,page)}{seo(c,page,index and 'thanks' not in page)}<meta name="theme-color" content="#ffffff"><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="{style}">{research_assets}<script src="{script}" defer></script></head><body>{header(c,page)}<main id="main">{body}</main>{footer(c)}</body></html>'''
+    return f'''<!doctype html><html lang="{c['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — MemorySafe Labs</title><meta name="description" content="{META[c['code']].get(page,META[c['code']][''])}">{og(c,title,page)}{seo(c,page,index and 'thanks' not in page)}<meta name="theme-color" content="#ffffff"><link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="{style}">{research_assets}<script src="{script}" defer></script></head><body>{header(c,page)}<main id="main">{body}</main>{footer(c,page=='')}</body></html>'''
 
 def updates_form(c):
     p=c['prefix']
@@ -387,22 +388,21 @@ def programs(c):
             f'<ul class="program-list track" aria-hidden="true">{items}</ul></div></div>')
 def homepage(c):
     p=c['prefix']
-    problems=''.join(f'<div class="card">{ICONS[i]}<h3>{t}</h3><p>{x}</p></div>' for i,t,x in c['problems'])
-    verbs=''.join(f'<div class="verb"><h3>{ICONS[i]}{t}</h3><p>{x}</p></div>' for i,t,x in c['verbs'])
-    learns=''.join(f'<div class="verb"><span class="learn-stage">{s}</span><h3>{t}</h3><p>{x}</p></div>' for s,t,x in c['learn_steps'])
     local_pts=''.join(f'<li>{s}</li>' for s in c['local_points'])
     hosted_pts=''.join(f'<li>{s}</li>' for s in c['hosted_points'])
-    tiles=''.join(f'<div class="tile">{ICONS[i]}<h3>{t}</h3><p>{x}</p></div>' for i,t,x in c['tiles'])
-    faq=''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in c['faqs'])
+    # The short home page: every line below is cut from an existing sentence, never rewritten.
+    first=lambda text,n=1: '. '.join(text.split('. ')[:n]).rstrip('.')+'.'
+    renumber=lambda text,n: re.sub(r'^\d+',n,text)
+    keep={'shield':1,'key':2,'eyeoff':1}  # sentences kept from each privacy tile; the fourth tile becomes the small print
+    short={'intro':first(c['hero_intro'],2),'local_fine':c['local_fine'].split('<br>')[0],'hosted_fine':c['hosted_fine'].split('<br>')[0],
+           'ch_editions':renumber(c['ch_editions'],'01'),'ch_privacy':renumber(c['ch_privacy'],'02'),
+           'limits':first(next(x for i,_,x in c['tiles'] if i=='scale'))}
+    tiles=''.join(f'<div class="tile">{ICONS[i]}<h3>{t}</h3><p>{first(x,keep[i])}</p></div>' for i,t,x in c['tiles'] if i in keep)
     team=''.join(f'<li><a class="team-person" href="{url}" target="_blank" rel="noopener"><img src="/assets/{slug}.jpg" alt="" width="54" height="60" loading="lazy"><span><strong>{escape(name)}</strong><span class="team-role">{escape(pick(c,en_role,pt_role,fr_role))}</span></span><span class="team-arrow" aria-hidden="true">↗</span></a></li>' for name,slug,url,en_role,pt_role,fr_role in TEAM)
-    body=f'''<section class="wrap" aria-labelledby="hero-title"><div class="hero"><div class="hero-copy"><div class="eyebrow">{c['hero_eyebrow']}</div><h1 id="hero-title">{c['hero_title']}</h1><p class="hero-intro">{c['hero_intro']}</p><div class="hero-actions"><a class="button" href="{p}download/">{c['hero_primary']}</a><a class="button ghost" href="#how">{c['hero_secondary']}</a></div><p class="hero-sub">{c['hero_sub']} <a class="hero-code" href="{GITHUB}">{GITHUB_ICON}{c['hero_code']} <span aria-hidden="true">↗</span></a></p></div>{hero_demo(c)}</div><div class="hero-bottom"><span class="mono">{c['compatible']}</span><div class="compatibility"><span>Claude Desktop</span><span>Claude Code</span><span>Codex</span></div></div>{programs(c)}</section>
-<section id="problem" class="section ice" aria-labelledby="problem-title"><div class="wrap"><div class="chapter-number">{c['ch_problem']}</div><div class="section-head"><h2 id="problem-title">{c['problem_title']}</h2></div><div class="card-row">{problems}</div></div></section>
-<section id="how" class="section" aria-labelledby="how-title"><div class="wrap"><div class="chapter-number">{c['ch_how']}</div><div class="section-head"><h2 id="how-title">{c['how_title']}</h2><p class="section-lead">{c['how_lead']}</p></div><div class="card-row">{verbs}</div><div class="strip">{c['how_strip']}</div></div></section>
-<section id="editions" class="band on-dark" aria-labelledby="edition-title"><div class="wrap"><div class="chapter-number">{c['ch_editions']}</div><div class="section-head"><h2 id="edition-title">{c['edition_title']}</h2><p class="section-lead">{c['edition_lead']}</p></div><div class="card-row"><article class="edition"><div class="edition-status">{c['local_status']}</div><h3>{c['local_title']}</h3><p>{c['local_body']}</p><ul>{local_pts}</ul><a class="button light" href="{p}download/">{c['local_cta']}</a><div class="fine">{c['local_fine']}</div></article><article class="edition"><div class="edition-status">{c['hosted_status']}</div><h3>{c['hosted_title']}</h3><p>{c['hosted_body']}</p><ul>{hosted_pts}</ul><a class="button light" href="{HOSTED_SIGNUP}{signup_lang(c['prefix'])}">{c['hosted_cta']}</a><div class="fine">{c['hosted_fine']}</div></article></div><p class="band-note">{c['band_note']}</p></div></section>
-<section id="privacy-s" class="section ice" aria-labelledby="privacy-title"><div class="wrap"><div class="chapter-number">{c['ch_privacy']}</div><div class="section-head"><h2 id="privacy-title">{c['privacy_title']}</h2><p class="section-lead">{c['privacy_lead']}</p><a class="text-link code-link" href="{GITHUB}">{GITHUB_ICON}{c['privacy_code']} <span aria-hidden="true">↗</span></a></div><div class="card-row">{tiles}</div></div></section>
-<section id="about" class="section" aria-labelledby="about-title"><div class="wrap"><div class="about"><img class="founder-photo" src="/assets/carla-centeno.jpg" alt="Carla Centeno" width="140" height="150" loading="lazy"><div class="founder-words"><span class="mono">{c['founder_eyebrow']}</span><h2 id="about-title">{c['founder_heading']}</h2><span class="founder-name">{c['founder_name']}</span></div><div class="about-description">{c['founder_description']}<br><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></div></div><div class="team-strip"><h3 class="mono" id="team-title">{escape(c['team_heading'])}</h3><ul class="team-list" aria-labelledby="team-title">{team}</ul></div></div></section>
-<section class="section ice" aria-labelledby="faq-title"><div class="wrap faq"><div class="faq-title"><span class="mono">{c['faq_eyebrow']}</span><h2 id="faq-title">{c['faq_heading']}</h2></div><div class="faq-list">{faq}</div></div></section>
-<section class="updates-mini"><div class="wrap"><div class="updates-box compact"><div class="compact-words"><span class="mono">{c['upd_label']}</span><h2>{c['upd_title']}</h2><p class="compact-note">{c['upd_short']}</p></div>{updates_form(c)}</div></div></section>'''
+    body=f'''<section class="wrap" aria-labelledby="hero-title"><div class="hero"><div class="hero-copy"><div class="eyebrow">{c['hero_eyebrow']}</div><h1 id="hero-title">{c['hero_title']}</h1><p class="hero-intro">{short['intro']}</p><div class="hero-actions"><a class="button" href="{p}download/">{c['hero_primary']}</a></div><p class="hero-sub">{c['hero_sub']} <a class="hero-code" href="{GITHUB}">{GITHUB_ICON}{c['hero_code']} <span aria-hidden="true">↗</span></a></p></div>{hero_demo(c)}</div><div class="hero-bottom"><span class="mono">{c['compatible']}</span><div class="compatibility"><span>Claude Desktop</span><span>Claude Code</span><span>Codex</span></div></div>{programs(c)}</section>
+<section id="editions" class="band on-dark" aria-labelledby="edition-title"><div class="wrap"><div class="chapter-number">{short['ch_editions']}</div><div class="section-head"><h2 id="edition-title">{c['edition_title']}</h2><p class="section-lead">{c['verbs'][0][2]}</p></div><div class="card-row"><article class="edition"><div class="edition-status">{c['local_status']}</div><h3>{c['local_title']}</h3><ul>{local_pts}</ul><a class="button light" href="{p}download/">{c['local_cta']}</a><div class="fine">{short['local_fine']}</div></article><article class="edition"><div class="edition-status">{c['hosted_status']}</div><h3>{c['hosted_title']}</h3><ul>{hosted_pts}</ul><a class="button light" href="{HOSTED_SIGNUP}{signup_lang(c['prefix'])}">{c['hosted_cta']}</a><div class="fine">{short['hosted_fine']}</div></article></div></div></section>
+<section id="privacy-s" class="section ice" aria-labelledby="privacy-title"><div class="wrap"><div class="chapter-number">{short['ch_privacy']}</div><div class="section-head"><h2 id="privacy-title">{c['privacy_title']}</h2><a class="text-link code-link" href="{GITHUB}">{GITHUB_ICON}{c['privacy_code']} <span aria-hidden="true">↗</span></a></div><div class="card-row">{tiles}</div><p class="privacy-limits">{short['limits']}</p></div></section>
+<section id="about" class="section" aria-labelledby="about-title"><div class="wrap"><div class="about"><img class="founder-photo" src="/assets/carla-centeno.jpg" alt="Carla Centeno" width="140" height="150" loading="lazy"><div class="founder-words"><span class="mono">{c['founder_eyebrow']}</span><h2 id="about-title">{c['founder_heading']}</h2><span class="founder-name">{c['founder_name']}</span></div><div class="about-description">{c['founder_description']}<br><a href="mailto:contact@memorysafe.ca">{c['contact']} ↗</a></div></div><div class="team-strip"><h3 class="mono" id="team-title">{escape(c['team_heading'])}</h3><ul class="team-list" aria-labelledby="team-title">{team}</ul></div></div></section>'''
     return shell(c,c['hero_title'].rstrip('.'),body)
 
 def download(c):
@@ -415,7 +415,7 @@ def download(c):
 
 def research(c):
     visual=render_research_visual(c['code'])
-    cases=''.join(f'<div class="card case-card"><img class="case-img" src="/assets/{img}.jpg" alt="" width="900" height="600" loading="lazy"><h3>{t}</h3><p>{problem}</p><p class="case-action">{action}</p></div>' for img,t,problem,action in c['cases'])
+    cases=''.join(f'<div class="card case-card"><img class="case-img" src="/assets/{img}.jpg" alt="" width="900" height="600" loading="lazy"><h3>{t}</h3><p>{problem}</p></div>' for img,t,problem,_ in c['cases'])  # short page: the "what to do" line is left out
     body=f'''<div class="wrap research-main"><section class="inner-hero"><div class="eyebrow">{c['research_eyebrow']}</div><h1>{c['research_page_title']}</h1><p>{c['research_page_intro']}</p></section>{visual}<section class="research-cases" aria-labelledby="cases-title"><div class="chapter-number">{c['cases_label']}</div><div class="section-head"><h2 id="cases-title">{c['cases_title']}</h2><p class="section-lead">{c['cases_lead']}</p></div><div class="card-row">{cases}</div></section><a class="button" href="mailto:contact@memorysafe.ca">{c['research_contact']}</a><p class="research-note">{c['research_note']}</p></div>'''
     return shell(c,c['nav'][3],body,'research/')
 
@@ -423,12 +423,15 @@ def value(c):
     v=c['value']
     def fields(fs,panel):
         return ''.join(f'<label class="v-field">{label}<input type="number" min="0" step="{step}" value="{default}" data-v="{key}" data-v-panel="{panel}"></label>' for key,label,default,step in fs)
+    intro=v['intro'].split('. ')[-1]
+    lead1=v['p1_lead'].split('? ')[0]+'?'
+    lead2=v['p2_lead'].split(' — ')[0]+'.'
     def outs(os_,panel):
         return ''.join(f'<div class="v-out"><span>{label}</span><strong data-vo="{key}">—</strong></div>' for key,label in os_)
-    body=f'''<div class="wrap research-main"><section class="inner-hero"><div class="eyebrow">{v['eyebrow']}</div><h1>{v['title']}</h1><p>{v['intro']}</p></section>
+    body=f'''<div class="wrap research-main"><section class="inner-hero"><div class="eyebrow">{v['eyebrow']}</div><h1>{v['title']}</h1><p>{intro}</p></section>
 <figure class="ms-film value-film" data-value data-hours="{v['hours']}"><div class="ms-film-top"><span class="mono">{v['film']}</span></div><ol class="ms-steps"><li><button type="button" class="demo-step" data-value-tab="1" aria-pressed="true"><span class="demo-step-number">01</span><span>{v['tab1']}</span></button></li><li><button type="button" class="demo-step" data-value-tab="2" aria-pressed="false"><span class="demo-step-number">02</span><span>{v['tab2']}</span></button></li></ol>
-<div class="v-panel" data-value-panel="1"><p class="v-lead">{v['p1_lead']}</p><div class="value-grid">{fields(v['p1_fields'],1)}</div><div class="v-outs">{outs(v['p1_outs'],1)}</div><p class="v-formula">{v['p1_formula']}</p></div>
-<div class="v-panel" data-value-panel="2" hidden><p class="v-lead">{v['p2_lead']}</p><div class="value-grid">{fields(v['p2_fields'],2)}</div><div class="v-outs">{outs(v['p2_outs'],2)}</div><p class="v-formula">{v['p2_formula']}</p></div>
+<div class="v-panel" data-value-panel="1"><p class="v-lead">{lead1}</p><div class="value-grid">{fields(v['p1_fields'],1)}</div><div class="v-outs">{outs(v['p1_outs'],1)}</div><p class="v-formula">{v['p1_formula']}</p></div>
+<div class="v-panel" data-value-panel="2" hidden><p class="v-lead">{lead2}</p><div class="value-grid">{fields(v['p2_fields'],2)}</div><div class="v-outs">{outs(v['p2_outs'],2)}</div><p class="v-formula">{v['p2_formula']}</p></div>
 <figcaption class="demo-note">{v['caption']}</figcaption></figure></div>'''
     return shell(c,c['nav'][4],body,'value/')
 
@@ -453,16 +456,28 @@ def pricing(c):
         if STRIPE[key]:
             return f'<a class="{cls}" href="{STRIPE[key]}">{label}</a>'
         return f'<span class="{cls} is-pending" aria-disabled="true" title="{t["pending"]}">{label}</span>'
+    # The short pricing page: each card keeps its price, its button and what you get.
+    # Everything shown is cut from the existing copy, never rewritten. Per card, in order
+    # (Free, Personal, Team, Audits & pilots): sentences kept from the body, whether the
+    # "includes" heading stays (only where it says something: "Everything in Free, plus"),
+    # how many points stay, and whether the small print stays (only where it limits a price).
+    first=lambda text,n: '. '.join(text.split('. ')[:n]).rstrip('.')+'.' if n else ''
+    KEEP=[(2,False,4,False),(0,True,2,False),(1,True,3,False),(1,False,3,True)]
     cards=[]
-    for k in t['cards']:
-        pts=''.join(f'<li>{x}</li>' for x in k['points'])
+    for k,(sentences,heading,points,small) in zip(t['cards'],KEEP):
+        pts=''.join(f'<li>{x}</li>' for x in k['points'][:points])
         btns=''.join(button(*b) for b in k['buttons'])
         per=f'<span class="price-per">{k["per"]}</span>' if k['per'] else ''
-        fine=f'<p class="price-fine">{k["fine"]}</p>' if k['fine'] else ''
+        said=f'<p>{first(k["body"],sentences)}</p>' if sentences else ''
+        includes=f'<h3 class="price-includes">{k["includes"]}</h3>' if heading else ''
+        fine=f'<p class="price-fine">{k["fine"]}</p>' if small and k['fine'] else ''
         featured=' featured' if k.get('featured') else ''
-        cards.append(f'<article class="price-card{featured}"><div class="mono price-status">{k["status"]}</div><h3 class="price-name">{k["name"]}</h3><div class="price-line"><span class="price-amount">{k["price"]}</span>{per}</div><div class="price-actions">{btns}</div><p>{k["body"]}</p><h3 class="price-includes">{k["includes"]}</h3><ul class="check-list">{pts}</ul>{fine}</article>')
+        cards.append(f'<article class="price-card{featured}"><div class="mono price-status">{k["status"]}</div><h3 class="price-name">{k["name"]}</h3><div class="price-line"><span class="price-amount">{k["price"]}</span>{per}</div><div class="price-actions">{btns}</div>{said}{includes}<ul class="check-list">{pts}</ul>{fine}</article>')
+    # One closing paragraph: the beta note, then the whole existing note (currency and tax,
+    # Stripe and the card number, terms and privacy links, the contact address).
+    note=t['beta_note']+' '+t['note']
     you=''.join(cards[:2]); companies=''.join(cards[2:])
-    body=f'<div class="wrap pricing-main"><section class="inner-hero"><div class="eyebrow">{t["eyebrow"]}</div><h1>{t["title"]}</h1><p>{t["intro"]}</p></section><div class="price-blocks"><section class="price-block"><h2 class="price-block-title">{t["for_you"]}</h2><div class="price-grid">{you}</div></section><section class="price-block"><h2 class="price-block-title">{t["for_companies"]}</h2><div class="price-grid">{companies}</div></section></div><p class="price-note">{t["beta_note"]}</p><p class="price-note price-note-second">{t["note"]}</p></div>'
+    body=f'<div class="wrap pricing-main"><section class="inner-hero"><div class="eyebrow">{t["eyebrow"]}</div><h1>{t["title"]}</h1></section><div class="price-blocks"><section class="price-block"><h2 class="price-block-title">{t["for_you"]}</h2><div class="price-grid">{you}</div></section><section class="price-block"><h2 class="price-block-title">{t["for_companies"]}</h2><div class="price-grid">{companies}</div></section></div><p class="price-note">{note}</p></div>'
     return shell(c,c['nav'][2],body,'pricing/')
 
 def thanks(c):
